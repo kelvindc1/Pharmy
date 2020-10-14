@@ -14,12 +14,6 @@ import lib.Entity;
  * @author Cristiano Peiter <cristiano.peiter@universo.univates.br>
  */
 
-//apagar
-
-//p
-
-
-//oi
 public class Pessoa extends Entity
 {
     private String   nome;
