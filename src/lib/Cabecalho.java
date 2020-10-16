@@ -4,8 +4,6 @@
  * and open the template in the editor.
  */
 package lib;
-
-//teste
 /**
  *
  * @author Cristiano Peiter <cristiano.peiter@universo.univates.br>
