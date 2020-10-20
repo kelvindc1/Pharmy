@@ -10,13 +10,13 @@ import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
 import lib.ConexaoBD;
-import lib.IDAOT;
+import lib.IDAO_T;
 
 /**
  *
  * @author Cristian
  */
-public class FuncionarioDAO implements IDAOT<Funcionario> {
+public class FuncionarioDAO implements IDAO_T<Funcionario> {
 
     private ResultSet resultadoQ = null;
 

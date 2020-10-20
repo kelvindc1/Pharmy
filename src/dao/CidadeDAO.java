@@ -16,13 +16,14 @@ import javax.swing.JTable;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumn;
+import lib.IDAO_T;
 
 /**
  *
  * @author kelvin.costa
  */
 
-public class CidadeDAO {
+public class CidadeDAO implements IDAO_T <Cidade>{
     
     private ResultSet resultadoQ = null;
     

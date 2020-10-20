@@ -10,13 +10,13 @@ import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
 import lib.ConexaoBD;
-import lib.IDAOT;
+import lib.IDAO_T;
 
 /**
  *
  * @author Cristian
  */
-public class DadosBancariosDAO implements IDAOT<DadosBancarios> {
+public class DadosBancariosDAO implements IDAO_T<DadosBancarios> {
 
     private ResultSet resultadoQ = null;
 

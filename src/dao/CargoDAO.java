@@ -10,13 +10,13 @@ import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
 import lib.ConexaoBD;
-import lib.IDAOT;
+import lib.IDAO_T;
 
 /**
  *
  * @author Cristian
  */
-public class CargoDAO implements IDAOT<Cargo> {
+public class CargoDAO implements IDAO_T<Cargo> {
 
     private ResultSet resultadoQ = null;
 

@@ -11,13 +11,13 @@ import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
 import lib.ConexaoBD;
-import lib.IDAOT;
+import lib.IDAO_T;
 
 /**
  *
  * @author Cristian
  */
-public class BeneficioDAO implements IDAOT<Beneficio> {
+public class BeneficioDAO implements IDAO_T<Beneficio> {
 
     private ResultSet resultadoQ = null;
 

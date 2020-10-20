@@ -10,13 +10,13 @@ import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
 import lib.ConexaoBD;
-import lib.IDAOT;
+import lib.IDAO_T;
 
 /**
  *
  * @author Cristian
  */
-public class SetorDAO implements IDAOT<Setor> {
+public class SetorDAO implements IDAO_T<Setor> {
 
     private ResultSet resultadoQ = null;
 

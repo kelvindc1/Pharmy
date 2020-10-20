@@ -16,13 +16,14 @@ import javax.swing.JTable;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumn;
+import lib.IDAO_T;
 
 /**
  *
  * @author kelvin.costa
  */
 
-public class PaisDAO {
+public class PaisDAO implements IDAO_T <Pais>{
     
     private ResultSet resultadoQ = null;
     
