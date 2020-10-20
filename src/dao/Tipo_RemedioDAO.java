@@ -14,7 +14,7 @@ import lib.IDAO_T;
 
 /**
  *
- * @author Cristian
+ * @author kelvin.costa
  */
 public class Tipo_RemedioDAO implements IDAO_T<Tipo_Remedio> {
 

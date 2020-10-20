@@ -5,7 +5,7 @@
  */
 package dao;
 
-import control.Categoria;
+import control.Servicos;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
@@ -16,25 +16,29 @@ import lib.IDAO_T;
  *
  * @author kelvin.costa
  */
-public class CategoriaDAO implements IDAO_T<Categoria> {
+public class ServicosDAO implements IDAO_T<Servicos> {
 
     private ResultSet resultadoQ = null;
 
     @Override
-    public boolean salvar(Categoria o) {
+    public boolean salvar(Servicos o) {
         try {
             Statement st = ConexaoBD.getInstance().getConnection().createStatement();
             String sql = "";
-            if (o.getId_cat() == 0) {
-                sql = "INSERT INTO categoria VALUES ("
+            if (o.getId_servicos() == 0) {
+                sql = "INSERT INTO servicos VALUES ("
                         + "DEFAULT, "
+                        + "'" + o.getId_tpservicos() + "',"
                         + "'" + o.getDescricao() + "',"
+                        + "'" + o.getValor() + "',"
                         + "'" + o.getSituacao() + "')";
             } else {
-                sql = "UPDATE categoria "
-                        + "SET descricao = '" + o.getDescricao() + "',"
+                sql = "UPDATE servicos "
+                        + "SET id_tpservicos = '" + o.getId_tpservicos() + "',"
+                        + "descricao = '" + o.getDescricao() + "',"
+                        + "valor = '" + o.getValor() + "',"
                         + "situacao = '" + o.getSituacao() + "',"
-                        + "WHERE id = " + o.getId_cat();
+                        + "WHERE id = " + o.getId_servicos();
             }
 
             System.out.println("SQL: " + sql);
@@ -43,13 +47,14 @@ public class CategoriaDAO implements IDAO_T<Categoria> {
 
             return true;
         } catch (Exception e) {
-            System.out.println("Erro ao salvar categoria = " + e);
+            System.out.println("Erro salvar Serviço = " + e);
             return false;
         }
+
     }
 
     @Override
-    public boolean atualizar(Categoria o) {
+    public boolean atualizar(Servicos o) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
@@ -59,7 +64,7 @@ public class CategoriaDAO implements IDAO_T<Categoria> {
             Statement st = ConexaoBD.getInstance().getConnection().createStatement();
 
             String sql = "DELETE "
-                    + "FROM categoria "
+                    + "FROM servicos "
                     + "WHERE id = " + id;
 
             System.out.println("SQL: " + sql);
@@ -75,24 +80,24 @@ public class CategoriaDAO implements IDAO_T<Categoria> {
     }
 
     @Override
-    public ArrayList<Categoria> consultarTodos() {
+    public ArrayList<Servicos> consultarTodos() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public ArrayList<Categoria> consultar(String criterio) {
+    public ArrayList<Servicos> consultar(String criterio) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public Categoria consultarId(int id) {
-        Categoria categoria = null;
+    public Servicos consultarId(int id) {
+        Servicos servicos = null;
 
         try {
             Statement st = ConexaoBD.getInstance().getConnection().createStatement();
 
             String sql = "SELECT * "
-                    + "FROM categoria "
+                    + "FROM servicos "
                     + "WHERE id = " + id;
 
             System.out.println("SQL: " + sql);
@@ -102,18 +107,21 @@ public class CategoriaDAO implements IDAO_T<Categoria> {
 
             // avanca ResultSet
             if (resultadoQ.next()) {
-                categoria = new Categoria();
+                servicos = new Servicos();
 
                 // obtem dados do RS
-                categoria.setId_cat(resultadoQ.getInt("id_cat"));
-                categoria.setDescricao(resultadoQ.getString("descricao"));
-                categoria.setSituacao(resultadoQ.getString("situacao"));
+                servicos.setId_servicos(resultadoQ.getInt("id_servicos"));
+                servicos.setId_tpservicos(resultadoQ.getInt("id_tpservicos"));
+                servicos.setDescricao(resultadoQ.getString("descricao"));
+                servicos.setValor(resultadoQ.getBigDecimal("valor"));
+                servicos.setSituacao(resultadoQ.getString("situacao"));
 
             }
 
         } catch (Exception e) {
             System.out.println("Erro ao consultar: " + e);
         }
-        return categoria;
+
+        return servicos;
     }
 }
