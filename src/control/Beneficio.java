@@ -7,7 +7,7 @@ import java.math.BigDecimal;
  *
  * @author kelvin.costa
  */
-public class Benefício {
+public class Beneficio {
     
     private int id_beneficio;
     private String descricao;
