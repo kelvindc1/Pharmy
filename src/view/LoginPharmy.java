@@ -141,37 +141,15 @@ public class LoginPharmy extends javax.swing.JFrame {
     }//GEN-LAST:event_tfdSenhaKeyPressed
 
     private void btnEntrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEntrarActionPerformed
-        boolean continuar = true;
+       if (new LoginDAO().autenticar(tfdUsuario.getText(), String.valueOf(tfdSenha.getPassword()))) {
+            new Home().setVisible(true);
 
-        if (tfdUsuario.getText().equals("") || tfdSenha.getText().equals("")) {
-            JOptionPane.showMessageDialog(null, "Campo E-mail e Senha são obrigatórios!");
-            continuar = false;
-            tfdUsuario.requestFocus();
-        }
-
-        if (continuar) {
-            if (!tfdUsuario.getText().equals("")) {
-                LoginDAO loginDAO = new LoginDAO();
-                Login admin = loginDAO.consultarEmail(tfdUsuario.getText().trim());
-
-                if (admin != null) {
-                    String senha = Criptografar.criptografarSenha(Arrays.toString(tfdSenha.getPassword()));
-                    if (senha.equals(admin.getSenha())) {    // CHAMA A TELA PRINCIPAL E LOGA
-
-                        JanelaPrincipal minhaJanela = new JanelaPrincipal();
-                        minhaJanela.setVisible(true);
-
-                        this.dispose();
-
-                    } else {   //MENSAGEM DE SENHA INCORRETA
-                        JOptionPane.showMessageDialog(null, "Usuário ou senha incorreta, tente novamente!");
-                    }
-
-                } else {       //MENSAGEM DE USUARIO INVÁLIDO
-                    JOptionPane.showMessageDialog(null, "Usuário ou senha incorreta, tente novamente!");
-                }
-            }
-        }       
+            this.dispose();
+        } else {
+            JOptionPane.showMessageDialog(this, "Usuário ou senha incorretos!");
+            tfdSenha.setText("");
+            tfdUsuario.setText("");
+        }  
     }//GEN-LAST:event_btnEntrarActionPerformed
 
 
