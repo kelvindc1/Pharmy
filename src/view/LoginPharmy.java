@@ -1,7 +1,5 @@
 package view;
 
-import apoio.CombosDAO;
-import apoio.Criptografar;
 import control.Login;
 import dao.LoginDAO;
 import java.util.Arrays;
