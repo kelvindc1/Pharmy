@@ -129,4 +129,28 @@ public class LoginDAO implements IDAO_T<Login> {
 
     }
 
+    public boolean autenticar(String usuario, String senha) {
+        try {
+            Statement st = ConexaoBD.getInstance().getConnection().createStatement();
+
+            String sql = ""
+                    + "SELECT * "
+                    + "FROM login "
+                    + "WHERE "
+                    + "usuario = '" + usuario + "' AND "
+                    + "senha = md5('" + senha + "') AND "
+                    + "situacao = 'A'";
+
+            System.out.println("SQL: " + sql);
+
+            resultadoQ = st.executeQuery(sql);
+
+            return resultadoQ.next();
+
+        } catch (Exception e) {
+            System.out.println("Erro ao autenticar: " + e);
+            return false;
+        }
+    }
+
 }
