@@ -18,7 +18,7 @@ public class Home extends javax.swing.JFrame {
      */
     public Home() {
 //        administrationTabs.hide();
-        
+   
         initComponents();
     }
 
@@ -254,10 +254,6 @@ public class Home extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Ocorreu um erro ao iniciar a listagem dos itens. \nErro: " + ex, "Error", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_registerPaneMouseClicked
-
-    /**
-     * @param args the command line arguments
-     */
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -289,7 +285,6 @@ public class Home extends javax.swing.JFrame {
             }
         });
     }
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel administrationPane;
     private javax.swing.JPanel background;
