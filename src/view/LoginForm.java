@@ -5,6 +5,7 @@
  */
 package view;
 
+import control.Login;
 import control.Pessoa;
 import interfaces.InterfaceForm;
 import java.sql.Timestamp;
@@ -22,21 +23,21 @@ import lib.GenericForm;
  *
  * @author Cristiano Peiter <cristiano.peiter@universo.univates.br>
  */
-public final class LoginForm extends GenericForm<Pessoa> implements InterfaceForm {
+public final class LoginForm extends GenericForm<Login> implements InterfaceForm {
 
     public PessoaModel model;
-    public Pessoa obj;
+    public Login obj;
     public ArrayList<String> camposObrigatorios;
 
     public LoginForm(java.awt.Frame parent, boolean modal) {
         //novo
-        super(Pessoa.class, parent, modal);
+        super(Login.class, parent, modal);
         this.construtorPadrao();
     }
 
     public LoginForm(java.awt.Frame parent, boolean modal, int id) throws Exception {
         //edição
-        super(Pessoa.class, parent, modal);
+        super(Login.class, parent, modal);
         this.construtorPadrao();
         this.preencherCampos(id);
     }
@@ -46,10 +47,10 @@ public final class LoginForm extends GenericForm<Pessoa> implements InterfaceFor
         initComponents();
 
         //atributos da tela                
-        super.setTitle("Cadastro de Pessoas");
+        super.setTitle("Cadastro de Login");
         this.model = new PessoaModel();
         this.camposObrigatorios = new ArrayList<>();
-        this.obj = new Pessoa();
+        this.obj = new Login();
 
         //campos obrigatorios        
         this.camposObrigatorios.add("nome");
