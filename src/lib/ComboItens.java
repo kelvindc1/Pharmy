@@ -14,6 +14,15 @@ public class ComboItens {
     private int codigo;
     private String descricao;
 
+    public ComboItens(int codigo, String descricao) {
+        this.codigo = codigo;
+        this.descricao = descricao;
+    }
+
+    public ComboItens() {
+
+    }
+
     /**
      * @return the codigo
      */
