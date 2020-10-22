@@ -32,7 +32,7 @@ public class PaisDAO implements IDAO_T <Pais>{
         throw new UnsupportedOperationException("Not supported yet.");
     }
     
-    public int salvarCID(Pais o) {
+    public int salvarP(Pais o) {
         try {        
             Statement st = ConexaoBD.getInstance().getConnection().createStatement();
 
