@@ -75,7 +75,7 @@ public class Formatting {
         campo.setText(df.format(Double.parseDouble(campo.getText())));
     }
 
-    public static void reformatarData(JFormattedTextField campo) {
+    public static void formatarData(JFormattedTextField campo) {
         try {
             MaskFormatter m = new MaskFormatter();
             m.setPlaceholderCharacter(' ');
@@ -88,7 +88,7 @@ public class Formatting {
         }
     }
 
-    public static void reformatarCpf(JFormattedTextField campo) {
+    public static void formatarCpf(JFormattedTextField campo) {
         try {
             MaskFormatter m = new MaskFormatter();
             m.setPlaceholderCharacter(' ');
@@ -101,7 +101,7 @@ public class Formatting {
         }
     }
 
-    public static void reformatarCnpj(JFormattedTextField campo) {
+    public static void formatarCnpj(JFormattedTextField campo) {
         try {
             MaskFormatter m = new MaskFormatter();
             m.setPlaceholderCharacter(' ');
@@ -114,7 +114,7 @@ public class Formatting {
         }
     }
 
-    public static void reformatarTelefone(JFormattedTextField campo) {
+    public static void formatarTelefone(JFormattedTextField campo) {
         try {
             MaskFormatter m = new MaskFormatter();
             m.setPlaceholderCharacter(' ');
