@@ -239,7 +239,7 @@ public class Home extends javax.swing.JFrame {
     }//GEN-LAST:event_administrationPaneMouseClicked
 
     private void registerPaneMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_registerPaneMouseClicked
-        registerTabs.show();
+        /*registerTabs.show();
         
         EmployeeList pessoaList = null;
 
@@ -280,11 +280,11 @@ public class Home extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new Home().setVisible(true);
-            }
-        });
+    //    java.awt.EventQueue.invokeLater(new Runnable() {
+    //       public void run() {
+    //            new Home().setVisible(true);
+    //        }
+    //   });
     }
        
     // Variables declaration - do not modify//GEN-BEGIN:variables
