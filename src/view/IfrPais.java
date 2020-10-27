@@ -10,8 +10,7 @@ import lib.Limite_digitos;
  * @author kelvin.costa
  */
 
-
-// teste
+//ll
 
 public class IfrPais extends javax.swing.JInternalFrame {
 
