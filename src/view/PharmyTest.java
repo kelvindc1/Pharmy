@@ -7,7 +7,6 @@ import javax.swing.JOptionPane;
  *
  * @author kelvin.costa
  */
-
 public class PharmyTest {
 
     public static void main(String[] args) {
