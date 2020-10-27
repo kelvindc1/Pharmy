@@ -141,11 +141,11 @@ public class LoginDAO implements IDAO_T<Login> {
 
             String sql = ""
                     + "SELECT * "
-                    + "FROM login "
+                    + "FROM login l "
                     + "WHERE "
-                    + "usuario = '" + usuario + "' AND "
-                    + "senha = md5('" + senha + "') AND "
-                    + "situacao = 'A'";
+                    + "l.usuario = '" + usuario + "' AND "
+                    + "l.senha = md5('" + senha + "') AND "
+                    + "l.situacao = 'A'";
 
             System.out.println("SQL: " + sql);
 
