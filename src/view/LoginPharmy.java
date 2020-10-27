@@ -140,8 +140,8 @@ public class LoginPharmy extends javax.swing.JFrame {
 
     private void btnEntrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEntrarActionPerformed
        if (new LoginDAO().autenticar(tfdUsuario.getText(), String.valueOf(tfdSenha.getPassword()))) {
-            new Home().setVisible(true);
-            //new IfrMarca().setVisible(true);
+            new JanelaPrincipalPharmy().setVisible(true);
+            //new Home().setVisible(true);
             
             this.dispose();
         } else {
