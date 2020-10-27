@@ -17,8 +17,6 @@ import lib.IDAO_T;
  * @author Cristian
  */
 
-//testando aqui
-
 public class BancoDAO implements IDAO_T<Banco> {
 
     
