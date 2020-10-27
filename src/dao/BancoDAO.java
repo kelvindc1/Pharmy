@@ -21,6 +21,7 @@ import lib.IDAO_T;
 
 public class BancoDAO implements IDAO_T<Banco> {
 
+    
     private ResultSet resultadoQ = null;
 
     @Override
