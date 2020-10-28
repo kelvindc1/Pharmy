@@ -46,6 +46,7 @@ public class JanelaPrincipalPharmy extends javax.swing.JFrame {
         jMenuItem14 = new javax.swing.JMenuItem();
         jMenuItem15 = new javax.swing.JMenuItem();
         jMenuItem12 = new javax.swing.JMenuItem();
+        jMenuItem16 = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
         jMenuItem4 = new javax.swing.JMenuItem();
         jMenu4 = new javax.swing.JMenu();
@@ -160,6 +161,14 @@ public class JanelaPrincipalPharmy extends javax.swing.JFrame {
             }
         });
         jMenu1.add(jMenuItem12);
+
+        jMenuItem16.setText("jMenuItem16");
+        jMenuItem16.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem16ActionPerformed(evt);
+            }
+        });
+        jMenu1.add(jMenuItem16);
 
         jMenuBar1.add(jMenu1);
 
@@ -388,6 +397,12 @@ public class JanelaPrincipalPharmy extends javax.swing.JFrame {
         ifrCidade.setVisible(true);
     }//GEN-LAST:event_jMenuItem14ActionPerformed
 
+    private void jMenuItem16ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem16ActionPerformed
+        ifrForma_Pagamento ifr_Forma_pag = new ifrForma_Pagamento();
+        jDesktopPane1.add(ifr_Forma_pag);
+        ifr_Forma_pag.setVisible(true);
+    }//GEN-LAST:event_jMenuItem16ActionPerformed
+
     public static void main(String args[]) {
 
         java.awt.EventQueue.invokeLater(new Runnable() {
@@ -413,6 +428,7 @@ public class JanelaPrincipalPharmy extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem13;
     private javax.swing.JMenuItem jMenuItem14;
     private javax.swing.JMenuItem jMenuItem15;
+    private javax.swing.JMenuItem jMenuItem16;
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItem4;
