@@ -7,7 +7,6 @@ package view;
 
 import control.Funcao;
 import dao.FuncaoDAO;
-import dao.LoginDAO;
 import javax.swing.JOptionPane;
 
 /**
@@ -323,7 +322,7 @@ public class IfrFuncao extends javax.swing.JInternalFrame {
         if (JOptionPane.showConfirmDialog(null, "Deseja realmente excluir?") == JOptionPane.OK_OPTION) {
             if (apDAO.excluir(id)) {
                 JOptionPane.showMessageDialog(null, "Registro excluído com sucesso!");
-                new LoginDAO().popularTabela(tblFuncao, tfdBusca.getText());
+                new FuncaoDAO().popularTabela(tblFuncao, tfdBusca.getText());
             } else {
                 JOptionPane.showMessageDialog(null, "Problemas ao excluir registro!");
             }
@@ -368,42 +367,45 @@ public class IfrFuncao extends javax.swing.JInternalFrame {
     private void btnSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvarActionPerformed
         Funcao funcao = new Funcao();
 
-        funcao.setId_funcao(id);
-        funcao.setNome(tfdNome.getText());
-        funcao.setDescricao(JtaDescricao.getText());
+        if (!tfdNome.getText().equals("") && !JtaDescricao.getText().equals("")) {
+            funcao.setId_funcao(id);
+            funcao.setNome(tfdNome.getText());
+            funcao.setDescricao(JtaDescricao.getText());
 
-        if (rbAtivo.isSelected()) {
-            funcao.setSituacao("A");
+            if (rbAtivo.isSelected()) {
+                funcao.setSituacao("A");
+            } else {
+                funcao.setSituacao("I");
+            }
+
+            // salvar
+            FuncaoDAO funcaDAO = new FuncaoDAO();
+
+            if (funcaDAO.salvar(funcao)) {
+                // exibir msg
+                JOptionPane.showMessageDialog(null, "Registro salvo com sucesso!");
+
+                // limpar campos
+                tfdNome.setText("");
+                tfdId.setText(new FuncaoDAO().proximaId());
+                JtaDescricao.setText("");
+                rbAtivo.setSelected(true);
+
+                btnFechar.requestFocus();
+
+                // atualiza ID
+                id = 0;
+                new FuncaoDAO().popularTabela(tblFuncao, tfdBusca.getText());
+                tfdId.setText(new FuncaoDAO().proximaId());
+            } else {
+                JOptionPane.showMessageDialog(null, "Problemas ao salvar registro!");
+            }
         } else {
-            funcao.setSituacao("I");
+            JOptionPane.showMessageDialog(null, "Campos não preenchidos!");
         }
-
-        // salvar
-        FuncaoDAO funcaDAO = new FuncaoDAO();
-
-        if (funcaDAO.salvar(funcao)) {
-            // exibir msg
-            JOptionPane.showMessageDialog(null, "Registro salvo com sucesso!");
-
-            // limpar campos
-            tfdNome.setText("");
-            tfdId.setText(new FuncaoDAO().proximaId());
-            JtaDescricao.setText("");
-            rbAtivo.setSelected(true);
-
-            btnFechar.requestFocus();
-
-            // atualiza ID
-            id = 0;
-            new FuncaoDAO().popularTabela(tblFuncao, tfdBusca.getText());
-        } else {
-            JOptionPane.showMessageDialog(null, "Problemas ao salvar registro!");
-        }
-
 
     }//GEN-LAST:event_btnSalvarActionPerformed
 
-    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextArea JtaDescricao;

@@ -5,7 +5,9 @@
  */
 package view;
 
+import control.Cargo;
 import control.Setor;
+import dao.CargoDAO;
 import dao.SetorDAO;
 import javax.swing.JOptionPane;
 
@@ -395,6 +397,7 @@ public class IfrSetor extends javax.swing.JInternalFrame {
         if (ap != null) {
             tfdId.setText(String.valueOf(ap.getId_setor()));
             tfdIdCargo.setText(String.valueOf(ap.getId_cargo()));
+
             tfdNome.setText(ap.getNome());
             JtaDescricao.setText(ap.getDescricao());
             if (ap.getSituacao().equals("A")) {
@@ -402,7 +405,9 @@ public class IfrSetor extends javax.swing.JInternalFrame {
             } else {
                 rbInativo.setSelected(true);
             }
-
+            Cargo aux = new CargoDAO().consultarId(ap.getId_cargo());
+            idCargo = ap.getId_cargo();
+            tfdCargo.setText(aux.getNome());
             jTabbedPane1.setSelectedIndex(0);
         } else {
             System.out.println("erro na consulta");
@@ -421,39 +426,42 @@ public class IfrSetor extends javax.swing.JInternalFrame {
 
     private void btnSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvarActionPerformed
         Setor funcao = new Setor();
+        if (!tfdNome.getText().equals("") && !JtaDescricao.getText().equals("")) {
+            funcao.setId_setor(id);
+            funcao.setId_cargo(idCargo);
+            funcao.setNome(tfdNome.getText());
+            funcao.setDescricao(JtaDescricao.getText());
+            if (rbAtivo.isSelected()) {
+                funcao.setSituacao("A");
+            } else {
+                funcao.setSituacao("I");
+            }
 
-        funcao.setId_setor(id);
-        funcao.setId_cargo(idCargo);
-        funcao.setNome(tfdNome.getText());
-        funcao.setDescricao(JtaDescricao.getText());
-        if (rbAtivo.isSelected()) {
-            funcao.setSituacao("A");
+            // salvar
+            SetorDAO setorDAO = new SetorDAO();
+
+            if (setorDAO.salvar(funcao)) {
+                // exibir msg
+                JOptionPane.showMessageDialog(null, "Registro salvo com sucesso!");
+
+                // limpar campos
+                tfdNome.setText("");
+                tfdId.setText(new SetorDAO().proximaId());
+                JtaDescricao.setText("");
+                tfdIdCargo.setText("");
+                tfdCargo.setText("");
+                rbAtivo.setSelected(true);
+
+                btnFechar.requestFocus();
+
+                // atualiza ID
+                id = 0;
+                new SetorDAO().popularTabela(tblSetor, tfdBusca.getText());
+            } else {
+                JOptionPane.showMessageDialog(null, "Problemas ao salvar registro!");
+            }
         } else {
-            funcao.setSituacao("I");
-        }
-
-        // salvar
-        SetorDAO setorDAO = new SetorDAO();
-
-        if (setorDAO.salvar(funcao)) {
-            // exibir msg
-            JOptionPane.showMessageDialog(null, "Registro salvo com sucesso!");
-
-            // limpar campos
-            tfdNome.setText("");
-            tfdId.setText(new SetorDAO().proximaId());
-            JtaDescricao.setText("");
-            tfdIdCargo.setText("");
-            tfdCargo.setText("");
-            rbAtivo.setSelected(true);
-
-            btnFechar.requestFocus();
-
-            // atualiza ID
-            id = 0;
-            new SetorDAO().popularTabela(tblSetor, tfdBusca.getText());
-        } else {
-            JOptionPane.showMessageDialog(null, "Problemas ao salvar registro!");
+            JOptionPane.showMessageDialog(null, "Campos não preenchidos!");
         }
 
 
@@ -467,8 +475,9 @@ public class IfrSetor extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btnBuscarActionPerformed
 
     void definirValorFuncao(String id, String nome) {
-        tfdIdCargo.setText(Integer.parseInt(id)+"");
+        tfdIdCargo.setText(Integer.parseInt(id) + "");
         tfdCargo.setText(nome);
+        idCargo = Integer.parseInt(id);
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextArea JtaDescricao;

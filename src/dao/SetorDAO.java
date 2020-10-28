@@ -36,15 +36,15 @@ public class SetorDAO implements IDAO_T<Setor> {
                         + "DEFAULT, "
                         + "'" + o.getNome() + "',"
                         + "'" + o.getDescricao() + "',"
-                        + "'" + o.getId_cargo() + "'"
+                        + "'" + o.getId_cargo() + "',"
                         + "'" + o.getSituacao() + "')";
             } else {
                 sql = "UPDATE setor "
                         + "SET nome = '" + o.getNome() + "',"
                         + "descricao = '" + o.getDescricao() + "',"
-                        + "id_funcao = '" + o.getId_cargo() + "',"
-                        + "situacao = '" + o.getSituacao() + "',"
-                        + "WHERE id = " + o.getId_setor();
+                        + "id_cargo = '" + o.getId_cargo() + "',"
+                        + "situacao = '" + o.getSituacao() + "' "
+                        + "WHERE id_setor = " + o.getId_setor();
             }
 
             System.out.println("SQL: " + sql);
@@ -65,12 +65,12 @@ public class SetorDAO implements IDAO_T<Setor> {
 
     @Override
     public boolean excluir(int id) {
-         try {
+        try {
             Statement st = ConexaoBD.getInstance().getConnection().createStatement();
 
             String sql = "DELETE "
                     + "FROM setor "
-                    + "WHERE id = " + id;
+                    + "WHERE id_setor = " + id;
 
             System.out.println("SQL: " + sql);
 
@@ -96,14 +96,13 @@ public class SetorDAO implements IDAO_T<Setor> {
 
     @Override
     public Setor consultarId(int id) {
-           Setor setor = null;
-
+        Setor setor = null;
         try {
             Statement st = ConexaoBD.getInstance().getConnection().createStatement();
 
             String sql = "SELECT * "
                     + "FROM setor "
-                    + "WHERE id = " + id;
+                    + "WHERE id_setor = " + id;
 
             System.out.println("SQL: " + sql);
 
@@ -115,7 +114,7 @@ public class SetorDAO implements IDAO_T<Setor> {
                 setor = new Setor();
 
                 // obtem dados do RS
-                setor.setId_cargo(resultadoQ.getInt("id_cargo"));
+                setor.setId_setor(resultadoQ.getInt("id_setor"));
                 setor.setNome(resultadoQ.getString("nome"));
                 setor.setDescricao(resultadoQ.getString("descricao"));
                 setor.setId_cargo(resultadoQ.getInt("id_cargo"));
@@ -128,6 +127,7 @@ public class SetorDAO implements IDAO_T<Setor> {
         }
         return setor;
     }
+
     public void popularTabela(JTable tabela, String criterio) {
 // dados da tabela
         Object[][] dadosTabela = null;
@@ -144,9 +144,9 @@ public class SetorDAO implements IDAO_T<Setor> {
         try {
             resultadoQ = ConexaoBD.getInstance().getConnection().createStatement().executeQuery(""
                     + "SELECT count(*) "
-                    + "FROM setor "
+                    + "FROM setor s "
                     + "WHERE "
-                    + "NOME ILIKE '%" + criterio + "%'");
+                    + "s.nome ILIKE '%" + criterio + "%'");
 
             resultadoQ.next();
 
@@ -161,10 +161,11 @@ public class SetorDAO implements IDAO_T<Setor> {
         // efetua consulta na tabela
         try {
             resultadoQ = ConexaoBD.getInstance().getConnection().createStatement().executeQuery(""
-                    + "SELECT s.id_cargo, s.nome, c.nome AS cargo, s.descricao, s.situacao  "
+                    + "SELECT s.id_setor, s.nome, c.nome AS cargo, s.descricao, s.situacao  "
                     + "FROM setor s, cargo c "
                     + "WHERE s.id_cargo = c.id_cargo AND "
-                    + "NOME ILIKE '%" + criterio + "%'");
+                    + "s.nome ILIKE '%" + criterio + "%' "
+                    + "ORDER BY s.id_setor ");
 
             while (resultadoQ.next()) {
 
@@ -249,11 +250,12 @@ public class SetorDAO implements IDAO_T<Setor> {
             }
         });
     }
-     public String proximaId() {
+
+    public String proximaId() {
         String resp = "";
         try {
             resultadoQ = ConexaoBD.getInstance().getConnection().createStatement().executeQuery(""
-                    + "SELECT MAX(os.id) "
+                    + "SELECT MAX(os.id_setor) "
                     + "FROM setor os");
 
             resultadoQ.next();

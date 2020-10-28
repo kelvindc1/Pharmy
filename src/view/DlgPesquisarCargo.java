@@ -5,6 +5,7 @@
  */
 package view;
 
+import dao.CargoDAO;
 import dao.FuncaoDAO;
 
 
@@ -29,7 +30,7 @@ public class DlgPesquisarCargo extends javax.swing.JDialog {
         super(parent, modal);
         initComponents();
         setorView = ifrTratamento;
-        new FuncaoDAO().popularTabelaFiltro(tblItem2, "","A");
+        new CargoDAO().popularTabelaFiltro(tblItem2, "","A");
     }
 
     /**

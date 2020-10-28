@@ -15,9 +15,10 @@ public class LoginPharmy extends javax.swing.JFrame {
 
     public LoginPharmy() {
         initComponents();
-
-        setLocationRelativeTo(null);
         
+        setLocationRelativeTo(null);
+        tfdUsuario.setText("c");
+        tfdSenha.setText("123");
         try {
             UIManager.setLookAndFeel("com.sun.java.swing.plaf.nimbus.NimbusLookAndFeel");
             //UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());

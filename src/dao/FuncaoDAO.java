@@ -41,8 +41,8 @@ public class FuncaoDAO implements IDAO_T<Funcao> {
                 sql = "UPDATE funcao "
                         + "SET nome = '" + o.getNome() + "',"
                         + "descricao = '" + o.getDescricao() + "',"
-                        + "situacao = '" + o.getSituacao() + "',"
-                        + "WHERE id = " + o.getId_funcao();
+                        + "situacao = '" + o.getSituacao() + "' "
+                        + "WHERE id_funcao = " + o.getId_funcao();
             }
 
             System.out.println("SQL: " + sql);
@@ -69,7 +69,7 @@ public class FuncaoDAO implements IDAO_T<Funcao> {
 
             String sql = "DELETE "
                     + "FROM funcao "
-                    + "WHERE id = " + id;
+                    + "WHERE id_funcao = " + id;
 
             System.out.println("SQL: " + sql);
 
@@ -102,7 +102,7 @@ public class FuncaoDAO implements IDAO_T<Funcao> {
 
             String sql = "SELECT * "
                     + "FROM funcao "
-                    + "WHERE id = " + id;
+                    + "WHERE id_funcao = " + id;
 
             System.out.println("SQL: " + sql);
 
@@ -145,7 +145,7 @@ public class FuncaoDAO implements IDAO_T<Funcao> {
                     + "SELECT count(*) "
                     + "FROM funcao "
                     + "WHERE "
-                    + "USUARIO ILIKE '%" + criterio + "%'");
+                    + "NOME ILIKE '%" + criterio + "%'");
 
             resultadoQ.next();
 
@@ -161,9 +161,11 @@ public class FuncaoDAO implements IDAO_T<Funcao> {
         try {
             resultadoQ = ConexaoBD.getInstance().getConnection().createStatement().executeQuery(""
                     + "SELECT * "
-                    + "FROM funcao"
+                    + "FROM funcao f "
                     + "WHERE  "
-                    + "NOME ILIKE '%" + criterio + "%'");
+                    + "f.nome ILIKE '%" + criterio + "%' "
+                    + "ORDER BY f.id_funcao ");
+           
 
             while (resultadoQ.next()) {
 
@@ -181,7 +183,7 @@ public class FuncaoDAO implements IDAO_T<Funcao> {
                 lin++;
             }
         } catch (Exception e) {
-            System.out.println("problemas para popular tabela de USUÁRIOS");
+            System.out.println("problemas para popular tabela de FUNÇÃO");
             System.out.println(e);
         }
 
@@ -252,7 +254,7 @@ public class FuncaoDAO implements IDAO_T<Funcao> {
         String resp = "";
         try {
             resultadoQ = ConexaoBD.getInstance().getConnection().createStatement().executeQuery(""
-                    + "SELECT MAX(os.id) "
+                    + "SELECT MAX(os.id_funcao) "
                     + "FROM funcao os");
 
             resultadoQ.next();
@@ -280,7 +282,7 @@ public class FuncaoDAO implements IDAO_T<Funcao> {
         try {
             resultadoQ = ConexaoBD.getInstance().getConnection().createStatement().executeQuery(""
                     + "SELECT count(*) "
-                    + "FROM funcao f"
+                    + "FROM funcao f "
                     + "WHERE f.situacao = 'A' AND "
                     + "f.nome ILIKE '%" + criterio + "%'");
 
@@ -298,9 +300,9 @@ public class FuncaoDAO implements IDAO_T<Funcao> {
         try {
             resultadoQ = ConexaoBD.getInstance().getConnection().createStatement().executeQuery(""
                     + "SELECT * "
-                    + "FROM funcao f"
+                    + "FROM funcao f "
                     + "WHERE f.situacao = 'A' AND "
-                    + "f.NOME ILIKE '%" + criterio + "%'");
+                    + "f.nome ILIKE '%" + criterio + "%'");
 
             while (resultadoQ.next()) {
 
@@ -318,7 +320,7 @@ public class FuncaoDAO implements IDAO_T<Funcao> {
                 lin++;
             }
         } catch (Exception e) {
-            System.out.println("problemas para popular tabela de USUÁRIOS");
+            System.out.println("problemas para popular tabela de FUNÇÃO");
             System.out.println(e);
         }
 

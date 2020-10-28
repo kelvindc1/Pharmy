@@ -6,7 +6,9 @@
 package view;
 
 import control.Cargo;
+import control.Funcao;
 import dao.CargoDAO;
+import dao.FuncaoDAO;
 import dao.LoginDAO;
 import javax.swing.JOptionPane;
 
@@ -396,6 +398,9 @@ public class IfrCargo extends javax.swing.JInternalFrame {
         if (ap != null) {
             tfdId.setText(String.valueOf(ap.getId_cargo()));
             tfdIdFuncao.setText(String.valueOf(ap.getId_funcao()));
+
+            Funcao aux = new FuncaoDAO().consultarId(ap.getId_funcao());
+            idFuncao = aux.getId_funcao();
             tfdNome.setText(ap.getNome());
             JtaDescricao.setText(ap.getDescricao());
             if (ap.getSituacao().equals("A")) {
@@ -403,7 +408,7 @@ public class IfrCargo extends javax.swing.JInternalFrame {
             } else {
                 rbInativo.setSelected(true);
             }
-
+            tfdFuncao.setText(aux.getNome());
             jTabbedPane1.setSelectedIndex(0);
         } else {
             System.out.println("erro na consulta");
@@ -422,41 +427,43 @@ public class IfrCargo extends javax.swing.JInternalFrame {
 
     private void btnSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvarActionPerformed
         Cargo funcao = new Cargo();
+        if (!tfdNome.getText().equals("") && !JtaDescricao.getText().equals("")) {
+            funcao.setId_cargo(id);
+            funcao.setId_funcao(idFuncao);
+            funcao.setNome(tfdNome.getText());
+            funcao.setDescricao(JtaDescricao.getText());
+            if (rbAtivo.isSelected()) {
+                funcao.setSituacao("A");
+            } else {
+                funcao.setSituacao("I");
+            }
 
-        funcao.setId_cargo(id);
-        funcao.setId_funcao(idFuncao);
-        funcao.setNome(tfdNome.getText());
-        funcao.setDescricao(JtaDescricao.getText());
-        if (rbAtivo.isSelected()) {
-            funcao.setSituacao("A");
+            // salvar
+            CargoDAO funcaDAO = new CargoDAO();
+
+            if (funcaDAO.salvar(funcao)) {
+                // exibir msg
+                JOptionPane.showMessageDialog(null, "Registro salvo com sucesso!");
+
+                // limpar campos
+                tfdNome.setText("");
+                tfdId.setText(new CargoDAO().proximaId());
+                JtaDescricao.setText("");
+                tfdIdFuncao.setText("");
+                tfdFuncao.setText("");
+                rbAtivo.setSelected(true);
+
+                btnFechar.requestFocus();
+
+                // atualiza ID
+                id = 0;
+                new CargoDAO().popularTabela(tblCargo, tfdBusca.getText());
+            } else {
+                JOptionPane.showMessageDialog(null, "Problemas ao salvar registro!");
+            }
         } else {
-            funcao.setSituacao("I");
+            JOptionPane.showMessageDialog(null, "Campos não preenchidos!");
         }
-
-        // salvar
-        CargoDAO funcaDAO = new CargoDAO();
-
-        if (funcaDAO.salvar(funcao)) {
-            // exibir msg
-            JOptionPane.showMessageDialog(null, "Registro salvo com sucesso!");
-
-            // limpar campos
-            tfdNome.setText("");
-            tfdId.setText(new CargoDAO().proximaId());
-            JtaDescricao.setText("");
-            tfdIdFuncao.setText("");
-            tfdFuncao.setText("");
-            rbAtivo.setSelected(true);
-
-            btnFechar.requestFocus();
-
-            // atualiza ID
-            id = 0;
-            new CargoDAO().popularTabela(tblCargo, tfdBusca.getText());
-        } else {
-            JOptionPane.showMessageDialog(null, "Problemas ao salvar registro!");
-        }
-
 
     }//GEN-LAST:event_btnSalvarActionPerformed
 
@@ -468,8 +475,9 @@ public class IfrCargo extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btnBuscarActionPerformed
 
     void definirValorFuncao(String id, String nome) {
-        tfdIdFuncao.setText(Integer.parseInt(id)+"");
+        tfdIdFuncao.setText(Integer.parseInt(id) + "");
         tfdFuncao.setText(nome);
+        idFuncao = Integer.parseInt(id);
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextArea JtaDescricao;
