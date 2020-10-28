@@ -64,7 +64,7 @@
     <Component class="javax.swing.JButton" name="btnFechar">
       <Properties>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="3" name="/imagens/iconeFechar.png"/>
+          <Image iconType="3" name="/images/system/icons/iconeFechar.png"/>
         </Property>
         <Property name="text" type="java.lang.String" value="Fechar"/>
       </Properties>
@@ -159,7 +159,7 @@
             <Component class="javax.swing.JButton" name="btnSalvar">
               <Properties>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="3" name="/imagens/iconeSalvar.png"/>
+                  <Image iconType="3" name="/images/system/icons/iconeSalvar.png"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Salvar"/>
               </Properties>
@@ -221,14 +221,13 @@
                               <Component id="btnEditar" min="-2" pref="91" max="-2" attributes="0"/>
                               <EmptySpace min="-2" pref="8" max="-2" attributes="0"/>
                           </Group>
-                          <Component id="jScrollPane1" alignment="0" pref="523" max="32767" attributes="0"/>
+                          <Component id="jScrollPane1" alignment="0" max="32767" attributes="0"/>
                           <Group type="102" alignment="0" attributes="0">
                               <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
                               <EmptySpace type="separate" max="-2" attributes="0"/>
-                              <Component id="tfdBusca" min="-2" pref="308" max="-2" attributes="0"/>
-                              <EmptySpace min="-2" pref="33" max="-2" attributes="0"/>
+                              <Component id="tfdBusca" min="-2" pref="362" max="-2" attributes="0"/>
+                              <EmptySpace type="separate" max="-2" attributes="0"/>
                               <Component id="btnPesquisar" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                           </Group>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
@@ -288,7 +287,7 @@
             <Component class="javax.swing.JButton" name="btnPesquisar">
               <Properties>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="3" name="/imagens/seo-social-web-network-internet_340_icon-iconscom_61497.png"/>
+                  <Image iconType="3" name="/images/system/icons/seo-social-web-network-internet_340_icon-iconscom_61497.png"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Pesquisar"/>
               </Properties>
@@ -299,7 +298,7 @@
             <Component class="javax.swing.JButton" name="btnExcluir">
               <Properties>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="3" name="/imagens/trash-can_115312 (1).png"/>
+                  <Image iconType="3" name="/images/system/icons/trash-can_115312 (1).png"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Excluir"/>
               </Properties>
@@ -310,7 +309,7 @@
             <Component class="javax.swing.JButton" name="btnEditar">
               <Properties>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="3" name="/imagens/iconeEditar.png"/>
+                  <Image iconType="3" name="/images/system/icons/iconeEditar.png"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Editar"/>
               </Properties>
