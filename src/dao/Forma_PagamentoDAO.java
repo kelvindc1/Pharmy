@@ -39,8 +39,8 @@ public class Forma_PagamentoDAO implements IDAO_T<Forma_Pagamento> {
             } else {
                 sql = "UPDATE forma_pagamento "
                         + "SET nome = '" + o.getNome() + "',"
-                        + "descricao = '" + o.getDescricao() + "',"
-                        + "WHERE id = " + o.getId_forma_pag();
+                        + "descricao = '" + o.getDescricao() + "' "
+                        + "WHERE id_forma_pag = " + o.getId_forma_pag();
             }
 
             System.out.println("SQL: " + sql);
@@ -66,7 +66,7 @@ public class Forma_PagamentoDAO implements IDAO_T<Forma_Pagamento> {
 
             String sql = "DELETE "
                     + "FROM forma_pagamento "
-                    + "WHERE id = " + id;
+                    + "WHERE id_forma_pag = " + id;
 
             System.out.println("SQL: " + sql);
 
@@ -99,7 +99,7 @@ public class Forma_PagamentoDAO implements IDAO_T<Forma_Pagamento> {
 
             String sql = "SELECT * "
                     + "FROM forma_pagamento "
-                    + "WHERE id = " + id;
+                    + "WHERE id_forma_pag = " + id;
 
             System.out.println("SQL: " + sql);
 
