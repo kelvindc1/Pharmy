@@ -13,14 +13,14 @@ import javax.swing.JOptionPane;
  *
  * @author Win10
  */
-public class LoginView extends javax.swing.JInternalFrame {
+public class IfrLogin extends javax.swing.JInternalFrame {
 
     int id = 0;
     int idFunc = 0;
     /**
      * Creates new form Login
      */
-    public LoginView() {
+    public IfrLogin() {
         initComponents();
         new LoginDAO().popularTabela(tblLogin, "");
         rbAtivo.setSelected(true);
@@ -305,15 +305,14 @@ public class LoginView extends javax.swing.JInternalFrame {
                     .addComponent(jLabel27)
                     .addComponent(jLabel6)
                     .addComponent(tfdEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(18, 18, 18)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel32)
                             .addComponent(tfdUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(79, 79, 79))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabel5)
                         .addGap(18, 18, 18)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -325,7 +324,6 @@ public class LoginView extends javax.swing.JInternalFrame {
                             .addComponent(jLabel13)
                             .addComponent(jLabel25)
                             .addComponent(tffRepSenha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel11)
                     .addComponent(rbAtivo)
