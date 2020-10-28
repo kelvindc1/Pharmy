@@ -27,7 +27,7 @@ public class JanelaPrincipalPharmy extends javax.swing.JFrame {
     public JanelaPrincipalPharmy() {
         initComponents();
         setExtendedState(MAXIMIZED_BOTH);
-        setIcon();
+        //setIcon();
     }
 
     @SuppressWarnings("unchecked")
@@ -59,7 +59,7 @@ public class JanelaPrincipalPharmy extends javax.swing.JFrame {
         jMenuItem13.setText("jMenuItem13");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setTitle("MixPizza");
+        setTitle("Pharmy");
         setMinimumSize(new java.awt.Dimension(800, 800));
         addHierarchyBoundsListener(new java.awt.event.HierarchyBoundsListener() {
             public void ancestorMoved(java.awt.event.HierarchyEvent evt) {
@@ -397,9 +397,8 @@ public class JanelaPrincipalPharmy extends javax.swing.JFrame {
                 janelaPrincipal.setVisible(true);
             }
         });
-
     }
-
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JDesktopPane jDesktopPane1;
     private javax.swing.JMenu jMenu1;
@@ -424,7 +423,7 @@ public class JanelaPrincipalPharmy extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem9;
     // End of variables declaration//GEN-END:variables
 
-    private void setIcon() {
-        setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/imagens/pizza.png")));
-    }
+    /*private void setIcon() {
+        setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/images.system.branding/linkedin_banner_image_1.png")));
+    }*/
 }

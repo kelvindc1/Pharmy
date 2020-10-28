@@ -37,8 +37,8 @@ public class MarcaDAO implements IDAO_T<Marca> {
                         + "'" + o.getNome() + "')";
             } else {
                 sql = "UPDATE marca "
-                        + "SET nome = '" + o.getNome() + "',"
-                        + "WHERE id = " + o.getId_marca();
+                        + "SET nome = '" + o.getNome() + "' " 
+                        + "WHERE id_marca = " + o.getId_marca();
             }
 
             System.out.println("SQL: " + sql);
@@ -64,7 +64,7 @@ public class MarcaDAO implements IDAO_T<Marca> {
 
             String sql = "DELETE "
                     + "FROM marca "
-                    + "WHERE id = " + id;
+                    + "WHERE id_marca = " + id;
 
             System.out.println("SQL: " + sql);
 
@@ -97,7 +97,7 @@ public class MarcaDAO implements IDAO_T<Marca> {
 
             String sql = "SELECT * "
                     + "FROM marca "
-                    + "WHERE id = " + id;
+                    + "WHERE id_marca = " + id;
 
             System.out.println("SQL: " + sql);
 
