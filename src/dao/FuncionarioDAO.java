@@ -119,7 +119,7 @@ public class FuncionarioDAO implements IDAO_T<Funcionario> {
 
             String sql = "SELECT * "
                     + "FROM funcionario "
-                    + "WHERE id = " + id;
+                    + "WHERE id_func = " + id;
 
             System.out.println("SQL: " + sql);
 
@@ -131,11 +131,11 @@ public class FuncionarioDAO implements IDAO_T<Funcionario> {
                 pessoa = new Funcionario();
 
                 // obtem dados do RS
-                pessoa.setId_func(resultadoQ.getInt("id"));
+                pessoa.setId_func(resultadoQ.getInt("id_func"));
                 pessoa.setNome(resultadoQ.getString("nome"));
                 pessoa.setCpf(resultadoQ.getString("cpf"));
                 pessoa.setRg(resultadoQ.getString("rg"));
-                pessoa.setDt_nasc(resultadoQ.getDate("dt_nasci"));
+                pessoa.setDt_nasc(resultadoQ.getDate("dt_nasc"));
                 pessoa.setDt_admissao(resultadoQ.getDate("dt_admissao"));
                 pessoa.setDt_demissao(resultadoQ.getDate("dt_demissao"));
                 pessoa.setSexo(resultadoQ.getString("sexo"));
@@ -167,16 +167,14 @@ public class FuncionarioDAO implements IDAO_T<Funcionario> {
                     + "SELECT f.id_func, f.nome "
                     + "FROM funcionario f "
                     + "WHERE "
-                    + "NOME ILIKE '%" + criterio + "%' AND f.situacao = '%" + criterio2 + "%'");
+                    + "f.nome ILIKE '%" + criterio + "%' AND f.situacao = '" + criterio2 + "'");
 
             resultadoQ.next();
 
             dadosTabela = new Object[resultadoQ.getInt(1)][2];
-
         } catch (Exception e) {
             System.out.println("Erro ao consultar Filtro: " + e);
         }
-
         int lin = 0;
 
         // efetua consulta na tabela
@@ -185,7 +183,7 @@ public class FuncionarioDAO implements IDAO_T<Funcionario> {
                     + "SELECT f.id_func, f.nome "
                     + "FROM funcionario f "
                     + "WHERE "
-                    + "NOME ILIKE '%" + criterio + "%' AND f.situacao = '%" + criterio2 + "%'");
+                    + "f.nome ILIKE '%" + criterio + "%' AND f.situacao = '" + criterio2 + "'");
 
             while (resultadoQ.next()) {
 

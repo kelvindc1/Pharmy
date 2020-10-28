@@ -29,7 +29,7 @@ public class DlgPesquisarFunc extends javax.swing.JDialog {
         super(parent, modal);
         initComponents();
         loginView = ifrTratamento;
-        new FuncionarioDAO().popularTabelaFiltro(tblItem2, "","A");
+        new FuncionarioDAO().popularTabelaFiltro(tblItem2,"","A");
     }
 
     /**
@@ -51,7 +51,7 @@ public class DlgPesquisarFunc extends javax.swing.JDialog {
         btnSelecionar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setTitle("Pesquisar: Item");
+        setTitle("Buscar: Funcionários");
 
         jLabel1.setText("Busca");
 

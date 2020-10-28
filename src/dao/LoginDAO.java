@@ -36,17 +36,26 @@ public class LoginDAO implements IDAO_T<Login> {
                         + "DEFAULT, "
                         + "'" + o.getId_func() + "',"
                         + "'" + o.getUsuario() + "',"
-                        + "'" + o.getSenha() + "',"
+                        + "md5('" + o.getSenha() + "'),"
                         + "'" + o.getEmail() + "',"
                         + "'" + o.getSituacao() + "')";
             } else {
-                sql = "UPDATE login "
-                        + "SET id_func = '" + o.getId_func() + "',"
-                        + "usuario = '" + o.getUsuario() + "',"
-                        + "senha = '" + o.getSenha() + "',"
-                        + "email = '" + o.getEmail() + "',"
-                        + "situacao = '" + o.getSituacao() + "',"
-                        + "WHERE id = " + o.getId_login();
+                if (o.getSenha().equals("")) {
+                    sql = "UPDATE login "
+                            + "SET id_func = '" + o.getId_func() + "',"
+                            + "usuario = '" + o.getUsuario() + "',"
+                            + "email = '" + o.getEmail() + "',"
+                            + "situacao = '" + o.getSituacao() + "' "
+                            + "WHERE id_login = " + o.getId_login();
+                } else {
+                    sql = "UPDATE login "
+                            + "SET id_func = '" + o.getId_func() + "',"
+                            + "usuario = '" + o.getUsuario() + "',"
+                            + "senha = md5('" + o.getSenha() + "'),"
+                            + "email = '" + o.getEmail() + "',"
+                            + "situacao = '" + o.getSituacao() + "' "
+                            + "WHERE id_login = " + o.getId_login();
+                }
             }
 
             System.out.println("SQL: " + sql);
@@ -73,7 +82,7 @@ public class LoginDAO implements IDAO_T<Login> {
 
             String sql = "DELETE "
                     + "FROM login "
-                    + "WHERE id = " + id;
+                    + "WHERE id_login = " + id;
 
             System.out.println("SQL: " + sql);
 
@@ -107,7 +116,7 @@ public class LoginDAO implements IDAO_T<Login> {
 
             String sql = "SELECT * "
                     + "FROM login "
-                    + "WHERE id = " + id;
+                    + "WHERE id_login = " + id;
 
             System.out.println("SQL: " + sql);
 
@@ -124,7 +133,7 @@ public class LoginDAO implements IDAO_T<Login> {
                 log.setUsuario(resultadoQ.getString("usuario"));
                 log.setSenha(resultadoQ.getString("senha"));
                 log.setEmail(resultadoQ.getString("email"));
-                log.setSituacao(resultadoQ.getString("situcao"));
+                log.setSituacao(resultadoQ.getString("situacao"));
 
             }
 
@@ -164,13 +173,12 @@ public class LoginDAO implements IDAO_T<Login> {
         Object[][] dadosTabela = null;
 
         // cabecalho da tabela
-        Object[] cabecalho = new Object[6];
+        Object[] cabecalho = new Object[5];
         cabecalho[0] = "Id";
         cabecalho[1] = "Nome";
-        cabecalho[2] = "Funcionário";
-        cabecalho[3] = "Usuário";
-        cabecalho[4] = "E-mail";
-        cabecalho[5] = "Situação";
+        cabecalho[2] = "Usuário";
+        cabecalho[3] = "E-mail";
+        cabecalho[4] = "Situação";
 
         // cria matriz de acordo com nº de registros da tabela
         try {
@@ -182,7 +190,7 @@ public class LoginDAO implements IDAO_T<Login> {
 
             resultadoQ.next();
 
-            dadosTabela = new Object[resultadoQ.getInt(1)][6];
+            dadosTabela = new Object[resultadoQ.getInt(1)][5];
 
         } catch (Exception e) {
             System.out.println("Erro ao consultar de Usuários: " + e);
@@ -201,10 +209,10 @@ public class LoginDAO implements IDAO_T<Login> {
             while (resultadoQ.next()) {
 
                 dadosTabela[lin][0] = resultadoQ.getInt("id_login");
-                dadosTabela[lin][1] = resultadoQ.getString("id_func");
+                dadosTabela[lin][1] = resultadoQ.getString("nome");
                 dadosTabela[lin][2] = resultadoQ.getString("usuario");
-                dadosTabela[lin][4] = resultadoQ.getString("email");
-                dadosTabela[lin][5] = resultadoQ.getString("situacao");
+                dadosTabela[lin][3] = resultadoQ.getString("email");
+                dadosTabela[lin][4] = resultadoQ.getString("situacao");
 
                 // caso a coluna precise exibir uma imagem
 //                if (resultadoQ.getBoolean("Situacao")) {
@@ -282,12 +290,12 @@ public class LoginDAO implements IDAO_T<Login> {
         });
     }
 
-     public String proximaId() {
+    public String proximaId() {
         String resp = "";
         try {
             resultadoQ = ConexaoBD.getInstance().getConnection().createStatement().executeQuery(""
-                    + "SELECT MAX(os.id) "
-                    + "FROM funcionario os");
+                    + "SELECT MAX(os.id_login) "
+                    + "FROM login os");
 
             resultadoQ.next();
             int aux = resultadoQ.getInt("max");

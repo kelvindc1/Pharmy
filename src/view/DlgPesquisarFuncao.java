@@ -51,7 +51,7 @@ public class DlgPesquisarFuncao extends javax.swing.JDialog {
         btnSelecionar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setTitle("Pesquisar: Item");
+        setTitle("Buscar: Função");
 
         jLabel1.setText("Busca");
 

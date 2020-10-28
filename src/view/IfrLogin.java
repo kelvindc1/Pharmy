@@ -5,7 +5,9 @@
  */
 package view;
 
+import control.Funcionario;
 import control.Login;
+import dao.FuncionarioDAO;
 import dao.LoginDAO;
 import javax.swing.JOptionPane;
 
@@ -17,6 +19,7 @@ public class IfrLogin extends javax.swing.JInternalFrame {
 
     int id = 0;
     int idFunc = 0;
+
     /**
      * Creates new form Login
      */
@@ -39,14 +42,6 @@ public class IfrLogin extends javax.swing.JInternalFrame {
 
         buttonGroup1 = new javax.swing.ButtonGroup();
         jTabbedPane1 = new javax.swing.JTabbedPane();
-        jPanel2 = new javax.swing.JPanel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        tblLogin = new javax.swing.JTable();
-        jLabel1 = new javax.swing.JLabel();
-        tfdBusca = new javax.swing.JTextField();
-        btnPesquisar = new javax.swing.JButton();
-        btnExcluir = new javax.swing.JButton();
-        btnEditar = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
@@ -72,87 +67,18 @@ public class IfrLogin extends javax.swing.JInternalFrame {
         tffSenha = new javax.swing.JPasswordField();
         tffRepSenha = new javax.swing.JPasswordField();
         jLabel26 = new javax.swing.JLabel();
+        jPanel2 = new javax.swing.JPanel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        tblLogin = new javax.swing.JTable();
+        jLabel1 = new javax.swing.JLabel();
+        tfdBusca = new javax.swing.JTextField();
+        btnPesquisar = new javax.swing.JButton();
+        btnExcluir = new javax.swing.JButton();
+        btnEditar = new javax.swing.JButton();
         jLabel24 = new javax.swing.JLabel();
 
         setTitle("Cadastro de Login");
         setName(""); // NOI18N
-
-        tblLogin.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
-            },
-            new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
-            }
-        ));
-        jScrollPane1.setViewportView(tblLogin);
-
-        jLabel1.setText("Busca");
-
-        btnPesquisar.setText("Pesquisar");
-        btnPesquisar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnPesquisarActionPerformed(evt);
-            }
-        });
-
-        btnExcluir.setText("Excluir");
-        btnExcluir.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnExcluirActionPerformed(evt);
-            }
-        });
-
-        btnEditar.setText("Editar");
-        btnEditar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnEditarActionPerformed(evt);
-            }
-        });
-
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(btnExcluir, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(btnEditar, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 783, Short.MAX_VALUE)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(jLabel1)
-                        .addGap(18, 18, 18)
-                        .addComponent(tfdBusca, javax.swing.GroupLayout.PREFERRED_SIZE, 308, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(33, 33, 33)
-                        .addComponent(btnPesquisar)
-                        .addGap(0, 0, Short.MAX_VALUE)))
-                .addContainerGap())
-        );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
-                    .addComponent(tfdBusca, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnPesquisar))
-                .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 266, Short.MAX_VALUE)
-                .addGap(18, 18, 18)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnExcluir)
-                    .addComponent(btnEditar))
-                .addContainerGap())
-        );
-
-        jTabbedPane1.addTab("Consulta", jPanel2);
 
         jLabel2.setText("Id");
 
@@ -338,6 +264,83 @@ public class IfrLogin extends javax.swing.JInternalFrame {
 
         jTabbedPane1.addTab("Cadastro", jPanel1);
 
+        tblLogin.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane1.setViewportView(tblLogin);
+
+        jLabel1.setText("Busca");
+
+        btnPesquisar.setText("Pesquisar");
+        btnPesquisar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnPesquisarActionPerformed(evt);
+            }
+        });
+
+        btnExcluir.setText("Excluir");
+        btnExcluir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnExcluirActionPerformed(evt);
+            }
+        });
+
+        btnEditar.setText("Editar");
+        btnEditar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEditarActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(btnExcluir, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(btnEditar, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 783, Short.MAX_VALUE)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addComponent(jLabel1)
+                        .addGap(18, 18, 18)
+                        .addComponent(tfdBusca, javax.swing.GroupLayout.PREFERRED_SIZE, 308, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(33, 33, 33)
+                        .addComponent(btnPesquisar)
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addContainerGap())
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel1)
+                    .addComponent(tfdBusca, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnPesquisar))
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 266, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnExcluir)
+                    .addComponent(btnEditar))
+                .addContainerGap())
+        );
+
+        jTabbedPane1.addTab("Consulta", jPanel2);
+
         jLabel24.setForeground(new java.awt.Color(255, 0, 51));
         jLabel24.setText("Campos com * são obrigatórios");
 
@@ -387,7 +390,7 @@ public class IfrLogin extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btnExcluirActionPerformed
 
     private void btnEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarActionPerformed
- String idString = String.valueOf(tblLogin.getValueAt(tblLogin.getSelectedRow(), 0));
+        String idString = String.valueOf(tblLogin.getValueAt(tblLogin.getSelectedRow(), 0));
 
         id = Integer.parseInt(idString);
 
@@ -397,7 +400,9 @@ public class IfrLogin extends javax.swing.JInternalFrame {
 
         if (ap != null) {
             tfdId.setText(String.valueOf(ap.getId_login()));
-            tfdFuncionario.setText(String.valueOf(ap.getId_func()));
+            Funcionario aux = new FuncionarioDAO().consultarId(ap.getId_func());
+            idFunc = aux.getId_func();
+            tfdFuncionario.setText(String.valueOf(idFunc));
             tfdUsuario.setText(ap.getUsuario());
             tfdEmail.setText(ap.getEmail());
             if (ap.getSituacao().equals("A")) {
@@ -414,7 +419,9 @@ public class IfrLogin extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btnEditarActionPerformed
 
     private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
-        // TODO add your handling code here:
+
+        DlgPesquisarFunc dlgPesquisarFunc = new DlgPesquisarFunc(null, true, this);
+        dlgPesquisarFunc.setVisible(true);
     }//GEN-LAST:event_btnBuscarActionPerformed
 
     private void btnFecharActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFecharActionPerformed
@@ -432,44 +439,48 @@ public class IfrLogin extends javax.swing.JInternalFrame {
     private void btnSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvarActionPerformed
         Login log = new Login();
         boolean flag = true;
+
         log.setId_login(id);
         log.setId_func(idFunc);
         log.setUsuario(tfdUsuario.getText());
         log.setEmail(tfdEmail.getText());
-        if (tffSenha.equals(tffRepSenha)) {
+        
+      
+        if (log.getId_func() != 0 && !log.getEmail().equals("") && !log.getUsuario().equals("") && !log.getUsuario().equals("") && tffSenha.getText().equals(tffRepSenha.getText())) {
             log.setSenha(String.valueOf(tffSenha.getPassword()));
+            if (rbAtivo.isSelected()) {
+                log.setSituacao("A");
+            } else {
+                log.setSituacao("I");
+            }
+
+            // salvar
+            LoginDAO apDAO = new LoginDAO();
+
+            if (apDAO.salvar(log) && flag == true) {
+                // exibir msg
+                JOptionPane.showMessageDialog(null, "Registro salvo com sucesso!");
+
+                // limpar campos
+                tfdFuncionario.setText("");
+                tfdId.setText(idFunc + "");
+                tffSenha.setText("");
+                tffRepSenha.setText("");
+                tfdUsuario.setText("");
+                tfdEmail.setText("");
+                rbAtivo.setSelected(true);
+
+                btnFechar.requestFocus();
+
+                // atualiza ID
+                id = 0;
+                new LoginDAO().popularTabela(tblLogin, tfdBusca.getText());
+            } else {
+                JOptionPane.showMessageDialog(null, "Problemas ao salvar registro!");
+            }
         } else {
-            flag = false;
-        }
-        if (rbAtivo.isSelected()) {
-            log.setSituacao("A");
-        } else {
-            log.setSituacao("I");
-        }
+            JOptionPane.showMessageDialog(null, "Campos não preenchidos!");
 
-        // salvar
-        LoginDAO apDAO = new LoginDAO();
-
-        if (apDAO.salvar(log) && flag == true) {
-            // exibir msg
-            JOptionPane.showMessageDialog(null, "Registro salvo com sucesso!");
-
-            // limpar campos
-            tfdFuncionario.setText("");
-            tfdId.setText(idFunc+"");
-            tffSenha.setText("");
-            tffRepSenha.setText("");
-            tfdUsuario.setText("");
-            tfdEmail.setText("");
-            rbAtivo.setSelected(true);
-
-            btnFechar.requestFocus();
-
-            // atualiza ID
-            id = 0;
-            new LoginDAO().popularTabela(tblLogin, tfdBusca.getText());
-        } else {
-            JOptionPane.showMessageDialog(null, "Problemas ao salvar registro!");
         }
     }//GEN-LAST:event_btnSalvarActionPerformed
 
@@ -518,7 +529,7 @@ public class IfrLogin extends javax.swing.JInternalFrame {
     // End of variables declaration//GEN-END:variables
 
     void definirValorCliente(String id, String nome) {
-        tfdFuncionario.setText(nome);       
+        tfdFuncionario.setText(nome);
         idFunc = Integer.parseInt(id);
     }
 }
