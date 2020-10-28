@@ -162,7 +162,7 @@ public class JanelaPrincipalPharmy extends javax.swing.JFrame {
         });
         jMenu1.add(jMenuItem12);
 
-        jMenuItem16.setText("jMenuItem16");
+        jMenuItem16.setText("Forma de Pagamento");
         jMenuItem16.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenuItem16ActionPerformed(evt);
