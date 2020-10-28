@@ -174,7 +174,7 @@ public class EstadoDAO implements IDAO_T<Estado> {
         // efetua consulta na tabela
         try {
             resultadoQ = ConexaoBD.getInstance().getConnection().createStatement().executeQuery(""
-                    + "SELECT e.nome as nome_est, e.sigla, p.nome as nome_pais "
+                    + "SELECT e.id_est, e.nome as nome_est, e.sigla, p.nome as nome_pais "
                     + "FROM estado e, pais p "
                     + "WHERE "
                     + "e.nome ILIKE '%" + criterio + "%' AND "
@@ -183,9 +183,9 @@ public class EstadoDAO implements IDAO_T<Estado> {
             while (resultadoQ.next()) {
 
                 dadosTabela[lin][0] = resultadoQ.getInt("id_est");
-                dadosTabela[lin][1] = resultadoQ.getString("nome");
+                dadosTabela[lin][1] = resultadoQ.getString("nome_est");
                 dadosTabela[lin][2] = resultadoQ.getString("sigla");
-                dadosTabela[lin][3] = resultadoQ.getInt("id_pais");
+                dadosTabela[lin][3] = resultadoQ.getString("nome_pais");
 
                 // caso a coluna precise exibir uma imagem
 //                if (resultadoQ.getBoolean("Situacao")) {
