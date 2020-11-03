@@ -146,7 +146,7 @@ public class ClienteDAO implements IDAO_T<Cliente> {
         Object[][] dadosTabela = null;
 
         // cabecalho da tabela
-        Object[] cabecalho = new Object[7];
+        Object[] cabecalho = new Object[8];
         cabecalho[0] = "Código";
         cabecalho[1] = "Nome";
         cabecalho[2] = "Cpf";
@@ -166,7 +166,7 @@ public class ClienteDAO implements IDAO_T<Cliente> {
 
             resultadoQ.next();
 
-            dadosTabela = new Object[resultadoQ.getInt(1)][7];
+            dadosTabela = new Object[resultadoQ.getInt(1)][8];
 
         } catch (Exception e) {
             System.out.println("Erro ao consultar XXX: " + e);
