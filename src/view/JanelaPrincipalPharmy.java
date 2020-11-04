@@ -369,7 +369,7 @@ public class JanelaPrincipalPharmy extends javax.swing.JFrame {
     private void jMenuItem8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem8ActionPerformed
         try {
             // Compila o relatorio
-           
+
             //InputStream input = getClass().getResourceAsStream("/relatorios/report_Func_Sexo_Masc.jrxml");
             JasperReport relatorio1 = JasperCompileManager.compileReport(getClass().getResourceAsStream("/relatorios/reportPharmyMarca.jrxml"));
 
@@ -387,10 +387,9 @@ public class JanelaPrincipalPharmy extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItem8ActionPerformed
 
     private void jMenuItem9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem9ActionPerformed
-        /*
         try {
             // Compila o relatorio
-            JasperReport relatorio = JasperCompileManager.compileReport(getClass().getResourceAsStream("/relatorios/report_Func_Sexo_Masc.jrxml"));
+            JasperReport relatorio = JasperCompileManager.compileReport(getClass().getResourceAsStream("/relatorios/reportPharmyForma_Pag.jrxml"));
 
             // Mapeia campos de parametros para o relatorio, mesmo que nao existam
             Map parametros = new HashMap();
@@ -402,7 +401,7 @@ public class JanelaPrincipalPharmy extends javax.swing.JFrame {
             JasperViewer.viewReport(impressao, false);
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "Erro ao gerar relatório: " + e);
-        }*/
+        }  
     }//GEN-LAST:event_jMenuItem9ActionPerformed
 
     private void jMenuItem10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem10ActionPerformed
