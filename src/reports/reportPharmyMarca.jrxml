@@ -4,28 +4,81 @@
 	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
 	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="PharmyV1"/>
 	<queryString language="SQL">
-		<![CDATA[SELECT * FROM]]>
+		<![CDATA[SELECT * FROM marca]]>
 	</queryString>
+	<field name="id_marca" class="java.lang.Integer">
+		<property name="com.jaspersoft.studio.field.label" value="id_marca"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="marca"/>
+	</field>
+	<field name="nome" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="nome"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="marca"/>
+	</field>
 	<background>
 		<band splitType="Stretch"/>
 	</background>
 	<title>
-		<band height="79" splitType="Stretch"/>
+		<band height="79" splitType="Stretch">
+			<staticText>
+				<reportElement x="200" y="30" width="210" height="30" uuid="78daa821-4c14-43c5-888d-c3a7901201ad"/>
+				<textElement textAlignment="Center">
+					<font size="20" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Relatório de Marcas]]></text>
+			</staticText>
+		</band>
 	</title>
 	<pageHeader>
 		<band height="35" splitType="Stretch"/>
 	</pageHeader>
 	<columnHeader>
-		<band height="61" splitType="Stretch"/>
+		<band height="31" splitType="Stretch">
+			<staticText>
+				<reportElement x="20" y="0" width="100" height="30" uuid="7582c12e-ad51-4152-b7c0-c9ef408f288e">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="4687a3f4-65c4-47aa-86ce-614c3bcdeb2e"/>
+				</reportElement>
+				<textElement>
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Id Marca]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="140" y="0" width="100" height="30" uuid="e3a3d83e-cd3b-4559-a677-3495d49f6910">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="e03346fe-893a-4296-9f44-5223a1e92cf1"/>
+				</reportElement>
+				<textElement>
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Nome]]></text>
+			</staticText>
+		</band>
 	</columnHeader>
 	<detail>
-		<band height="125" splitType="Stretch"/>
+		<band height="41" splitType="Stretch">
+			<textField>
+				<reportElement x="20" y="10" width="100" height="20" uuid="ece191d1-c6a0-4cc7-ae60-3da7a4e4572a">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="4687a3f4-65c4-47aa-86ce-614c3bcdeb2e"/>
+				</reportElement>
+				<textFieldExpression><![CDATA[$F{id_marca}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="140" y="10" width="100" height="20" uuid="f555237c-b0a7-427a-87fa-b3aff28c2304">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="e03346fe-893a-4296-9f44-5223a1e92cf1"/>
+				</reportElement>
+				<textFieldExpression><![CDATA[$F{nome}]]></textFieldExpression>
+			</textField>
+		</band>
 	</detail>
 	<columnFooter>
 		<band height="45" splitType="Stretch"/>
 	</columnFooter>
 	<pageFooter>
-		<band height="54" splitType="Stretch"/>
+		<band height="60" splitType="Stretch">
+			<textField>
+				<reportElement x="500" y="15" width="55" height="30" uuid="4e753eb2-7f04-4d41-bfdc-f710d131c4ce"/>
+				<textFieldExpression><![CDATA[$V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+		</band>
 	</pageFooter>
 	<summary>
 		<band height="42" splitType="Stretch"/>
