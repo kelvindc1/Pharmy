@@ -9,6 +9,11 @@ import java.util.HashMap;
 import java.util.Map;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
+import net.sf.jasperreports.engine.JasperCompileManager;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.engine.JasperReport;
+import net.sf.jasperreports.view.JasperViewer;
 //import net.sf.jasperreports.engine.JasperCompileManager;
 //import net.sf.jasperreports.engine.JasperFillManager;
 //import net.sf.jasperreports.engine.JasperPrint;
@@ -242,7 +247,7 @@ public class JanelaPrincipalPharmy extends javax.swing.JFrame {
         jMenu4.setText("Relatórios");
         jMenu4.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
 
-        jMenuItem8.setText("Listagem - Apresentações");
+        jMenuItem8.setText("Listagem - Marcas");
         jMenuItem8.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenuItem8ActionPerformed(evt);
@@ -359,10 +364,9 @@ public class JanelaPrincipalPharmy extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItem4ActionPerformed
 
     private void jMenuItem8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem8ActionPerformed
-        /*
         try {
-           // Compila o relatorio
-            JasperReport relatorio = JasperCompileManager.compileReport(getClass().getResourceAsStream("/relatorios/report_Apresentacao.jrxml"));
+            // Compila o relatorio
+            JasperReport relatorio = JasperCompileManager.compileReport(getClass().getResourceAsStream("/reports/reportPharmyMarca.jrxml"));
 
             // Mapeia campos de parametros para o relatorio, mesmo que nao existam
             Map parametros = new HashMap();
@@ -374,7 +378,7 @@ public class JanelaPrincipalPharmy extends javax.swing.JFrame {
             JasperViewer.viewReport(impressao, false);
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "Erro ao gerar relatório: " + e);
-        }*/
+        }
     }//GEN-LAST:event_jMenuItem8ActionPerformed
 
     private void jMenuItem9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem9ActionPerformed
