@@ -65,8 +65,8 @@ public class JanelaPrincipalPharmy extends javax.swing.JFrame {
         jMenuItem4 = new javax.swing.JMenuItem();
         jMenu4 = new javax.swing.JMenu();
         jMenuItem8 = new javax.swing.JMenuItem();
-        jMenuItem11 = new javax.swing.JMenuItem();
         jMenuItem9 = new javax.swing.JMenuItem();
+        jMenuItem11 = new javax.swing.JMenuItem();
         jMenuItem10 = new javax.swing.JMenuItem();
         jMenuItem5 = new javax.swing.JMenuItem();
         jMenu3 = new javax.swing.JMenu();
@@ -258,6 +258,14 @@ public class JanelaPrincipalPharmy extends javax.swing.JFrame {
         });
         jMenu4.add(jMenuItem8);
 
+        jMenuItem9.setText("Listagem - Formas de Pagamento");
+        jMenuItem9.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem9ActionPerformed(evt);
+            }
+        });
+        jMenu4.add(jMenuItem9);
+
         jMenuItem11.setText("Listagem - Produtos");
         jMenuItem11.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -265,14 +273,6 @@ public class JanelaPrincipalPharmy extends javax.swing.JFrame {
             }
         });
         jMenu4.add(jMenuItem11);
-
-        jMenuItem9.setText("Listagem - Funcionários Sexo Masculino");
-        jMenuItem9.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem9ActionPerformed(evt);
-            }
-        });
-        jMenu4.add(jMenuItem9);
 
         jMenuItem10.setText("Relatório - Pedidos");
         jMenuItem10.addActionListener(new java.awt.event.ActionListener() {
