@@ -1,10 +1,13 @@
 package view;
 
+import com.sun.jndi.toolkit.url.UrlUtil;
 import lib.CombosDAO;
 import lib.ConexaoBD;
 import java.awt.Dimension;
 import java.awt.Image;
 import java.awt.Toolkit;
+import java.io.InputStream;
+import java.net.URL;
 import java.util.HashMap;
 import java.util.Map;
 import javax.swing.ImageIcon;
@@ -366,16 +369,18 @@ public class JanelaPrincipalPharmy extends javax.swing.JFrame {
     private void jMenuItem8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem8ActionPerformed
         try {
             // Compila o relatorio
-            JasperReport relatorio = JasperCompileManager.compileReport(getClass().getResourceAsStream("/relatorios/reportPharmyMarca.jrxml"));
+           
+            //InputStream input = getClass().getResourceAsStream("/relatorios/report_Func_Sexo_Masc.jrxml");
+            JasperReport relatorio1 = JasperCompileManager.compileReport(getClass().getResourceAsStream("/relatorios/reportPharmyMarca.jrxml"));
 
             // Mapeia campos de parametros para o relatorio, mesmo que nao existam
             Map parametros = new HashMap();
 
             // Executa relatorio
-            JasperPrint impressao = JasperFillManager.fillReport(relatorio, parametros, ConexaoBD.getInstance().getConnection());
+            JasperPrint impressao1 = JasperFillManager.fillReport(relatorio1, parametros, ConexaoBD.getInstance().getConnection());
 
             // Exibe resultado em video
-            JasperViewer.viewReport(impressao, false);
+            JasperViewer.viewReport(impressao1, false);
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "Erro ao gerar relatório: " + e);
         }
