@@ -371,7 +371,7 @@ public class JanelaPrincipalPharmy extends javax.swing.JFrame {
             // Mapeia campos de parametros para o relatorio, mesmo que nao existam
             Map parametros = new HashMap();
 
-            // Executa relatoio
+            // Executa relatorio
             JasperPrint impressao = JasperFillManager.fillReport(relatorio, parametros, ConexaoBD.getInstance().getConnection());
 
             // Exibe resultado em video
