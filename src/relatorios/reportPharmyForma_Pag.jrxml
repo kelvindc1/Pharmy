@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.12.2.final using JasperReports Library version 6.12.2-75c5e90a222ab406e416cbf590a5397028a52de3  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="reportPharmyForma_Pag" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="494a3a70-ce3c-4806-91ab-e44795c81f4f">
+	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="PharmyV1"/>
+	<queryString language="SQL">
+		<![CDATA[SELECT * FROM forma_pagamento
+ORDER BY nome]]>
+	</queryString>
+	<field name="id_forma_pag" class="java.lang.Integer">
+		<property name="com.jaspersoft.studio.field.label" value="id_forma_pag"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="forma_pagamento"/>
+	</field>
+	<field name="nome" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="nome"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="forma_pagamento"/>
+	</field>
+	<field name="descricao" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="descricao"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="forma_pagamento"/>
+	</field>
+	<group name="id_forma_pag">
+		<groupExpression><![CDATA[$F{id_forma_pag}]]></groupExpression>
+	</group>
+	<group name="nome">
+		<groupExpression><![CDATA[$F{nome}]]></groupExpression>
+	</group>
+	<group name="descricao">
+		<groupExpression><![CDATA[$F{descricao}]]></groupExpression>
+	</group>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="79" splitType="Stretch">
+			<staticText>
+				<reportElement x="100" y="30" width="380" height="31" uuid="bb5bc720-d05a-40b3-80eb-631385a2f3b8"/>
+				<textElement textAlignment="Center">
+					<font size="20" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Relatório de Formas de Pagamento]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="35" splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="35" splitType="Stretch">
+			<staticText>
+				<reportElement x="20" y="0" width="190" height="30" uuid="88cd1f45-66b3-4df8-9360-16901b5288e5">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="6a93ece7-0697-4dd2-b546-28409824b480"/>
+				</reportElement>
+				<textElement>
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Id Forma de Pagamento]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="220" y="0" width="100" height="30" uuid="73c59cda-021c-43cf-aa44-3d31b327da7d">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="77b3eeb1-7579-43bb-b3db-a433ac6decf3"/>
+				</reportElement>
+				<textElement>
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Nome]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="350" y="0" width="100" height="30" uuid="04c8c176-9ca3-4b4d-89b8-8b2780d079ba">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="d3338b9f-8a34-4291-af8e-05178c55d3a2"/>
+				</reportElement>
+				<textElement>
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Descrição]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="40" splitType="Stretch">
+			<textField>
+				<reportElement x="20" y="10" width="100" height="20" uuid="4a53f46d-bbe5-44e7-9509-5ebdd5bf39aa">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="6a93ece7-0697-4dd2-b546-28409824b480"/>
+				</reportElement>
+				<textFieldExpression><![CDATA[$F{id_forma_pag}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="220" y="10" width="100" height="20" uuid="9579fc20-7be9-4ee3-a340-84f971b2fbe6">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="77b3eeb1-7579-43bb-b3db-a433ac6decf3"/>
+				</reportElement>
+				<textFieldExpression><![CDATA[$F{nome}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="350" y="10" width="100" height="20" uuid="3ff34685-6f84-4172-b6e9-0cf41e04790a">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="d3338b9f-8a34-4291-af8e-05178c55d3a2"/>
+				</reportElement>
+				<textFieldExpression><![CDATA[$F{descricao}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="60" splitType="Stretch">
+			<textField>
+				<reportElement x="500" y="15" width="55" height="30" uuid="84fdb4c7-88c5-423b-bc61-4b30be365d4c"/>
+				<textFieldExpression><![CDATA[$V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>
