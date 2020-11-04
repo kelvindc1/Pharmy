@@ -6,7 +6,7 @@
     </Component>
   </NonVisualComponents>
   <Properties>
-    <Property name="title" type="java.lang.String" value="Cadastro de Ben&#xe9;ficios"/>
+    <Property name="title" type="java.lang.String" value="Cadastro de Benef&#xed;cios"/>
     <Property name="name" type="java.lang.String" value="" noResource="true"/>
   </Properties>
   <SyntheticProperties>
@@ -206,7 +206,6 @@
                                   <Group type="102" alignment="0" attributes="0">
                                       <EmptySpace min="-2" pref="99" max="-2" attributes="0"/>
                                       <Component id="jLabel32" min="-2" max="-2" attributes="0"/>
-                                      <EmptySpace min="-2" pref="21" max="-2" attributes="0"/>
                                   </Group>
                                   <Group type="102" alignment="0" attributes="0">
                                       <EmptySpace type="separate" max="-2" attributes="0"/>

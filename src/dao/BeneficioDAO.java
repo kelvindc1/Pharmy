@@ -140,7 +140,7 @@ public class BeneficioDAO implements IDAO_T<Beneficio> {
         Object[] cabecalho = new Object[6];
         cabecalho[0] = "Id";
         cabecalho[1] = "Descrição";
-        cabecalho[2] = "Benéficio";
+        cabecalho[2] = "Benefício";
         cabecalho[3] = "Valor";
         cabecalho[4] = "Contrato";
         cabecalho[5] = "Situação";
@@ -158,7 +158,7 @@ public class BeneficioDAO implements IDAO_T<Beneficio> {
             dadosTabela = new Object[resultadoQ.getInt(1)][6];
 
         } catch (Exception e) {
-            System.out.println("Erro ao consultar de BENÉFICIO: " + e);
+            System.out.println("Erro ao consultar de BENEFÍCIO: " + e);
         }
 
         int lin = 0;
@@ -169,7 +169,7 @@ public class BeneficioDAO implements IDAO_T<Beneficio> {
                     + "SELECT b.id_beneficio, b.descricao,tb.nome, b.valor, c.id_contrato, b.situacao "
                     + "FROM beneficio b, tipo_beneficio tb, contrato c "
                     + "WHERE b.id_contrato = c.id_contrato AND b.id_beneficio = tb.id_tpbeneficio AND "
-                    + "b.descricao '%" + criterio + "%' "
+                    + "b.descricao ILIKE '%" + criterio + "%' "
                     + "ORDER BY b.id_beneficio");
 
             while (resultadoQ.next()) {
@@ -177,8 +177,8 @@ public class BeneficioDAO implements IDAO_T<Beneficio> {
                 dadosTabela[lin][0] = resultadoQ.getInt("id_beneficio");
                 dadosTabela[lin][1] = resultadoQ.getString("descricao");
                 dadosTabela[lin][2] = resultadoQ.getString("nome");
-                dadosTabela[lin][3] = resultadoQ.getString("valor");
-                dadosTabela[lin][4] = resultadoQ.getString("id_contrato");
+                dadosTabela[lin][3] = resultadoQ.getDouble("valor");
+                dadosTabela[lin][4] = resultadoQ.getInt("id_contrato");
                 dadosTabela[lin][5] = resultadoQ.getString("situacao");
 
                 // caso a coluna precise exibir uma imagem
@@ -190,7 +190,7 @@ public class BeneficioDAO implements IDAO_T<Beneficio> {
                 lin++;
             }
         } catch (Exception e) {
-            System.out.println("problemas para popular tabela de BENÉFICIOS");
+            System.out.println("problemas para popular tabela de BENEFÍCIOS");
             System.out.println(e);
         }
 

@@ -464,7 +464,7 @@ public class IfrCliente extends javax.swing.JInternalFrame {
                 cliente.setSituacao("A");
             }
 
-            cliente.setCpf(tffCpf.getText());
+            cliente.setCpf(Formatting.removerFormatacao(tffCpf.getText()));
             cliente.setRg(tfdRg.getText());
 
             cliente.setId_cliente(id_cliente);

@@ -82,7 +82,7 @@ public class IfrBeneficio extends javax.swing.JInternalFrame {
         btnEditar = new javax.swing.JButton();
         jLabel24 = new javax.swing.JLabel();
 
-        setTitle("Cadastro de Benéficios");
+        setTitle("Cadastro de Benefícios");
         setName(""); // NOI18N
 
         jLabel2.setText("Id");
@@ -267,8 +267,7 @@ public class IfrBeneficio extends javax.swing.JInternalFrame {
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGap(99, 99, 99)
-                                .addComponent(jLabel32)
-                                .addGap(21, 21, 21))
+                                .addComponent(jLabel32))
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGap(18, 18, 18)
                                 .addComponent(jLabel4)
@@ -422,8 +421,8 @@ public class IfrBeneficio extends javax.swing.JInternalFrame {
         if (ap != null) {
             tfdId.setText(String.valueOf(ap.getId_beneficio()));
             taDescricao.setText(ap.getDescricao());
-            tffValor.setText(ap.getValor()+"");
-            tfdIdContrato.setText(ap.getId_contrato()+"");
+            tffValor.setText(ap.getValor() + "");
+            tfdIdContrato.setText(ap.getId_contrato() + "");
             cmbTpBeneficios.setSelectedIndex(ap.getId_tpbeneficio());
             if (ap.getSituacao().equals("A")) {
                 rbAtivo.setSelected(true);
@@ -456,39 +455,48 @@ public class IfrBeneficio extends javax.swing.JInternalFrame {
     private void btnSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvarActionPerformed
         Beneficio ben = new Beneficio();
 
-        ben.setId_beneficio(id);
-        ben.setDescricao(taDescricao.getText());
-        ben.setValor(BigDecimal.valueOf(Double.parseDouble(tffValor.getText())));
-        ben.setId_contrato(idContrato);
-        ben.setId_tpbeneficio(cmbTpBeneficios.getSelectedIndex());
-        if (rbAtivo.isSelected()) {
-            ben.setSituacao("A");
+        if (taDescricao.equals("") || Double.parseDouble(tffValor.getText()) < 0 
+                || tfdIdContrato.getText().equals("") 
+                || cmbTpBeneficios.getSelectedItem().equals("Selecione")) {
+            System.out.println("s");
+            JOptionPane.showMessageDialog(null, "Dados Incoretos!");
         } else {
-            ben.setSituacao("I");
-        }
+            System.out.println("n");
+            ben.setId_beneficio(id);
+            ben.setDescricao(taDescricao.getText());
+            ben.setValor(BigDecimal.valueOf(Double.parseDouble(tffValor.getText())));
+            ben.setId_contrato(Integer.parseInt(tfdIdContrato.getText()));
+            ben.setId_tpbeneficio(cmbTpBeneficios.getSelectedIndex());
 
-        // salvar
-        BeneficioDAO apDAO = new BeneficioDAO();
+            if (rbAtivo.isSelected()) {
+                ben.setSituacao("A");
+            } else {
+                ben.setSituacao("I");
+            }
 
-        if (apDAO.salvar(ben)) {
-            // exibir msg
-            JOptionPane.showMessageDialog(null, "Registro salvo com sucesso!");
+            // salvar
+            BeneficioDAO apDAO = new BeneficioDAO();
 
-            // limpar campos
-           // tfdId.setText();
-            taDescricao.setText("");
-            tffValor.setText("0.00");
-            tfdIdContrato.setText("");
-            cmbTpBeneficios.setSelectedIndex(0);
-            rbAtivo.setSelected(true);
+            if (apDAO.salvar(ben)) {
+                // exibir msg
+                JOptionPane.showMessageDialog(null, "Registro salvo com sucesso!");
 
-            btnFechar.requestFocus();
+                // limpar campos
+                // tfdId.setText();
+                taDescricao.setText("");
+                tffValor.setText("0.00");
+                tfdIdContrato.setText("");
+                cmbTpBeneficios.setSelectedIndex(0);
+                rbAtivo.setSelected(true);
 
-            // atualiza ID
-            id = 0;
-            new BeneficioDAO().popularTabela(tblBeneficios, tfdBusca.getText());
-        } else {
-            JOptionPane.showMessageDialog(null, "Problemas ao salvar registro!");
+                btnFechar.requestFocus();
+
+                // atualiza ID
+                id = 0;
+                new BeneficioDAO().popularTabela(tblBeneficios, tfdBusca.getText());
+            } else {
+                JOptionPane.showMessageDialog(null, "Problemas ao salvar registro!");
+            }
         }
 
     }//GEN-LAST:event_btnSalvarActionPerformed
@@ -532,7 +540,7 @@ public class IfrBeneficio extends javax.swing.JInternalFrame {
     private javax.swing.JFormattedTextField tffValor;
     // End of variables declaration//GEN-END:variables
 
-   /* void definirValorCliente(String id, String nome) {
+    /* void definirValorCliente(String id, String nome) {
         tfdIdContrato.setText(nome);
         idFunc = Integer.parseInt(id);
     }*/

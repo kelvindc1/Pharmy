@@ -182,7 +182,7 @@ public class JanelaPrincipalPharmy extends javax.swing.JFrame {
         });
         jMenu1.add(jMenuItem20);
 
-        jMenuItem21.setText("Benéficios");
+        jMenuItem21.setText("Benefícios");
         jMenuItem21.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenuItem21ActionPerformed(evt);
