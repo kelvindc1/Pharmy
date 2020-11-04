@@ -366,7 +366,7 @@ public class JanelaPrincipalPharmy extends javax.swing.JFrame {
     private void jMenuItem8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem8ActionPerformed
         try {
             // Compila o relatorio
-            JasperReport relatorio = JasperCompileManager.compileReport(getClass().getResourceAsStream("/reports/reportPharmyMarca.jrxml"));
+            JasperReport relatorio = JasperCompileManager.compileReport(getClass().getResourceAsStream("/relatorios/reportPharmyMarca.jrxml"));
 
             // Mapeia campos de parametros para o relatorio, mesmo que nao existam
             Map parametros = new HashMap();
