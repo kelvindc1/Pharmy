@@ -77,7 +77,7 @@ ORDER BY nome]]>
 		</band>
 	</columnHeader>
 	<detail>
-		<band height="40" splitType="Stretch">
+		<band height="60" splitType="Stretch">
 			<textField>
 				<reportElement x="20" y="10" width="100" height="20" uuid="4a53f46d-bbe5-44e7-9509-5ebdd5bf39aa">
 					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="6a93ece7-0697-4dd2-b546-28409824b480"/>
@@ -91,7 +91,7 @@ ORDER BY nome]]>
 				<textFieldExpression><![CDATA[$F{nome}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="350" y="10" width="100" height="20" uuid="3ff34685-6f84-4172-b6e9-0cf41e04790a">
+				<reportElement x="350" y="10" width="200" height="40" uuid="3ff34685-6f84-4172-b6e9-0cf41e04790a">
 					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="d3338b9f-8a34-4291-af8e-05178c55d3a2"/>
 				</reportElement>
 				<textFieldExpression><![CDATA[$F{descricao}]]></textFieldExpression>
