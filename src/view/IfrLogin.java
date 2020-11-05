@@ -392,7 +392,7 @@ public class IfrLogin extends javax.swing.JInternalFrame {
                 }
             }
         } catch (ArrayIndexOutOfBoundsException e) {
-            JOptionPane.showMessageDialog(null, "Selecione um registro para excluir");
+            JOptionPane.showMessageDialog(null, "Selecione um registro para excluir!");
         }
     }//GEN-LAST:event_btnExcluirActionPerformed
 
@@ -425,7 +425,7 @@ public class IfrLogin extends javax.swing.JInternalFrame {
                 System.out.println("erro na consulta");
             }
         } catch (ArrayIndexOutOfBoundsException e) {
-            JOptionPane.showMessageDialog(null, "Selecione um registro para editar");
+            JOptionPane.showMessageDialog(null, "Selecione um registro para editar!");
         }
     }//GEN-LAST:event_btnEditarActionPerformed
 

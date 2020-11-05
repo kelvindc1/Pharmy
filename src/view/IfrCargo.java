@@ -370,48 +370,56 @@ public class IfrCargo extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btnPesquisarActionPerformed
 
     private void btnExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcluirActionPerformed
-        String idString = String.valueOf(tblCargo.getValueAt(tblCargo.getSelectedRow(), 0));
+        try {
+            String idString = String.valueOf(tblCargo.getValueAt(tblCargo.getSelectedRow(), 0));
 
-        id = Integer.parseInt(idString);
+            id = Integer.parseInt(idString);
 
-        CargoDAO apDAO = new CargoDAO();
+            CargoDAO apDAO = new CargoDAO();
 
-        if (JOptionPane.showConfirmDialog(null, "Deseja realmente excluir?") == JOptionPane.OK_OPTION) {
-            if (apDAO.excluir(id)) {
-                JOptionPane.showMessageDialog(null, "Registro excluído com sucesso!");
-                new LoginDAO().popularTabela(tblCargo, tfdBusca.getText());
-            } else {
-                JOptionPane.showMessageDialog(null, "Problemas ao excluir registro!");
+            if (JOptionPane.showConfirmDialog(null, "Deseja realmente excluir?") == JOptionPane.OK_OPTION) {
+                if (apDAO.excluir(id)) {
+                    JOptionPane.showMessageDialog(null, "Registro excluído com sucesso!");
+                    new LoginDAO().popularTabela(tblCargo, tfdBusca.getText());
+                } else {
+                    JOptionPane.showMessageDialog(null, "Problemas ao excluir registro!");
+                }
             }
+        } catch (ArrayIndexOutOfBoundsException e) {
+            JOptionPane.showMessageDialog(null, "Selecione um registro para excluir!");
         }
     }//GEN-LAST:event_btnExcluirActionPerformed
 
     private void btnEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarActionPerformed
-        String idString = String.valueOf(tblCargo.getValueAt(tblCargo.getSelectedRow(), 0));
+        try {
+            String idString = String.valueOf(tblCargo.getValueAt(tblCargo.getSelectedRow(), 0));
 
-        id = Integer.parseInt(idString);
+            id = Integer.parseInt(idString);
 
-        CargoDAO apDAO = new CargoDAO();
+            CargoDAO apDAO = new CargoDAO();
 
-        Cargo ap = apDAO.consultarId(id);
+            Cargo ap = apDAO.consultarId(id);
 
-        if (ap != null) {
-            tfdId.setText(String.valueOf(ap.getId_cargo()));
-            tfdIdFuncao.setText(String.valueOf(ap.getId_funcao()));
+            if (ap != null) {
+                tfdId.setText(String.valueOf(ap.getId_cargo()));
+                tfdIdFuncao.setText(String.valueOf(ap.getId_funcao()));
 
-            Funcao aux = new FuncaoDAO().consultarId(ap.getId_funcao());
-            idFuncao = aux.getId_funcao();
-            tfdNome.setText(ap.getNome());
-            JtaDescricao.setText(ap.getDescricao());
-            if (ap.getSituacao().equals("A")) {
-                rbAtivo.setSelected(true);
+                Funcao aux = new FuncaoDAO().consultarId(ap.getId_funcao());
+                idFuncao = aux.getId_funcao();
+                tfdNome.setText(ap.getNome());
+                JtaDescricao.setText(ap.getDescricao());
+                if (ap.getSituacao().equals("A")) {
+                    rbAtivo.setSelected(true);
+                } else {
+                    rbInativo.setSelected(true);
+                }
+                tfdFuncao.setText(aux.getNome());
+                jTabbedPane1.setSelectedIndex(0);
             } else {
-                rbInativo.setSelected(true);
+                System.out.println("erro na consulta");
             }
-            tfdFuncao.setText(aux.getNome());
-            jTabbedPane1.setSelectedIndex(0);
-        } else {
-            System.out.println("erro na consulta");
+        } catch (ArrayIndexOutOfBoundsException e) {
+            JOptionPane.showMessageDialog(null, "Selecione um registro para editar!");
         }
 
 

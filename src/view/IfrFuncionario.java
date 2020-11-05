@@ -715,4 +715,8 @@ public class IfrFuncionario extends javax.swing.JInternalFrame {
     private javax.swing.JFormattedTextField tffDataNascimento;
     private javax.swing.JFormattedTextField tffTelefone;
     // End of variables declaration//GEN-END:variables
+
+    void definirValorFuncao(String id, String nome, String setor) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 }
