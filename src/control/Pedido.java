@@ -18,6 +18,7 @@ public class Pedido {
     private BigDecimal valor_total;
     private int id_financeiro;
     private String situacao;
+    private int qtd_total_itens;
 
     /*public Pedido(int id_pedido, int id_cliente, int id_func, Date dt_pedido, Date dt_pag, BigDecimal valor_total, int id_financeiro, String situacao) {
         this.id_pedido = id_pedido;
@@ -93,5 +94,33 @@ public class Pedido {
     public void setSituacao(String situacao) {
         this.situacao = situacao;
     }
+    
+    public int getQtd_total_itens() {
+        return qtd_total_itens;
+    }
+
+    public void setQtd_total_itens(int qtd_total_itens) {
+        this.qtd_total_itens = qtd_total_itens;
+    }
         
+    public void calcularValorTotal() {
+        this.valor_total = 0;
+        this.itensPedido.forEach(p -> this.valor_total = this.valor_total + p.getValorUnitario() * p.getQtd_item());
+    }
+
+    public void calcularTotalItens() {
+        this.qtd_total_itens = 0;
+        this.itensPedido.forEach(p -> this.qtd_total_itens = p.getQtd_item() + this.qtd_total_itens);
+    }
+    
+    @Override
+    public String toString() {
+        return "Pedido{" + "id_ped=" + id_pedido + ", situacao=" 
+                + situacao + ", id_func=" + id_func + ", valor_total=" + valor_total 
+                + ", qtd_total_itens=" + qtd_total_itens + ", dt_pedido=" + dt_pedido + '}'; 
+                + ", id_pag=" + id_pag + ", itensPedido=" + itensPedido.toString() + '}';
+    }
+
+   
+
 }

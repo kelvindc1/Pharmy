@@ -155,14 +155,16 @@ public class ContratoDAO implements IDAO_T<Contrato> {
         try {
             resultadoQ = ConexaoBD.getInstance().getConnection().createStatement().executeQuery(""
                     + "SELECT count(*) "
-                    + "FROM contrato c ");
+                    + "FROM contrato "
+                    + "WHERE "
+                    + "obs ILIKE '%" + criterio + "%'");
 
             resultadoQ.next();
 
             dadosTabela = new Object[resultadoQ.getInt(1)][7];
 
         } catch (Exception e) {
-            System.out.println("Erro ao consultar de CONTRATO: " + e);
+            System.out.println("Erro ao consultar contrato: " + e);
         }
 
         int lin = 0;
@@ -195,7 +197,7 @@ public class ContratoDAO implements IDAO_T<Contrato> {
                 lin++;
             }
         } catch (Exception e) {
-            System.out.println("problemas para popular tabela de CONTRATO");
+            System.out.println("problemas para popular tabela de contrato");
             System.out.println(e);
         }
 
@@ -218,7 +220,7 @@ public class ContratoDAO implements IDAO_T<Contrato> {
             @Override
             public Class getColumnClass(int column) {
 
-                if (column == 2) {
+                if (column == 7) {
 //                    return ImageIcon.class;
                 }
                 return Object.class;
