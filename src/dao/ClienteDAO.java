@@ -16,6 +16,7 @@ import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumn;
 import lib.ConexaoBD;
+import lib.Formatting;
 import lib.IDAO_T;
 
 /**
@@ -184,7 +185,7 @@ public class ClienteDAO implements IDAO_T<Cliente> {
 
             while (resultadoQ.next()) {
 
-                dadosTabela[lin][0] = resultadoQ.getInt("id_func");
+                dadosTabela[lin][0] = resultadoQ.getInt("id_cliente");
                 dadosTabela[lin][1] = resultadoQ.getString("nome");
                 dadosTabela[lin][2] = resultadoQ.getString("cpf");
                 dadosTabela[lin][3] = resultadoQ.getString("rg");

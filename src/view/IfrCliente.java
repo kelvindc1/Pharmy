@@ -461,14 +461,15 @@ public class IfrCliente extends javax.swing.JInternalFrame {
                 JOptionPane.showMessageDialog(null, "Erro ao converter a data!");
             }
 
-            cliente.setTelefone(tffTelefone.getText());
-
+            cliente.setTelefone(Formatting.removerFormatacao(tffTelefone.getText()));
+                      
             cliente.setSituacao("I");
             if (jCheckBox1.isSelected()) {
                 cliente.setSituacao("A");
             }
 
             cliente.setCpf(Formatting.removerFormatacao(tffCpf.getText()));
+            
             cliente.setRg(tfdRg.getText());
 
             cliente.setId_cliente(id_cliente);
