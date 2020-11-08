@@ -5,7 +5,7 @@
  */
 package dao;
 
-import control.Setor;
+import control.Contrato;
 import java.awt.Color;
 import java.awt.Component;
 import java.sql.ResultSet;
@@ -16,35 +16,40 @@ import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumn;
 import lib.ConexaoBD;
+import lib.Formatting;
 import lib.IDAO_T;
 
 /**
  *
  * @author Cristian
  */
-public class SetorDAO implements IDAO_T<Setor> {
+public class ContratoDAO implements IDAO_T<Contrato> {
 
     private ResultSet resultadoQ = null;
 
     @Override
-    public boolean salvar(Setor o) {
+    public boolean salvar(Contrato o) {
         try {
             Statement st = ConexaoBD.getInstance().getConnection().createStatement();
             String sql = "";
-            if (o.getId_setor() == 0) {
-                sql = "INSERT INTO setor VALUES ("
+            if (o.getId_contrato() == 0) {
+                sql = "INSERT INTO contrato VALUES ("
                         + "DEFAULT, "
-                        + "'" + o.getNome() + "',"
-                        + "'" + o.getDescricao() + "',"
-                        + "'" + o.getId_cargo() + "',"
-                        + "'" + o.getSituacao() + "')";
+                        + "'" + o.getId_setor() + "',"
+                        + "'" + o.getSal_ant() + "',"
+                        + "'" + o.getSal_novo() + "',"
+                        + "'05/11/2020',"
+                       // + "'" + o.getDt_alteracao() + "',"
+                        + "'" + o.getObs() + "')";
             } else {
-                sql = "UPDATE setor "
-                        + "SET nome = '" + o.getNome() + "',"
-                        + "descricao = '" + o.getDescricao() + "',"
-                        + "id_cargo = '" + o.getId_cargo() + "',"
-                        + "situacao = '" + o.getSituacao() + "' "
-                        + "WHERE id_setor = " + o.getId_setor();
+                sql = "UPDATE contrato "
+                        + "SET id_setor = '" + o.getId_setor() + "',"
+                        + "sal_ant = '" + o.getSal_ant() + "',"
+                        + "sal_novo = '" + o.getSal_novo() + "',"
+                        + "dt_alteracao = '27/11/2020',"
+                       // + "dt_alteracao = '" + o.getDt_alteracao() + "',"
+                        + "obs = '" + o.getObs() + "' "
+                        + "WHERE id_contrato = " + o.getId_contrato();
             }
 
             System.out.println("SQL: " + sql);
@@ -53,13 +58,14 @@ public class SetorDAO implements IDAO_T<Setor> {
 
             return true;
         } catch (Exception e) {
-            System.out.println("Erro salvar Setor = " + e);
+            System.out.println("Erro salvar CONTRATO = " + e);
             return false;
         }
+
     }
 
     @Override
-    public boolean atualizar(Setor o) {
+    public boolean atualizar(Contrato o) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
@@ -69,8 +75,8 @@ public class SetorDAO implements IDAO_T<Setor> {
             Statement st = ConexaoBD.getInstance().getConnection().createStatement();
 
             String sql = "DELETE "
-                    + "FROM setor "
-                    + "WHERE id_setor = " + id;
+                    + "FROM contrato c "
+                    + "WHERE c.id_contrato = " + id;
 
             System.out.println("SQL: " + sql);
 
@@ -85,24 +91,25 @@ public class SetorDAO implements IDAO_T<Setor> {
     }
 
     @Override
-    public ArrayList<Setor> consultarTodos() {
+    public ArrayList<Contrato> consultarTodos() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public ArrayList<Setor> consultar(String criterio) {
+    public ArrayList<Contrato> consultar(String criterio) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public Setor consultarId(int id) {
-        Setor setor = null;
+    public Contrato consultarId(int id) {
+        Contrato cont = null;
+
         try {
             Statement st = ConexaoBD.getInstance().getConnection().createStatement();
 
             String sql = "SELECT * "
-                    + "FROM setor "
-                    + "WHERE id_setor = " + id;
+                    + "FROM contrato c "
+                    + "WHERE c.id_contrato = " + id;
 
             System.out.println("SQL: " + sql);
 
@@ -111,21 +118,23 @@ public class SetorDAO implements IDAO_T<Setor> {
 
             // avanca ResultSet
             if (resultadoQ.next()) {
-                setor = new Setor();
+                cont = new Contrato();
 
                 // obtem dados do RS
-                setor.setId_setor(resultadoQ.getInt("id_setor"));
-                setor.setNome(resultadoQ.getString("nome"));
-                setor.setDescricao(resultadoQ.getString("descricao"));
-                setor.setId_cargo(resultadoQ.getInt("id_cargo"));
-                setor.setSituacao(resultadoQ.getString("situacao"));
+                cont.setId_contrato(resultadoQ.getInt("id_contrato"));
+                cont.setId_setor(resultadoQ.getInt("id_setor"));
+                cont.setSal_ant(resultadoQ.getBigDecimal("sal_ant"));
+                cont.setSal_novo(resultadoQ.getBigDecimal("sal_novo"));
+                cont.setDt_alteracao(resultadoQ.getDate("dt_alteracao"));
+                cont.setObs(resultadoQ.getString("obs"));
 
             }
 
         } catch (Exception e) {
             System.out.println("Erro ao consultar: " + e);
         }
-        return setor;
+
+        return cont;
     }
 
     public void popularTabela(JTable tabela, String criterio) {
@@ -133,27 +142,27 @@ public class SetorDAO implements IDAO_T<Setor> {
         Object[][] dadosTabela = null;
 
         // cabecalho da tabela
-        Object[] cabecalho = new Object[5];
+        Object[] cabecalho = new Object[7];
         cabecalho[0] = "Id";
         cabecalho[1] = "Nome";
         cabecalho[2] = "Setor";
-        cabecalho[3] = "Descrição";
-        cabecalho[4] = "Situação";
+        cabecalho[3] = "Salário Anterior";
+        cabecalho[4] = "Salário Novo";
+        cabecalho[5] = "Data da Alteração";
+        cabecalho[6] = "Observação";
 
         // cria matriz de acordo com nº de registros da tabela
         try {
             resultadoQ = ConexaoBD.getInstance().getConnection().createStatement().executeQuery(""
                     + "SELECT count(*) "
-                    + "FROM setor s "
-                    + "WHERE "
-                    + "s.nome ILIKE '%" + criterio + "%'");
+                    + "FROM contrato c ");
 
             resultadoQ.next();
 
-            dadosTabela = new Object[resultadoQ.getInt(1)][5];
+            dadosTabela = new Object[resultadoQ.getInt(1)][7];
 
         } catch (Exception e) {
-            System.out.println("Erro ao consultar de SETOR: " + e);
+            System.out.println("Erro ao consultar de CONTRATO: " + e);
         }
 
         int lin = 0;
@@ -161,19 +170,21 @@ public class SetorDAO implements IDAO_T<Setor> {
         // efetua consulta na tabela
         try {
             resultadoQ = ConexaoBD.getInstance().getConnection().createStatement().executeQuery(""
-                    + "SELECT s.id_setor, s.nome, c.nome AS cargo, s.descricao, s.situacao  "
-                    + "FROM setor s, cargo c "
-                    + "WHERE s.id_cargo = c.id_cargo AND "
-                    + "s.nome ILIKE '%" + criterio + "%' "
-                    + "ORDER BY s.id_setor ");
+                    + "SELECT c.id_contrato, f.nome, s.nome AS setor, c.sal_ant, c.sal_novo, c.dt_alteracao, c.obs "
+                    + "FROM contrato c, funcionario f, setor s "
+                    + "WHERE c.id_contrato = f.id_contrato AND c.id_setor = s.id_setor AND "
+                    + "f.nome ILIKE '%" + criterio + "%' "
+                    + "ORDER BY c.id_contrato ");
 
             while (resultadoQ.next()) {
 
-                dadosTabela[lin][0] = resultadoQ.getInt("id_setor");
+                dadosTabela[lin][0] = resultadoQ.getInt("id_contrato");
                 dadosTabela[lin][1] = resultadoQ.getString("nome");
-                dadosTabela[lin][2] = resultadoQ.getString("cargo");
-                dadosTabela[lin][3] = resultadoQ.getString("descricao");
-                dadosTabela[lin][4] = resultadoQ.getString("situacao");
+                dadosTabela[lin][2] = resultadoQ.getString("setor");
+                dadosTabela[lin][3] = resultadoQ.getString("sal_ant");
+                dadosTabela[lin][4] = resultadoQ.getString("sal_novo");
+                dadosTabela[lin][5] = Formatting.ajustaDataDMA(resultadoQ.getString("dt_alteracao"));
+                dadosTabela[lin][6] = resultadoQ.getString("obs");
 
                 // caso a coluna precise exibir uma imagem
 //                if (resultadoQ.getBoolean("Situacao")) {
@@ -184,7 +195,7 @@ public class SetorDAO implements IDAO_T<Setor> {
                 lin++;
             }
         } catch (Exception e) {
-            System.out.println("problemas para popular tabela de SETOR");
+            System.out.println("problemas para popular tabela de CONTRATO");
             System.out.println(e);
         }
 
@@ -255,8 +266,8 @@ public class SetorDAO implements IDAO_T<Setor> {
         String resp = "";
         try {
             resultadoQ = ConexaoBD.getInstance().getConnection().createStatement().executeQuery(""
-                    + "SELECT MAX(os.id_setor) "
-                    + "FROM setor os");
+                    + "SELECT MAX(c.id_contrato) "
+                    + "FROM contrato c");
 
             resultadoQ.next();
             int aux = resultadoQ.getInt("max");
@@ -268,31 +279,4 @@ public class SetorDAO implements IDAO_T<Setor> {
         return resp;
     }
 
-    public int consultarSetor(String nome) {
-        int resp = 0;
-        try {
-            Statement st = ConexaoBD.getInstance().getConnection().createStatement();
-
-            String sql = "SELECT s.id_setor "
-                    + "FROM setor s "
-                    + "WHERE s.nome = '" + nome+"'";
-
-            System.out.println("SQL: " + sql);
-
-            // executa consulta
-            resultadoQ = st.executeQuery(sql);
-
-            // avanca ResultSet
-            if (resultadoQ.next()) {
-
-                // obtem dados do RS
-                resp = (Integer.parseInt(resultadoQ.getString("id_setor")));
-
-            }
-
-        } catch (Exception e) {
-            System.out.println("Erro ao consultar: " + e);
-        }
-        return resp;
-    }
 }

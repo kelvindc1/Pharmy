@@ -313,47 +313,53 @@ public class IfrFuncao extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btnPesquisarActionPerformed
 
     private void btnExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcluirActionPerformed
-        String idString = String.valueOf(tblFuncao.getValueAt(tblFuncao.getSelectedRow(), 0));
+        try {
+            String idString = String.valueOf(tblFuncao.getValueAt(tblFuncao.getSelectedRow(), 0));
 
-        id = Integer.parseInt(idString);
+            id = Integer.parseInt(idString);
 
-        FuncaoDAO apDAO = new FuncaoDAO();
+            FuncaoDAO apDAO = new FuncaoDAO();
 
-        if (JOptionPane.showConfirmDialog(null, "Deseja realmente excluir?") == JOptionPane.OK_OPTION) {
-            if (apDAO.excluir(id)) {
-                JOptionPane.showMessageDialog(null, "Registro excluído com sucesso!");
-                new FuncaoDAO().popularTabela(tblFuncao, tfdBusca.getText());
-            } else {
-                JOptionPane.showMessageDialog(null, "Problemas ao excluir registro!");
+            if (JOptionPane.showConfirmDialog(null, "Deseja realmente excluir?") == JOptionPane.OK_OPTION) {
+                if (apDAO.excluir(id)) {
+                    JOptionPane.showMessageDialog(null, "Registro excluído com sucesso!");
+                    new FuncaoDAO().popularTabela(tblFuncao, tfdBusca.getText());
+                } else {
+                    JOptionPane.showMessageDialog(null, "Problemas ao excluir registro!");
+                }
             }
+        } catch (ArrayIndexOutOfBoundsException e) {
+            JOptionPane.showMessageDialog(null, "Selecione um registro para excluir!");
         }
     }//GEN-LAST:event_btnExcluirActionPerformed
 
     private void btnEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarActionPerformed
-        String idString = String.valueOf(tblFuncao.getValueAt(tblFuncao.getSelectedRow(), 0));
+        try {
+            String idString = String.valueOf(tblFuncao.getValueAt(tblFuncao.getSelectedRow(), 0));
 
-        id = Integer.parseInt(idString);
+            id = Integer.parseInt(idString);
 
-        FuncaoDAO apDAO = new FuncaoDAO();
+            FuncaoDAO apDAO = new FuncaoDAO();
 
-        Funcao ap = apDAO.consultarId(id);
+            Funcao ap = apDAO.consultarId(id);
 
-        if (ap != null) {
-            tfdId.setText(String.valueOf(ap.getId_funcao()));
-            tfdNome.setText(ap.getNome());
-            JtaDescricao.setText(ap.getDescricao());
-            if (ap.getSituacao().equals("A")) {
-                rbAtivo.setSelected(true);
+            if (ap != null) {
+                tfdId.setText(String.valueOf(ap.getId_funcao()));
+                tfdNome.setText(ap.getNome());
+                JtaDescricao.setText(ap.getDescricao());
+                if (ap.getSituacao().equals("A")) {
+                    rbAtivo.setSelected(true);
+                } else {
+                    rbInativo.setSelected(true);
+                }
+
+                jTabbedPane1.setSelectedIndex(0);
             } else {
-                rbInativo.setSelected(true);
+                System.out.println("erro na consulta");
             }
-
-            jTabbedPane1.setSelectedIndex(0);
-        } else {
-            System.out.println("erro na consulta");
+        } catch (ArrayIndexOutOfBoundsException e) {
+            JOptionPane.showMessageDialog(null, "Selecione um registro para editar!");
         }
-
-
     }//GEN-LAST:event_btnEditarActionPerformed
 
     private void rbAtivoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbAtivoActionPerformed

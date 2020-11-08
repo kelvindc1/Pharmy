@@ -7,8 +7,6 @@ package view;
 
 import dao.FuncionarioDAO;
 
-
-
 /**
  *
  * @author pretto
@@ -16,6 +14,8 @@ import dao.FuncionarioDAO;
 public class DlgPesquisarFunc extends javax.swing.JDialog {
 
     IfrLogin loginView = null;
+    IfrContrato contratoView = null;
+    boolean flag = true;
 
     /**
      * Creates new form DlgPesquisarItem
@@ -29,7 +29,15 @@ public class DlgPesquisarFunc extends javax.swing.JDialog {
         super(parent, modal);
         initComponents();
         loginView = ifrTratamento;
-        new FuncionarioDAO().popularTabelaFiltro(tblItem2,"","A");
+        new FuncionarioDAO().popularTabelaFiltro(tblItem2, "", "A");
+    }
+
+    public DlgPesquisarFunc(java.awt.Frame parent, boolean modal, IfrContrato ifrTratamento) {
+        super(parent, modal);
+        initComponents();
+        contratoView = ifrTratamento;
+        flag = false;
+        new FuncionarioDAO().popularTabelaFiltro(tblItem2, "", "A");
     }
 
     /**
@@ -142,14 +150,17 @@ public class DlgPesquisarFunc extends javax.swing.JDialog {
     private void btnSelecionarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSelecionarActionPerformed
         String id = String.valueOf(tblItem2.getValueAt(tblItem2.getSelectedRow(), 0));
         String nome = String.valueOf(tblItem2.getValueAt(tblItem2.getSelectedRow(), 1));
-
-        loginView.definirValorCliente(id, nome);
-
+        String setor = String.valueOf(tblItem2.getValueAt(tblItem2.getSelectedRow(), 2));
+        if (flag) {
+            loginView.definirValorCliente(id, nome);
+        } else {
+            contratoView.definirValor(id, nome, setor);
+        }
         this.dispose();
     }//GEN-LAST:event_btnSelecionarActionPerformed
     private void tabela() {
         String x = "";
-        
+
     }
 
     /**

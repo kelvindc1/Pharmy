@@ -159,6 +159,15 @@ public class Formatting {
         return (retorno);
     }
 
+    public static Date forData(String date) throws ParseException {
+       // String dataFormatada = null;
+        
+            Date dataDMA = new SimpleDateFormat("dd/MM/yyyy").parse(date);
+            //dataFormatada = new SimpleDateFormat("dd/MM/yyyy").format(dataDMA);
+        
+        return dataDMA;
+    }
+
     public static String getDataAtual() {
         Date now = new Date();
         DateFormat df = new SimpleDateFormat("dd/MM/yyyy");
@@ -174,7 +183,7 @@ public class Formatting {
 
         return dataHoje;
     }
-    
+
     public static void reformatarInteiros(JFormattedTextField campo) {
         try {
             MaskFormatter m = new MaskFormatter();

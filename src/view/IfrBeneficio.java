@@ -6,14 +6,9 @@
 package view;
 
 import control.Beneficio;
-import control.Funcionario;
-import control.Login;
 import dao.BeneficioDAO;
-import dao.FuncionarioDAO;
-import dao.LoginDAO;
-import java.math.BigDecimal;
+import dao.FuncaoDAO;
 import javax.swing.JOptionPane;
-import lib.CombosDAO;
 
 /**
  *
@@ -22,19 +17,15 @@ import lib.CombosDAO;
 public class IfrBeneficio extends javax.swing.JInternalFrame {
 
     int id = 0;
-    int idContrato = 0;
 
     /**
-     * Creates new form Login
+     * Creates new form IfrFuncao
      */
     public IfrBeneficio() {
         initComponents();
-
-        new BeneficioDAO().popularTabela(tblBeneficios, "");
+        new BeneficioDAO().popularTabela(tblFuncao, "");
         rbAtivo.setSelected(true);
         tfdId.setText(new BeneficioDAO().proximaId());
-        new CombosDAO().popularCombo("tipo_beneficio", cmbTpBeneficios);
-
     }
 
     /**
@@ -46,6 +37,7 @@ public class IfrBeneficio extends javax.swing.JInternalFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jComboBox1 = new javax.swing.JComboBox<>();
         buttonGroup1 = new javax.swing.ButtonGroup();
         jTabbedPane1 = new javax.swing.JTabbedPane();
         jPanel1 = new javax.swing.JPanel();
@@ -53,41 +45,35 @@ public class IfrBeneficio extends javax.swing.JInternalFrame {
         jLabel3 = new javax.swing.JLabel();
         btnFechar = new javax.swing.JButton();
         tfdId = new javax.swing.JTextField();
-        tfdIdContrato = new javax.swing.JTextField();
-        jLabel6 = new javax.swing.JLabel();
-        jLabel11 = new javax.swing.JLabel();
-        jLabel13 = new javax.swing.JLabel();
-        jLabel19 = new javax.swing.JLabel();
-        jLabel21 = new javax.swing.JLabel();
-        jLabel27 = new javax.swing.JLabel();
-        jLabel32 = new javax.swing.JLabel();
-        btnBuscar = new javax.swing.JButton();
-        rbAtivo = new javax.swing.JRadioButton();
-        rbInativo = new javax.swing.JRadioButton();
-        btnSalvar = new javax.swing.JButton();
-        jLabel26 = new javax.swing.JLabel();
+        tfdNome = new javax.swing.JTextField();
+        jLabel5 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
-        taDescricao = new javax.swing.JTextArea();
-        tffValor = new javax.swing.JFormattedTextField();
-        jLabel7 = new javax.swing.JLabel();
-        cmbTpBeneficios = new javax.swing.JComboBox<>();
+        JtaDescricao = new javax.swing.JTextArea();
+        jLabel6 = new javax.swing.JLabel();
+        jLabel11 = new javax.swing.JLabel();
+        rbAtivo = new javax.swing.JRadioButton();
+        rbInativo = new javax.swing.JRadioButton();
+        jLabel26 = new javax.swing.JLabel();
+        jLabel27 = new javax.swing.JLabel();
+        btnSalvar = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        tblBeneficios = new javax.swing.JTable();
+        tblFuncao = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
         tfdBusca = new javax.swing.JTextField();
         btnPesquisar = new javax.swing.JButton();
         btnExcluir = new javax.swing.JButton();
         btnEditar = new javax.swing.JButton();
-        jLabel24 = new javax.swing.JLabel();
 
-        setTitle("Cadastro de Benefícios");
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
+        setTitle("Cadastro: Benefício");
         setName(""); // NOI18N
 
         jLabel2.setText("Id");
 
-        jLabel3.setText("Id contrato");
+        jLabel3.setText("Nome");
 
         btnFechar.setText("Fechar");
         btnFechar.addActionListener(new java.awt.event.ActionListener() {
@@ -98,28 +84,19 @@ public class IfrBeneficio extends javax.swing.JInternalFrame {
 
         tfdId.setEnabled(false);
 
-        jLabel6.setText("Valor");
+        jLabel5.setForeground(new java.awt.Color(255, 0, 51));
+        jLabel5.setText("*");
+
+        jLabel4.setText("Descrição");
+
+        JtaDescricao.setColumns(20);
+        JtaDescricao.setRows(5);
+        jScrollPane2.setViewportView(JtaDescricao);
+
+        jLabel6.setForeground(new java.awt.Color(255, 0, 51));
+        jLabel6.setText("*");
 
         jLabel11.setText("Situação");
-
-        jLabel19.setForeground(new java.awt.Color(255, 0, 51));
-        jLabel19.setText("*");
-
-        jLabel21.setForeground(new java.awt.Color(255, 0, 51));
-        jLabel21.setText("* ");
-
-        jLabel27.setForeground(new java.awt.Color(255, 0, 51));
-        jLabel27.setText("* ");
-
-        jLabel32.setForeground(new java.awt.Color(255, 0, 51));
-        jLabel32.setText("* ");
-
-        btnBuscar.setText("Buscar");
-        btnBuscar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnBuscarActionPerformed(evt);
-            }
-        });
 
         buttonGroup1.add(rbAtivo);
         rbAtivo.setText("Ativo");
@@ -138,25 +115,18 @@ public class IfrBeneficio extends javax.swing.JInternalFrame {
             }
         });
 
+        jLabel26.setForeground(new java.awt.Color(255, 0, 51));
+        jLabel26.setText("* ");
+
+        jLabel27.setForeground(new java.awt.Color(255, 0, 51));
+        jLabel27.setText("* ");
+
         btnSalvar.setText("Salvar");
         btnSalvar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnSalvarActionPerformed(evt);
             }
         });
-
-        jLabel26.setForeground(new java.awt.Color(255, 0, 51));
-        jLabel26.setText("* ");
-
-        jLabel4.setText("Descrição");
-
-        taDescricao.setColumns(20);
-        taDescricao.setRows(5);
-        jScrollPane2.setViewportView(taDescricao);
-
-        jLabel7.setText("Tipo de Benéficio");
-
-        cmbTpBeneficios.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -166,125 +136,84 @@ public class IfrBeneficio extends javax.swing.JInternalFrame {
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel13)
-                        .addGap(0, 783, Short.MAX_VALUE))
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(jLabel3)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jLabel6))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(jLabel4)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jLabel27)))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(tfdNome)
+                            .addComponent(jScrollPane2)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(jLabel4)
-                                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                                .addGap(4, 4, 4)
-                                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                    .addComponent(jLabel11)
-                                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                                        .addGap(46, 46, 46)
-                                                        .addComponent(rbAtivo)
-                                                        .addGap(18, 18, 18)
-                                                        .addComponent(rbInativo)
-                                                        .addGap(18, 18, 18)
-                                                        .addComponent(jLabel26))
-                                                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 289, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                                        .addGap(6, 6, 6)
-                                        .addComponent(jLabel32))
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addComponent(jLabel6)
-                                        .addGap(75, 75, 75)
-                                        .addComponent(tffValor, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(jLabel21)))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(btnSalvar, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(0, 281, Short.MAX_VALUE)
+                                .addComponent(btnSalvar, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(btnFechar, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(jLabel2)
-                                            .addComponent(jLabel3))
-                                        .addGap(45, 45, 45)
-                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(tfdId, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                                .addComponent(tfdIdContrato, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addGap(18, 18, 18)
-                                                .addComponent(btnBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addGap(18, 18, 18)
-                                                .addComponent(jLabel19))))
+                                        .addComponent(jLabel2)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(jLabel5))
+                                    .addComponent(tfdId, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addComponent(jLabel7)
+                                        .addComponent(jLabel11)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(jLabel26)
                                         .addGap(18, 18, 18)
-                                        .addComponent(cmbTpBeneficios, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(rbAtivo)
                                         .addGap(18, 18, 18)
-                                        .addComponent(jLabel27)))
+                                        .addComponent(rbInativo)))
                                 .addGap(0, 0, Short.MAX_VALUE)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(btnFechar, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap())
+                        .addGap(18, 18, 18))))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(15, 15, 15)
+                .addContainerGap()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel2)
+                    .addComponent(jLabel5))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(tfdId, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel3)
+                    .addComponent(jLabel6))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(tfdNome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel11)
+                    .addComponent(rbAtivo)
+                    .addComponent(rbInativo)
+                    .addComponent(jLabel26))
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel2)
-                            .addComponent(tfdId, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(19, 19, 19)
-                        .addComponent(jLabel3))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(35, 35, 35)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(tfdIdContrato, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel19)
-                            .addComponent(btnBuscar))
                         .addGap(18, 18, 18)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel7)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(cmbTpBeneficios, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(jLabel27)))))
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(75, 75, 75)
-                        .addComponent(jLabel13)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel4)
+                            .addComponent(jLabel27))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 136, Short.MAX_VALUE)
+                        .addGap(52, 52, 52))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(btnFechar)
-                            .addComponent(btnSalvar))
-                        .addContainerGap())
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(18, 18, 18)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(3, 3, 3)
-                                .addComponent(jLabel6))
-                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(tffValor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(jLabel21)))
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(99, 99, 99)
-                                .addComponent(jLabel32))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(18, 18, 18)
-                                .addComponent(jLabel4)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(18, 18, 18)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel11)
-                            .addComponent(rbAtivo)
-                            .addComponent(rbInativo)
-                            .addComponent(jLabel26))
-                        .addContainerGap(115, Short.MAX_VALUE))))
+                            .addComponent(btnSalvar)
+                            .addComponent(btnFechar))
+                        .addContainerGap())))
         );
 
         jTabbedPane1.addTab("Cadastro", jPanel1);
 
-        tblBeneficios.setModel(new javax.swing.table.DefaultTableModel(
+        tblFuncao.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -295,7 +224,7 @@ public class IfrBeneficio extends javax.swing.JInternalFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jScrollPane1.setViewportView(tblBeneficios);
+        jScrollPane1.setViewportView(tblFuncao);
 
         jLabel1.setText("Busca");
 
@@ -329,17 +258,18 @@ public class IfrBeneficio extends javax.swing.JInternalFrame {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(btnExcluir, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btnExcluir, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(btnEditar, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 783, Short.MAX_VALUE)
+                        .addComponent(btnEditar, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(8, 8, 8))
+                    .addComponent(jScrollPane1)
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(jLabel1)
                         .addGap(18, 18, 18)
                         .addComponent(tfdBusca, javax.swing.GroupLayout.PREFERRED_SIZE, 308, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(33, 33, 33)
                         .addComponent(btnPesquisar)
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                        .addGap(0, 31, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
@@ -350,99 +280,88 @@ public class IfrBeneficio extends javax.swing.JInternalFrame {
                     .addComponent(jLabel1)
                     .addComponent(tfdBusca, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnPesquisar))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 279, Short.MAX_VALUE)
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 335, Short.MAX_VALUE)
-                .addGap(18, 18, 18)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnExcluir)
-                    .addComponent(btnEditar))
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(btnEditar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnExcluir, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
 
         jTabbedPane1.addTab("Consulta", jPanel2);
-
-        jLabel24.setForeground(new java.awt.Color(255, 0, 51));
-        jLabel24.setText("Campos com * são obrigatórios");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jTabbedPane1)
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                    .addContainerGap(30, Short.MAX_VALUE)
-                    .addComponent(jLabel24)
-                    .addGap(629, 629, 629)))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jTabbedPane1)
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                    .addContainerGap(442, Short.MAX_VALUE)
-                    .addComponent(jLabel24)
-                    .addContainerGap()))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void btnFecharActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFecharActionPerformed
+        dispose();
+    }//GEN-LAST:event_btnFecharActionPerformed
+
     private void btnPesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPesquisarActionPerformed
-        new BeneficioDAO().popularTabela(tblBeneficios, "");
+        new BeneficioDAO().popularTabela(tblFuncao, tfdBusca.getText());
     }//GEN-LAST:event_btnPesquisarActionPerformed
 
     private void btnExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcluirActionPerformed
-        String idString = String.valueOf(tblBeneficios.getValueAt(tblBeneficios.getSelectedRow(), 0));
+       /* try {
+            String idString = String.valueOf(tblFuncao.getValueAt(tblFuncao.getSelectedRow(), 0));
 
-        id = Integer.parseInt(idString);
+            id = Integer.parseInt(idString);
 
-        BeneficioDAO apDAO = new BeneficioDAO();
+            FuncaoDAO apDAO = new FuncaoDAO();
 
-        if (JOptionPane.showConfirmDialog(null, "Deseja realmente excluir?") == JOptionPane.OK_OPTION) {
-            if (apDAO.excluir(id)) {
-                JOptionPane.showMessageDialog(null, "Registro excluído com sucesso!");
-                new BeneficioDAO().popularTabela(tblBeneficios, tfdBusca.getText());
-            } else {
-                JOptionPane.showMessageDialog(null, "Problemas ao excluir registro!");
+            if (JOptionPane.showConfirmDialog(null, "Deseja realmente excluir?") == JOptionPane.OK_OPTION) {
+                if (apDAO.excluir(id)) {
+                    JOptionPane.showMessageDialog(null, "Registro excluído com sucesso!");
+                    new FuncaoDAO().popularTabela(tblFuncao, tfdBusca.getText());
+                } else {
+                    JOptionPane.showMessageDialog(null, "Problemas ao excluir registro!");
+                }
             }
-        }
+        } catch (ArrayIndexOutOfBoundsException e) {
+            JOptionPane.showMessageDialog(null, "Selecione um registro para excluir!");
+        }*/
     }//GEN-LAST:event_btnExcluirActionPerformed
 
     private void btnEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarActionPerformed
-        String idString = String.valueOf(tblBeneficios.getValueAt(tblBeneficios.getSelectedRow(), 0));
+        /*try {
+            String idString = String.valueOf(tblFuncao.getValueAt(tblFuncao.getSelectedRow(), 0));
 
-        id = Integer.parseInt(idString);
+            id = Integer.parseInt(idString);
 
-        BeneficioDAO apDAO = new BeneficioDAO();
+            FuncaoDAO apDAO = new FuncaoDAO();
 
-        Beneficio ap = apDAO.consultarId(id);
+            Funcao ap = apDAO.consultarId(id);
 
-        if (ap != null) {
-            tfdId.setText(String.valueOf(ap.getId_beneficio()));
-            taDescricao.setText(ap.getDescricao());
-            tffValor.setText(ap.getValor() + "");
-            tfdIdContrato.setText(ap.getId_contrato() + "");
-            cmbTpBeneficios.setSelectedIndex(ap.getId_tpbeneficio());
-            if (ap.getSituacao().equals("A")) {
-                rbAtivo.setSelected(true);
+            if (ap != null) {
+                tfdId.setText(String.valueOf(ap.getId_funcao()));
+                tfdNome.setText(ap.getNome());
+                JtaDescricao.setText(ap.getDescricao());
+                if (ap.getSituacao().equals("A")) {
+                    rbAtivo.setSelected(true);
+                } else {
+                    rbInativo.setSelected(true);
+                }
+
+                jTabbedPane1.setSelectedIndex(0);
             } else {
-                rbInativo.setSelected(true);
+                System.out.println("erro na consulta");
             }
-        } else {
-            System.out.println("erro na consulta");
-        }
+        } catch (ArrayIndexOutOfBoundsException e) {
+            JOptionPane.showMessageDialog(null, "Selecione um registro para editar!");
+        }*/
     }//GEN-LAST:event_btnEditarActionPerformed
-
-    private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
-
-        /*DlgPesquisarFunc dlgPesquisarFunc = new DlgPesquisarFunc(null, true, this);
-        dlgPesquisarFunc.setVisible(true);*/
-    }//GEN-LAST:event_btnBuscarActionPerformed
-
-    private void btnFecharActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFecharActionPerformed
-        this.dispose();
-    }//GEN-LAST:event_btnFecharActionPerformed
 
     private void rbAtivoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbAtivoActionPerformed
         // TODO add your handling code here:
@@ -453,78 +372,66 @@ public class IfrBeneficio extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_rbInativoActionPerformed
 
     private void btnSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvarActionPerformed
-        Beneficio ben = new Beneficio();
+       /* Beneficio funcao = new Beneficio();
 
-        if (taDescricao.equals("") || Double.parseDouble(tffValor.getText()) < 0 
-                || tfdIdContrato.getText().equals("") 
-                || cmbTpBeneficios.getSelectedItem().equals("Selecione")) {
-            System.out.println("s");
-            JOptionPane.showMessageDialog(null, "Dados Incoretos!");
-        } else {
-            System.out.println("n");
-            ben.setId_beneficio(id);
-            ben.setDescricao(taDescricao.getText());
-            ben.setValor(BigDecimal.valueOf(Double.parseDouble(tffValor.getText())));
-            ben.setId_contrato(Integer.parseInt(tfdIdContrato.getText()));
-            ben.setId_tpbeneficio(cmbTpBeneficios.getSelectedIndex());
+        if (!tfdNome.getText().equals("") && !JtaDescricao.getText().equals("")) {
+            funcao.setId_funcao(id);
+            funcao.setNome(tfdNome.getText());
+            funcao.setDescricao(JtaDescricao.getText());
 
             if (rbAtivo.isSelected()) {
-                ben.setSituacao("A");
+                funcao.setSituacao("A");
             } else {
-                ben.setSituacao("I");
+                funcao.setSituacao("I");
             }
 
             // salvar
-            BeneficioDAO apDAO = new BeneficioDAO();
+            FuncaoDAO funcaDAO = new FuncaoDAO();
 
-            if (apDAO.salvar(ben)) {
+            if (funcaDAO.salvar(funcao)) {
                 // exibir msg
                 JOptionPane.showMessageDialog(null, "Registro salvo com sucesso!");
 
                 // limpar campos
-                // tfdId.setText();
-                taDescricao.setText("");
-                tffValor.setText("0.00");
-                tfdIdContrato.setText("");
-                cmbTpBeneficios.setSelectedIndex(0);
+                tfdNome.setText("");
+                tfdId.setText(new FuncaoDAO().proximaId());
+                JtaDescricao.setText("");
                 rbAtivo.setSelected(true);
 
                 btnFechar.requestFocus();
 
                 // atualiza ID
                 id = 0;
-                new BeneficioDAO().popularTabela(tblBeneficios, tfdBusca.getText());
+                new FuncaoDAO().popularTabela(tblFuncao, tfdBusca.getText());
+                tfdId.setText(new FuncaoDAO().proximaId());
             } else {
                 JOptionPane.showMessageDialog(null, "Problemas ao salvar registro!");
             }
-        }
+        } else {
+            JOptionPane.showMessageDialog(null, "Campos não preenchidos!");
+        }*/
 
     }//GEN-LAST:event_btnSalvarActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnBuscar;
+    private javax.swing.JTextArea JtaDescricao;
     private javax.swing.JButton btnEditar;
     private javax.swing.JButton btnExcluir;
     private javax.swing.JButton btnFechar;
     private javax.swing.JButton btnPesquisar;
     private javax.swing.JButton btnSalvar;
     private javax.swing.ButtonGroup buttonGroup1;
-    private javax.swing.JComboBox<String> cmbTpBeneficios;
+    private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel11;
-    private javax.swing.JLabel jLabel13;
-    private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel21;
-    private javax.swing.JLabel jLabel24;
     private javax.swing.JLabel jLabel26;
     private javax.swing.JLabel jLabel27;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel32;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
@@ -532,16 +439,9 @@ public class IfrBeneficio extends javax.swing.JInternalFrame {
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JRadioButton rbAtivo;
     private javax.swing.JRadioButton rbInativo;
-    private javax.swing.JTextArea taDescricao;
-    private javax.swing.JTable tblBeneficios;
+    private javax.swing.JTable tblFuncao;
     private javax.swing.JTextField tfdBusca;
     private javax.swing.JTextField tfdId;
-    private javax.swing.JTextField tfdIdContrato;
-    private javax.swing.JFormattedTextField tffValor;
+    private javax.swing.JTextField tfdNome;
     // End of variables declaration//GEN-END:variables
-
-    /* void definirValorCliente(String id, String nome) {
-        tfdIdContrato.setText(nome);
-        idFunc = Integer.parseInt(id);
-    }*/
 }

@@ -369,51 +369,57 @@ public class IfrSetor extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btnPesquisarActionPerformed
 
     private void btnExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcluirActionPerformed
-        String idString = String.valueOf(tblSetor.getValueAt(tblSetor.getSelectedRow(), 0));
+        try {
+            String idString = String.valueOf(tblSetor.getValueAt(tblSetor.getSelectedRow(), 0));
 
-        id = Integer.parseInt(idString);
+            id = Integer.parseInt(idString);
 
-        SetorDAO apDAO = new SetorDAO();
+            SetorDAO apDAO = new SetorDAO();
 
-        if (JOptionPane.showConfirmDialog(null, "Deseja realmente excluir?") == JOptionPane.OK_OPTION) {
-            if (apDAO.excluir(id)) {
-                JOptionPane.showMessageDialog(null, "Registro excluído com sucesso!");
-                new SetorDAO().popularTabela(tblSetor, tfdBusca.getText());
-            } else {
-                JOptionPane.showMessageDialog(null, "Problemas ao excluir registro!");
+            if (JOptionPane.showConfirmDialog(null, "Deseja realmente excluir?") == JOptionPane.OK_OPTION) {
+                if (apDAO.excluir(id)) {
+                    JOptionPane.showMessageDialog(null, "Registro excluído com sucesso!");
+                    new SetorDAO().popularTabela(tblSetor, tfdBusca.getText());
+                } else {
+                    JOptionPane.showMessageDialog(null, "Problemas ao excluir registro!");
+                }
             }
+        } catch (ArrayIndexOutOfBoundsException e) {
+            JOptionPane.showMessageDialog(null, "Selecione um registro para excluir!");
         }
     }//GEN-LAST:event_btnExcluirActionPerformed
 
     private void btnEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarActionPerformed
-        String idString = String.valueOf(tblSetor.getValueAt(tblSetor.getSelectedRow(), 0));
+        try {
+            String idString = String.valueOf(tblSetor.getValueAt(tblSetor.getSelectedRow(), 0));
 
-        id = Integer.parseInt(idString);
+            id = Integer.parseInt(idString);
 
-        SetorDAO apDAO = new SetorDAO();
+            SetorDAO apDAO = new SetorDAO();
 
-        Setor ap = apDAO.consultarId(id);
+            Setor ap = apDAO.consultarId(id);
 
-        if (ap != null) {
-            tfdId.setText(String.valueOf(ap.getId_setor()));
-            tfdIdCargo.setText(String.valueOf(ap.getId_cargo()));
+            if (ap != null) {
+                tfdId.setText(String.valueOf(ap.getId_setor()));
+                tfdIdCargo.setText(String.valueOf(ap.getId_cargo()));
 
-            tfdNome.setText(ap.getNome());
-            JtaDescricao.setText(ap.getDescricao());
-            if (ap.getSituacao().equals("A")) {
-                rbAtivo.setSelected(true);
+                tfdNome.setText(ap.getNome());
+                JtaDescricao.setText(ap.getDescricao());
+                if (ap.getSituacao().equals("A")) {
+                    rbAtivo.setSelected(true);
+                } else {
+                    rbInativo.setSelected(true);
+                }
+                Cargo aux = new CargoDAO().consultarId(ap.getId_cargo());
+                idCargo = ap.getId_cargo();
+                tfdCargo.setText(aux.getNome());
+                jTabbedPane1.setSelectedIndex(0);
             } else {
-                rbInativo.setSelected(true);
+                System.out.println("erro na consulta");
             }
-            Cargo aux = new CargoDAO().consultarId(ap.getId_cargo());
-            idCargo = ap.getId_cargo();
-            tfdCargo.setText(aux.getNome());
-            jTabbedPane1.setSelectedIndex(0);
-        } else {
-            System.out.println("erro na consulta");
+        } catch (ArrayIndexOutOfBoundsException e) {
+            JOptionPane.showMessageDialog(null, "Selecione um registro para editar!");
         }
-
-
     }//GEN-LAST:event_btnEditarActionPerformed
 
     private void rbAtivoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbAtivoActionPerformed
