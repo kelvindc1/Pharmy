@@ -72,7 +72,7 @@ public class BeneficioDAO implements IDAO_T<Beneficio> {
 
             String sql = "DELETE "
                     + "FROM beneficio "
-                    + "WHERE id = " + id;
+                    + "WHERE id_beneficio = " + id;
 
             System.out.println("SQL: " + sql);
 
@@ -105,7 +105,7 @@ public class BeneficioDAO implements IDAO_T<Beneficio> {
 
             String sql = "SELECT * "
                     + "FROM tipo_beneficio "
-                    + "WHERE id = " + id;
+                    + "WHERE id_beneficio = " + id;
 
             System.out.println("SQL: " + sql);
 
@@ -154,7 +154,7 @@ public class BeneficioDAO implements IDAO_T<Beneficio> {
                     + " b.descricao ILIKE '%" + criterio + "%'");
 
             resultadoQ.next();
-
+            System.out.println("aqui " + resultadoQ.toString());
             dadosTabela = new Object[resultadoQ.getInt(1)][6];
 
         } catch (Exception e) {

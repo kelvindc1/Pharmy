@@ -102,7 +102,7 @@ public class Pedido {
     public void setQtd_total_itens(int qtd_total_itens) {
         this.qtd_total_itens = qtd_total_itens;
     }
-        
+        /*
     public void calcularValorTotal() {
         this.valor_total = 0;
         this.itensPedido.forEach(p -> this.valor_total = this.valor_total + p.getValorUnitario() * p.getQtd_item());
@@ -121,6 +121,6 @@ public class Pedido {
                 + ", id_pag=" + id_pag + ", itensPedido=" + itensPedido.toString() + '}';
     }
 
-   
+   */
 
 }
