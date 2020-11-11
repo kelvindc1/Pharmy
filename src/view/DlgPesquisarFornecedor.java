@@ -5,6 +5,7 @@
  */
 package view;
 
+import dao.FornecedorDAO;
 import dao.ProdutoDAO;
 
 
@@ -143,7 +144,7 @@ public class DlgPesquisarFornecedor extends javax.swing.JDialog {
         String id = String.valueOf(tblItem2.getValueAt(tblItem2.getSelectedRow(), 0));
         String nome = String.valueOf(tblItem2.getValueAt(tblItem2.getSelectedRow(), 1));
 
-        produtoView.definirValorFuncao(id, nome);
+        produtoView.definirValorFuncaoFornecedor(id, nome);
 
         this.dispose();
     }//GEN-LAST:event_btnSelecionarActionPerformed
