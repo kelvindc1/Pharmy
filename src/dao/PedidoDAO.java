@@ -45,22 +45,18 @@ public class PedidoDAO implements IDAO_T<Pedido> {
                         + "'" + o.getDt_pedido() + "',"
                         + "'" + o.getDt_pag() + "',"
                         + "'" + o.getValor_total() + "',"
-                        + "'" + o.getQtd_total_itens() + "',"
                         + "'" + o.getId_financeiro() + "',"
-                        + "'" + o.getSituacao() + "',"
-                        + "'" + o.getId_pag() + "')";  //pegar do financeiro
+                        + "'" + o.getSituacao() + "')";
             } else {
                 sql = "UPDATE pedido "
                         + "SET situacao = '" + o.getSituacao() + "', "
                         + "id_func = '" + o.getId_func() + "', "
                         + "valor_total = '" + o.getValor_total() + "', "
-                        + "qtd_total_itens = '" + o.getQtd_total_itens() + "', "
                         + "dt_pedido = '" + o.getDt_pedido() + "', "
                         + "id_cliente = '" + o.getId_cliente() + "', "
                         + "dt_pag = '" + o.getDt_pag() + "', "
-                        + "id_financeiro = '" + o.getId_financeiro() + "', "
-                        + "id_pag = '" + o.getId_pag() + "' "   //pegar do financeiro
-                        + "WHERE id_ped = " + o.getId_pedido();
+                        + "id_financeiro = '" + o.getId_financeiro() + "' "
+                        + "WHERE id_pedido = " + o.getId_pedido();
             }
 
             System.out.println("SQL: " + sql);
@@ -141,15 +137,13 @@ public class PedidoDAO implements IDAO_T<Pedido> {
 
                 // obtem dados do RS
                 pedido.setId_pedido(resultadoQ.getInt("id_pedido"));
+                pedido.setId_cliente(resultadoQ.getInt("id_cliente"));
                 pedido.setSituacao(resultadoQ.getString("situacao"));
                 pedido.setId_func(resultadoQ.getInt("id_func"));
                 pedido.setValor_total(resultadoQ.getBigDecimal("valor_total"));
-                pedido.setQtd_total_itens(resultadoQ.getInt("qtd_total_itens"));
                 pedido.setId_financeiro(resultadoQ.getInt("id_financeiro"));
-                pedido.setQtd_total_itens(resultadoQ.getInt("qtd_total_itens"));;
                 pedido.setDt_pedido(resultadoQ.getDate("dt_pedido"));
                 pedido.setDt_pag(resultadoQ.getDate("dt_pag"));
-                pedido.setId_pag(resultadoQ.getInt("id_pag"));   //adicionar
             }
 
         } catch (Exception e) {
@@ -194,7 +188,7 @@ public class PedidoDAO implements IDAO_T<Pedido> {
                     + "SELECT * "
                     + "FROM pedido "
                     + "WHERE "
-                    + "situacao ILIKE '%" + criterio + "%' ORDER BY id_ped");
+                    + "situacao ILIKE '%" + criterio + "%' ORDER BY id_pedido");
 
             while (resultadoQ.next()) {
 
@@ -336,7 +330,7 @@ public class PedidoDAO implements IDAO_T<Pedido> {
                 sql = sql + " AND situacao = 'I' ";
             }
 
-            sql = sql + " ORDER BY id_ped ";
+            sql = sql + " ORDER BY id_pedido ";
 
             System.out.println(sql);
             resultadoQ = ConexaoBD.getInstance().getConnection().createStatement().executeQuery(sql);

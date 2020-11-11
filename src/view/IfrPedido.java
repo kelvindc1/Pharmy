@@ -7,17 +7,19 @@ import lib.SoNumeros;
 import com.sun.javafx.css.Combinator;
 import dao.Forma_PagamentoDAO;
 import dao.FuncionarioDAO;
-//import dao.Itens_pedidoDAO; //tem que fazer e criar a table no bando de dados
-//import dao.PedidoDAO;   // tem que fazer
-//import dao.ProdutoDAO;  // tem que fazer
-//import control.Filtros; // tem que fazer
+import dao.ItensPedidoDAO; 
+import dao.PedidoDAO;   
+import dao.ProdutoDAO;  
+import control.Filtros; 
 import control.Forma_Pagamento;
 import control.Funcionario;
-//import control.Itens_pedido; //tem que fazer
+import control.ItensPedido;
+import control.ItensPedido;
 import control.Pedido;
 import control.Produto;
 import dao.ItensPedidoDAO;
 import dao.PedidoDAO;
+import dao.ProdutoDAO;
 import java.awt.event.ItemEvent;
 import java.math.BigDecimal;
 import java.text.ParseException;
@@ -681,7 +683,7 @@ public class IfrPedido extends javax.swing.JInternalFrame {
                 cmbFunc.getModel().setSelectedItem(cbItem);
 
                 Forma_Pagamento forma_pagamento = new Forma_PagamentoDAO().consultarId(pedido.getId_financeiro()); // tem que pegar o id da forma de pagamento
-                ComboItens cbItem2 = new ComboItens(forma_pagamento.getId_pag(), forma_pagamento.getDescricao());  // tem que pegar o id da forma de pagamento
+                ComboItens cbItem2 = new ComboItens(forma_pagamento.getId_forma_pag(), forma_pagamento.getDescricao());  // tem que pegar o id da forma de pagamento
                 cmbPagamento.getModel().setSelectedItem(cbItem2);
 
                 if (id_ped > 0) {
@@ -743,7 +745,7 @@ public class IfrPedido extends javax.swing.JInternalFrame {
     private void btnExcluir2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcluir2ActionPerformed
         try {
 
-            Itens_pedido item = (Itens_pedido) pedido.getItensPedido().get(tblProduto.getSelectedRow());
+            ItensPedido item = (ItensPedido) pedido.getItensPedido().get(tblProduto.getSelectedRow());
             pedido.removerItemPedido(item);
             popularTableItens(pedido);
 
@@ -769,7 +771,7 @@ public class IfrPedido extends javax.swing.JInternalFrame {
 
         if (codigoProduto > 0) {
             Produto produto = new ProdutoDAO().consultarId(codigoProduto);
-            tfdValor_unit.setText(produto.getValor_unit().toString());
+            tfdValor_unit.setText(produto.getPreco().toString());
         }
     }//GEN-LAST:event_cmbProdutoItemStateChanged
 
@@ -791,13 +793,13 @@ public class IfrPedido extends javax.swing.JInternalFrame {
         }
 
         if (continuar) {
-            Itens_pedido item = new Itens_pedido();
+            ItensPedido item = new ItensPedido();
             Produto produto = new ProdutoDAO().consultarId(codigoProduto);
 
             item.setProduto(produto);
 
-            item.setQtd_item((int) SpQuantidade.getValue());
-            item.setValorUnitario(produto.getValor_unit());
+            item.setItem_quant((int) SpQuantidade.getValue());
+            item.setValor_unit(produto.getPreco());
             pedido.adicionarItemPedido(item);
 
             //Não deixar editar a célula
@@ -854,7 +856,7 @@ public class IfrPedido extends javax.swing.JInternalFrame {
             }
 
             if (codigoPagamento > 0) {
-                pedido.setId_pag(codigoPagamento);
+                //pedido.setId_pag(codigoPagamento);  //VER
             }
 
             if (codigoFuncionario > 0) {
@@ -863,7 +865,7 @@ public class IfrPedido extends javax.swing.JInternalFrame {
 
             if (codigoProduto > 0) {
                 Produto produto = new ProdutoDAO().consultarId(codigoProduto);
-                tfdValor_unit.setText(produto.getValor_unit().toString());
+                tfdValor_unit.setText(produto.getPreco().toString());
             }
 
             String qtd_total_itensstr = Formatting.removerFormatacao(tfdQtdTotalItens.getText());
@@ -871,7 +873,7 @@ public class IfrPedido extends javax.swing.JInternalFrame {
             pedido.setQtd_total_itens(qtd_total_itens);
 
             String valor_totalstr = Formatting.removerFormatacao(tfdValorTotal.getText());
-            BigDecimal valor_total = BigDecimal.valueOf(valor_totalstr);
+            BigDecimal valor_total = BigDecimal.valueOf((double) 0);
             pedido.setValor_total(valor_total);
 
             pedido.setId_pedido(id_ped);
@@ -882,12 +884,12 @@ public class IfrPedido extends javax.swing.JInternalFrame {
 
             if (id_ped > 0) {
 
-                Itens_pedidoDAO iDAO = new Itens_pedidoDAO();
+                ItensPedidoDAO iDAO = new ItensPedidoDAO();
                 iDAO.excluirIdPed(id_ped);
 
                 for (int i = 0; i < pedido.getItensPedido().size(); i++) {
-                    pedido.getItensPedido().get(i).setId_item(0);
-                    pedido.getItensPedido().get(i).getPedido().setId_ped(id_ped);
+                    pedido.getItensPedido().get(i).setId_itens_ped(0);
+                    pedido.getItensPedido().get(i).getPedido().setId_pedido(id_ped);
                     continuar = iDAO.salvar(pedido.getItensPedido().get(i));
                 }
 
@@ -949,12 +951,12 @@ public class IfrPedido extends javax.swing.JInternalFrame {
             }
 
             if (cmbFunc2.getSelectedIndex() != 0) {
-                ComboItem item = (ComboItem) cmbFunc2.getSelectedItem();
+                ComboItens item = (ComboItens) cmbFunc2.getSelectedItem();
                 f.setFuncionario(String.valueOf(item.getCodigo()));
             }
 
             if (cmbPagamento2.getSelectedIndex() != 0) {
-                ComboItem item = (ComboItem) cmbPagamento2.getSelectedItem();
+                ComboItens item = (ComboItens) cmbPagamento2.getSelectedItem();
                 f.setForma_pagamento(String.valueOf(item.getCodigo()));
             }
 
@@ -991,10 +993,10 @@ public class IfrPedido extends javax.swing.JInternalFrame {
         Object[][] dadosTabela = new Object[pedido.tamanhoListItens()][4];
 
         for (int linha = 0; linha < pedido.getItensPedido().size(); linha++) {
-            dadosTabela[linha][0] = pedido.getItensPedido().get(linha).getProduto().getId_prod();
+            dadosTabela[linha][0] = pedido.getItensPedido().get(linha).getProduto().getId_produto();
             dadosTabela[linha][1] = pedido.getItensPedido().get(linha).getProduto().getDescricao();
-            dadosTabela[linha][2] = pedido.getItensPedido().get(linha).getValorUnitario();
-            dadosTabela[linha][3] = pedido.getItensPedido().get(linha).getQtd_item();
+            dadosTabela[linha][2] = pedido.getItensPedido().get(linha).getValor_unit();
+            dadosTabela[linha][3] = pedido.getItensPedido().get(linha).getItem_quant();
         }
   
         DefaultTableModel model = new DefaultTableModel(dadosTabela, colunas);

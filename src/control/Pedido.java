@@ -2,7 +2,9 @@
 package control;
 
 import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 /**
  *
@@ -19,6 +21,7 @@ public class Pedido {
     private int id_financeiro;
     private String situacao;
     private int qtd_total_itens;
+    private List<ItensPedido> itensPedido = new ArrayList<>();
 
     /*public Pedido(int id_pedido, int id_cliente, int id_func, Date dt_pedido, Date dt_pag, BigDecimal valor_total, int id_financeiro, String situacao) {
         this.id_pedido = id_pedido;
@@ -102,17 +105,46 @@ public class Pedido {
     public void setQtd_total_itens(int qtd_total_itens) {
         this.qtd_total_itens = qtd_total_itens;
     }
-        /*
+    
+    public List<ItensPedido> getItensPedido() {
+        return itensPedido;
+    }
+
+    private void setItensPedido(List<ItensPedido> itensPedido) {
+        this.itensPedido = itensPedido;
+    }
+
+    public void adicionarItemPedido(ItensPedido item) {
+        if (this.itensPedido == null) {
+            this.itensPedido = new ArrayList<>();
+        }
+        item.setPedido(this);
+        this.itensPedido.add(item);
+    }
+
+    public void removerItemPedido(ItensPedido item) {
+        if (this.itensPedido.contains(item)) {
+            this.itensPedido.remove(item);
+        }
+    }
+
+    public int tamanhoListItens() {
+        return this.itensPedido.size();
+    }
+        
     public void calcularValorTotal() {
+        this.valor_total = BigDecimal.valueOf((double) 0);
+         
         this.valor_total = 0;
-        this.itensPedido.forEach(p -> this.valor_total = this.valor_total + p.getValorUnitario() * p.getQtd_item());
+        this.itensPedido.forEach(p -> this.valor_total = this.valor_total + p.getValor_unit() * p.getItem_quant());
     }
 
     public void calcularTotalItens() {
         this.qtd_total_itens = 0;
-        this.itensPedido.forEach(p -> this.qtd_total_itens = p.getQtd_item() + this.qtd_total_itens);
+        this.itensPedido.forEach(p -> this.qtd_total_itens = p.getItem_quant() + this.qtd_total_itens);
     }
     
+    /*
     @Override
     public String toString() {
         return "Pedido{" + "id_ped=" + id_pedido + ", situacao=" 
