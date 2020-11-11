@@ -5,6 +5,7 @@
  */
 package view;
 
+import dao.FornecedorDAO;
 import dao.ProdutoDAO;
 
 

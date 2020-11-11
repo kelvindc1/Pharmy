@@ -1,7 +1,7 @@
 package view;
 
-import dao.Itens_pedidoDAO;
-import control.Itens_pedido;
+import dao.ItensPedidoDAO;
+import control.ItensPedido;
 import control.Pedido;
 
 /**
@@ -16,7 +16,7 @@ public class DlgPesquisarItens extends javax.swing.JDialog {
         initComponents();
                
         if(idPedido > 0) {
-             new Itens_pedidoDAO().popularTabela(tblItem, idPedido );
+             new ItensPedidoDAO().popularTabela(tblItem, idPedido );
         }
     }
 
