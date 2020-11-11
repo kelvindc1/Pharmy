@@ -11,6 +11,7 @@ import java.awt.Component;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.List;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
@@ -34,16 +35,16 @@ public class ItensPedidoDAO implements IDAO_T<ItensPedido> {
             if (o.getId_itens_ped() == 0) {
                 sql = "INSERT INTO itens_pedido VALUES ("
                         + "DEFAULT, "
-                        + "'" + o.getId_pedido() + "')"
-                        + "'" + o.getId_produto() + "', "
-                        + "'" + o.getItem_guat() + "', "
+                        + "'" + o.getPedido().getId_pedido() + "', "
+                        + "'" + o.getProduto().getId_produto()+ "', "
+                        + "'" + o.getItem_quant() + "', "
                         + "'" + o.getValor_unit() + "', "
                         + "'" + o.getId_servicos() + "')";
             } else {
                 sql = "UPDATE itens_pedido "
-                        + "SET id_pedido = '" + o.getId_pedido() + "',"
-                        + "id_produto = '" + o.getId_produto() + "',"
-                        + "item_quant = '" + o.getItem_guat() + "',"
+                        + "SET id_pedido = '" + o.getPedido().getId_pedido()+ "', "
+                        + "id_prod = '" + o.getProduto().getId_produto()+ "', "
+                        + "item_quant = '" + o.getItem_quant()+ "',"
                         + "valor_unit = '" + o.getValor_unit() + "',"
                         + "id_servicos = '" + o.getId_servicos() + "',"
                         + "WHERE id_itens_ped = " + o.getId_itens_ped();
@@ -119,16 +120,56 @@ public class ItensPedidoDAO implements IDAO_T<ItensPedido> {
 
                 // obtem dados do RS
                 itensPed.setId_itens_ped(resultadoQ.getInt("id_itens_prod"));
-                itensPed.setId_pedido(resultadoQ.getInt("id_pedido"));
-                itensPed.setId_produto(resultadoQ.getInt("id_produto"));
-                itensPed.setItem_guat(resultadoQ.getInt("item_guant"));
-                itensPed.setValor_unit(resultadoQ.getInt("valor_unit"));
+                itensPed.getPedido().setId_pedido(resultadoQ.getInt("id_pedido"));
+                itensPed.getProduto().setId_produto(resultadoQ.getInt("id_produto")); 
+                itensPed.setItem_quant(resultadoQ.getInt("item_quant"));
+                itensPed.setValor_unit(resultadoQ.getBigDecimal("valor_unit"));
                 itensPed.setId_servicos(resultadoQ.getInt("servicos"));
             }
         } catch (Exception e) {
             System.out.println("Erro ao consultar: " + e);
         }
         return itensPed;
+    }
+    
+    public List<ItensPedido> consultarIdPedido(int id) {
+        ItensPedido itens_pedido = null; //= new Itens_pedido();
+        List<ItensPedido> itens = new ArrayList<>();
+        try {
+            Statement st = ConexaoBD.getInstance().getConnection().createStatement();
+
+            String sql = "SELECT * "
+                    + "FROM itens_pedido i, produto p "
+                    + "WHERE i.id_prod = p.id_prod  "
+                    + " and id_ped = " + id
+                    + "ORDER BY id_itens_ped";
+
+            System.out.println("SQL: " + sql);
+
+            // executa consulta
+            resultadoQ = st.executeQuery(sql);
+      
+            // avanca ResultSet
+            while (resultadoQ.next()) {
+                itens_pedido = new ItensPedido();
+
+                // obtem dados do RS
+                itens_pedido.setId_itens_ped(resultadoQ.getInt("id_itens_ped"));
+                itens_pedido.getPedido().setId_pedido(resultadoQ.getInt("id_pedido"));
+                itens_pedido.getProduto().setId_produto(resultadoQ.getInt("id_produto"));
+                itens_pedido.getProduto().setDescricao(resultadoQ.getString("descricao"));
+                itens_pedido.setItem_quant(resultadoQ.getInt("item_quant")); 
+                itens_pedido.setValor_unit(resultadoQ.getBigDecimal("valor_unit"));
+                itens_pedido.setId_servicos(resultadoQ.getInt("id_servicos"));
+                
+                itens.add(itens_pedido);
+            }
+
+        } catch (Exception e) {
+            System.out.println("Erro ao consultar itens pedido: " + e);
+        }
+
+        return itens;
     }
     
     public String proximaId() {
@@ -148,31 +189,31 @@ public class ItensPedidoDAO implements IDAO_T<ItensPedido> {
         return resp;
     }
     
-    public void popularTabela(JTable tabela, String criterio) {
+    public void popularTabela(JTable tabela, int id) {
         // dados da tabela
         Object[][] dadosTabela = null;
 
         // cabecalho da tabela
-        Object[] cabecalho = new Object[4];
-        cabecalho[0] = "Id Produto";
-        cabecalho[1] = "Nome";
-        cabecalho[2] = "Quantidade de Item";
-        cabecalho[3] = "Valor Unitário";
+        Object[] cabecalho = new Object[3];
+        cabecalho[0] = "Descrição";
+        cabecalho[1] = "Valor unitário";
+        cabecalho[2] = "Quantidade";
 
         // cria matriz de acordo com nº de registros da tabela
         try {
             resultadoQ = ConexaoBD.getInstance().getConnection().createStatement().executeQuery(""
                     + "SELECT count(*) "
-                    + "FROM itens_pedido  "
-                    + "WHERE "
-                    + "USUARIO ILIKE '%" + criterio + "%'");
+                    + "FROM itens_pedido "
+                    + "WHERE id_pedido = " + id
+                    + "GROUP BY id_pedido "
+                    + "ORDER BY id_pedido");
 
             resultadoQ.next();
 
-            dadosTabela = new Object[resultadoQ.getInt(1)][4];
+            dadosTabela = new Object[resultadoQ.getInt(1)][3];
 
         } catch (Exception e) {
-            System.out.println("Erro ao consultar de Usuários: " + e);
+            System.out.println("Erro ao consultar itens_pedido: " + e);
         }
 
         int lin = 0;
@@ -180,18 +221,16 @@ public class ItensPedidoDAO implements IDAO_T<ItensPedido> {
         // efetua consulta na tabela
         try {
             resultadoQ = ConexaoBD.getInstance().getConnection().createStatement().executeQuery(""
-                    + "SELECT l.id_login, f.nome, l.usuario, l.email, l.situacao "
-                    + "FROM login l, funcionario f "
-                    + "WHERE l.id_func = f.id_func AND "
-                    + "l.USUARIO ILIKE '%" + criterio + "%'");
+                    + "SELECT p.descricao, ip.valor_unitario, ip.qtd_item "
+                    + "FROM itens_pedido ip, produto p "
+                    + "WHERE ip.id_produto=p.id_produto AND id_pedido = " + id 
+                    + "ORDER BY id_pedido" );
 
             while (resultadoQ.next()) {
 
-                dadosTabela[lin][0] = resultadoQ.getInt("id_login");
-                dadosTabela[lin][1] = resultadoQ.getString("nome");
-                dadosTabela[lin][2] = resultadoQ.getString("usuario");
-                dadosTabela[lin][3] = resultadoQ.getString("email");
-                dadosTabela[lin][4] = resultadoQ.getString("situacao");
+                dadosTabela[lin][0] = resultadoQ.getString("descricao");
+                dadosTabela[lin][1] = resultadoQ.getBigDecimal("valor_unit");
+                dadosTabela[lin][2] = resultadoQ.getInt("item_quant");
 
                 // caso a coluna precise exibir uma imagem
 //                if (resultadoQ.getBoolean("Situacao")) {
@@ -202,7 +241,7 @@ public class ItensPedidoDAO implements IDAO_T<ItensPedido> {
                 lin++;
             }
         } catch (Exception e) {
-            System.out.println("problemas para popular tabela de USUÁRIOS");
+            System.out.println("problemas para popular tabela...");
             System.out.println(e);
         }
 
@@ -225,7 +264,7 @@ public class ItensPedidoDAO implements IDAO_T<ItensPedido> {
             @Override
             public Class getColumnClass(int column) {
 
-                if (column == 2) {
+                if (column == 3) {
 //                    return ImageIcon.class;
                 }
                 return Object.class;
@@ -267,6 +306,28 @@ public class ItensPedidoDAO implements IDAO_T<ItensPedido> {
                 return this;
             }
         });
+    }
+    
+     //@Override
+    public boolean excluirIdPed(int idPed) {
+          try {
+            Statement st = ConexaoBD.getInstance().getConnection().createStatement();
+
+            String sql = "DELETE "
+                    + "FROM itens_pedido "
+                    + "WHERE id_pedido = " + idPed;
+
+            System.out.println("SQL: " + sql);
+
+            // executa consulta - exclusao
+            int resultado = st.executeUpdate(sql);
+
+            return true;
+
+        } catch (Exception e) {
+            System.out.println("Erro ao excluir: " + e);
+            return false;
+        }
     }
 
 }

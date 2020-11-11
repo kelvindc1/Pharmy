@@ -16,6 +16,7 @@ import control.Funcionario;
 //import control.Itens_pedido; //tem que fazer
 import control.Pedido;
 import control.Produto;
+import dao.ItensPedidoDAO;
 import dao.PedidoDAO;
 import java.awt.event.ItemEvent;
 import java.math.BigDecimal;
@@ -684,7 +685,7 @@ public class IfrPedido extends javax.swing.JInternalFrame {
                 cmbPagamento.getModel().setSelectedItem(cbItem2);
 
                 if (id_ped > 0) {
-                    new Itens_pedidoDAO().consultarIdPedido(id_ped).forEach(item -> pedido.adicionarItemPedido(item));
+                    new ItensPedidoDAO().consultarIdPedido(id_ped).forEach(item -> pedido.adicionarItemPedido(item));
                     popularTableItens(pedido);
                     pedido.calcularTotalItens();
                     pedido.calcularValorTotal();       
