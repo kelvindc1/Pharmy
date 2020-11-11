@@ -362,9 +362,9 @@ public class JanelaPrincipalPharmy extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenu2ActionPerformed
 
     private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
-       /* IfrPedido ifrPedido = new IfrPedido();
+        IfrPedido ifrPedido = new IfrPedido();
         jDesktopPane1.add(ifrPedido);
-        ifrPedido.setVisible(true);*/
+        ifrPedido.setVisible(true);
     }//GEN-LAST:event_jMenuItem4ActionPerformed
 
     private void jMenuItem8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem8ActionPerformed
