@@ -19,6 +19,7 @@ import control.Pedido;
 import control.Produto;
 import dao.PedidoDAO;
 import java.awt.event.ItemEvent;
+import java.math.BigDecimal;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -693,7 +694,7 @@ public class IfrPedido extends javax.swing.JInternalFrame {
                 tfdValorTotal.setText(String.valueOf(pedido.getValor_total()));
                 tfdQtdTotalItens.setText(String.valueOf(pedido.getQtd_total_itens()));
                 
-                tfdId.setText(String.valueOf(pedido.getId_ped()));
+                tfdId.setText(String.valueOf(pedido.getId_pedido()));
 
                 jTabbedPane1.setSelectedIndex(0);
             } else {
@@ -734,7 +735,7 @@ public class IfrPedido extends javax.swing.JInternalFrame {
 
     private void cmbPagamentoItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cmbPagamentoItemStateChanged
         if (evt.getStateChange() == ItemEvent.SELECTED) {
-            ComboItem ci = (ComboItem) cmbPagamento.getSelectedItem();
+            ComboItens ci = (ComboItens) cmbPagamento.getSelectedItem();
             codigoPagamento = ci.getCodigo();
         }
     }//GEN-LAST:event_cmbPagamentoItemStateChanged
@@ -762,7 +763,7 @@ public class IfrPedido extends javax.swing.JInternalFrame {
 
     private void cmbProdutoItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cmbProdutoItemStateChanged
         if (evt.getStateChange() == ItemEvent.SELECTED) {
-            ComboItem ci = (ComboItem) cmbProduto.getSelectedItem();
+            ComboItens ci = (ComboItens) cmbProduto.getSelectedItem();
             codigoProduto = ci.getCodigo();
         }
 
@@ -865,15 +866,15 @@ public class IfrPedido extends javax.swing.JInternalFrame {
                 tfdValor_unit.setText(produto.getValor_unit().toString());
             }
 
-            String qtd_total_itensstr = Formatacao.removerFormatacao(tfdQtdTotalItens.getText());
+            String qtd_total_itensstr = Formatting.removerFormatacao(tfdQtdTotalItens.getText());
             int qtd_total_itens = Integer.parseInt(qtd_total_itensstr);
             pedido.setQtd_total_itens(qtd_total_itens);
 
-            String valor_totalstr = Formatacao.removerFormatacao(tfdValorTotal.getText());
-            Float valor_total = Float.parseFloat(valor_totalstr);
+            String valor_totalstr = Formatting.removerFormatacao(tfdValorTotal.getText());
+            BigDecimal valor_total = BigDecimal.valueOf(valor_totalstr);
             pedido.setValor_total(valor_total);
 
-            pedido.setId_ped(id_ped);
+            pedido.setId_pedido(id_ped);
 
             // salvar
             PedidoDAO pDAO = new PedidoDAO();
