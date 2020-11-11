@@ -269,6 +269,23 @@ public class ProdutoDAO  implements IDAO_T <Produto> {
             }
         });
     }
+    
+     public String proximaId() {
+        String resp = "";
+        try {
+            resultadoQ = ConexaoBD.getInstance().getConnection().createStatement().executeQuery(""
+                    + "SELECT MAX(p.id_produto) "
+                    + "FROM produto p");
+
+            resultadoQ.next();
+            int aux = resultadoQ.getInt("max");
+            aux = aux + 1;
+            resp = aux + "";
+        } catch (Exception e) {
+            System.out.println("Erro ao achar próxima ID: " + e);
+        }
+        return resp;
+    }
 
  
 }
