@@ -5,7 +5,6 @@ import lib.CombosDAO;
 import lib.Formatting;
 import lib.SoNumeros;
 import com.sun.javafx.css.Combinator;
-import control.Filtros;
 import dao.Forma_PagamentoDAO;
 import dao.FuncionarioDAO;
 //import dao.Itens_pedidoDAO; //tem que fazer e criar a table no bando de dados
@@ -948,12 +947,12 @@ public class IfrPedido extends javax.swing.JInternalFrame {
             }
 
             if (cmbFunc2.getSelectedIndex() != 0) {
-                ComboItens item = (ComboItens) cmbFunc2.getSelectedItem();
+                ComboItem item = (ComboItem) cmbFunc2.getSelectedItem();
                 f.setFuncionario(String.valueOf(item.getCodigo()));
             }
 
             if (cmbPagamento2.getSelectedIndex() != 0) {
-                ComboItens item = (ComboItens) cmbPagamento2.getSelectedItem();
+                ComboItem item = (ComboItem) cmbPagamento2.getSelectedItem();
                 f.setForma_pagamento(String.valueOf(item.getCodigo()));
             }
 
