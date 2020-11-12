@@ -32,6 +32,26 @@ public class FuncionarioDAO implements IDAO_T<Funcionario> {
             Statement st = ConexaoBD.getInstance().getConnection().createStatement();
             String sql = "";
             if (o.getId_func() == 0) {
+                System.out.println("salvar");
+                System.out.println(o.getDt_demissao());
+                if (o.getDt_demissao().equals("null")){
+                    System.out.println("null asd");
+                    sql = "INSERT INTO funcionario VALUES ("
+                        + "DEFAULT, "
+                        + "'" + o.getNome() + "',"
+                        + "'" + o.getCpf() + "',"
+                        + "'" + o.getRg() + "',"
+                        + "'" + o.getDt_nasc() + "',"
+                        + "'" + o.getDt_admissao() + "',"
+                        + "" + null + ","
+                        + "'" + o.getSexo() + "',"
+                        + "'" + o.getTelefone() + "',"
+                        + "'" + o.getId_contrato() + "',"
+                        + "'" + o.getId_cid() + "',"
+                        + "'" + o.getId_dados() + "',"
+                        + "'" + o.getSituacao() + "')";
+                }else{
+                    System.out.println("not null");
                 sql = "INSERT INTO funcionario VALUES ("
                         + "DEFAULT, "
                         + "'" + o.getNome() + "',"
@@ -46,8 +66,25 @@ public class FuncionarioDAO implements IDAO_T<Funcionario> {
                         + "'" + o.getId_cid() + "',"
                         + "'" + o.getId_dados() + "',"
                         + "'" + o.getSituacao() + "')";
+                }
             } else {
+                 if (o.getDt_demissao().equals(null)){
                 sql = "UPDATE funcionario "
+                        + "SET nome = '" + o.getNome() + "',"
+                        + "cpf = '" + o.getCpf() + "',"
+                        + "rg = '" + o.getRg() + "',"
+                        + "dt_nasc = '" + o.getDt_nasc() + "',"
+                        + "dt_admissao = '" + o.getDt_admissao() + "',"
+                        + "dt_demissao= " + null + ","
+                        + "sexo = '" + o.getSexo() + "',"
+                        + "telefone = '" + o.getTelefone() + "',"
+                        + "id_contrato = '" + o.getId_contrato() + "',"
+                        + "id_cid ='" + o.getId_cid() + "',"
+                        + "id_dados ='" + o.getId_dados() + "',"
+                        + "situacao = '" + o.getSituacao() + "'"
+                        + "WHERE id_func = " + o.getId_func();}
+                 else{
+                     sql = "UPDATE funcionario "
                         + "SET nome = '" + o.getNome() + "',"
                         + "cpf = '" + o.getCpf() + "',"
                         + "rg = '" + o.getRg() + "',"
@@ -60,7 +97,8 @@ public class FuncionarioDAO implements IDAO_T<Funcionario> {
                         + "id_cid ='" + o.getId_cid() + "',"
                         + "id_dados ='" + o.getId_dados() + "',"
                         + "situacao = '" + o.getSituacao() + "'"
-                        + "WHERE id = " + o.getId_func();
+                        + "WHERE id_func = " + o.getId_func(); 
+                 }
             }
 
             System.out.println("SQL: " + sql);
@@ -86,7 +124,7 @@ public class FuncionarioDAO implements IDAO_T<Funcionario> {
 
             String sql = "DELETE "
                     + "FROM funcionario "
-                    + "WHERE id = " + id;
+                    + "WHERE id_func = " + id;
 
             System.out.println("SQL: " + sql);
 
@@ -315,9 +353,9 @@ public class FuncionarioDAO implements IDAO_T<Funcionario> {
 
                 dadosTabela[lin][0] = resultadoQ.getInt("id_func");
                 dadosTabela[lin][1] = resultadoQ.getString("nome");
-                dadosTabela[lin][2] = resultadoQ.getString("cpf");
+                dadosTabela[lin][2] = Formatting.resultadoQ.getString("cpf");
                 dadosTabela[lin][3] = resultadoQ.getString("rg");
-                dadosTabela[lin][4] = resultadoQ.getDate("data_admissao");
+                dadosTabela[lin][4] = resultadoQ.getDate("dt_demissao");
                 dadosTabela[lin][5] = resultadoQ.getString("sexo");
                 dadosTabela[lin][6] = resultadoQ.getString("telefone");
 

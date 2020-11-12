@@ -6,7 +6,6 @@
 package dao;
 
 import control.DadosBancarios;
-import control.Pais;
 import java.awt.Color;
 import java.awt.Component;
 import java.sql.ResultSet;
@@ -39,10 +38,10 @@ public class DadosBancariosDAO implements IDAO_T<DadosBancarios> {
                         + "'" + o.getAgencia() + "',"
                         + "'" + o.getId_banco() + "')";
             } else {
-                sql = "UPDATE cliente "
+                sql = "UPDATE dados_bancarios "
                         + "SET conta = '" + o.getConta() + "',"
                         + "agencia = '" + o.getAgencia() + "',"
-                        + "banco = '" + o.getId_banco() + "' "
+                        + "id_banco = '" + o.getId_banco() + "' "
                         + "WHERE id_dados = " + o.getId_dados();
             }
 
@@ -129,7 +128,6 @@ public class DadosBancariosDAO implements IDAO_T<DadosBancarios> {
         return db;
     }
 
-
     public void popularTabela(JTable tabela, String criterio) {
         // dados da tabela
         Object[][] dadosTabela = null;
@@ -137,40 +135,55 @@ public class DadosBancariosDAO implements IDAO_T<DadosBancarios> {
         // cabecalho da tabela
         Object[] cabecalho = new Object[4];
         cabecalho[0] = "Id";
+        //cabecalho[1] = "Funcionário";
         cabecalho[1] = "Banco";
         cabecalho[2] = "Agencia";
         cabecalho[3] = "Conta";
 
         // cria matriz de acordo com nº de registros da tabela
         try {
+            /* para aparecer o funcionario
             resultadoQ = ConexaoBD.getInstance().getConnection().createStatement().executeQuery(""
                     + "SELECT count(*) "
-                    + "FROM dados_bancarios d, banco b"
-                    + "WHERE d.id_banco = b.id_banco AND "
-                    + "b.nome ILIKE '%" + criterio + "%'");
+                    + "FROM dados_bancarios d , banco b , funcionario f "
+                    + "WHERE d.id_banco = b.id_banco AND d.id_dados = f.id_dados AND  "
+                    + "f.nome ILIKE '%" + criterio + "%'");
+             */
 
+            resultadoQ = ConexaoBD.getInstance().getConnection().createStatement().executeQuery(""
+                    + "SELECT count(*) "
+                    + "FROM dados_bancarios d , banco b "
+                    + "WHERE d.id_banco = b.id_banco AND  "
+                    + "b.nome ILIKE '%" + criterio + "%'");
             resultadoQ.next();
 
             dadosTabela = new Object[resultadoQ.getInt(1)][4];
 
         } catch (Exception e) {
-            System.out.println("Erro ao consultar XXX: " + e);
+            System.out.println("Erro ao consultar DADOS BANCÁRIOS: " + e);
         }
 
         int lin = 0;
 
         // efetua consulta na tabela
         try {
+            /* para a parecer funcionario
             resultadoQ = ConexaoBD.getInstance().getConnection().createStatement().executeQuery(""
-                    + "SELECT d.id_dados, b.nome, d.agencia, d.conta "
-                    + "FROM dados_bancarios d , banco b "
+                    + "SELECT d.id_dados, f.nome, b.nome AS banco, d.agencia, d.conta "
+                    + "FROM dados_bancarios d , banco b , funcionario f "
+                    + "WHERE d.id_banco = b.id_banco AND d.id_dados = f.id_dados AND "
+                    + "f.nome ILIKE '%" + criterio + "%' ORDER BY d.id_dados");
+             */
+            
+            resultadoQ = ConexaoBD.getInstance().getConnection().createStatement().executeQuery(""
+                    + "SELECT d.id_dados, b.nome AS banco, d.agencia, d.conta "
+                    + "FROM dados_bancarios d , banco b , funcionario f "
                     + "WHERE d.id_banco = b.id_banco AND "
                     + "b.nome ILIKE '%" + criterio + "%' ORDER BY d.id_dados");
-
             while (resultadoQ.next()) {
 
                 dadosTabela[lin][0] = resultadoQ.getInt("id_dados");
-                dadosTabela[lin][1] = resultadoQ.getString("nome");
+                dadosTabela[lin][1] = resultadoQ.getString("banco");
                 dadosTabela[lin][2] = resultadoQ.getString("agencia");
                 dadosTabela[lin][3] = resultadoQ.getString("conta");
 
@@ -249,8 +262,8 @@ public class DadosBancariosDAO implements IDAO_T<DadosBancarios> {
             }
         });
     }
-    
-     public String proximaId() {
+
+    public String proximaId() {
         String resp = "";
         try {
             resultadoQ = ConexaoBD.getInstance().getConnection().createStatement().executeQuery(""

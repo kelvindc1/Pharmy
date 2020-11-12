@@ -118,7 +118,7 @@ public class Formatting {
         try {
             MaskFormatter m = new MaskFormatter();
             m.setPlaceholderCharacter(' ');
-            m.setMask("(##)####-####");
+            m.setMask("(##)#####-####");
             campo.setFormatterFactory(null);
             campo.setFormatterFactory(new DefaultFormatterFactory(m));
             campo.setValue(null);
@@ -152,7 +152,7 @@ public class Formatting {
     public static String removerFormatacao(String dado) {
         String retorno = "";
         for (int i = 0; i < dado.length(); i++) {
-            if (dado.charAt(i) != '.' && dado.charAt(i) != '/' && dado.charAt(i) != '-' && dado.charAt(i) != '(' && dado.charAt(i) != ')') {
+            if (dado.charAt(i) != '.' && dado.charAt(i) != '/' && dado.charAt(i) != '-' && dado.charAt(i) != '(' && dado.charAt(i) != ')' && dado.charAt(i) != ' ') {
                 retorno = retorno + dado.charAt(i);
             }
         }
@@ -160,11 +160,11 @@ public class Formatting {
     }
 
     public static Date forData(String date) throws ParseException {
-       // String dataFormatada = null;
-        
-            Date dataDMA = new SimpleDateFormat("dd/MM/yyyy").parse(date);
-            //dataFormatada = new SimpleDateFormat("dd/MM/yyyy").format(dataDMA);
-        
+        // String dataFormatada = null;
+
+        Date dataDMA = new SimpleDateFormat("dd/MM/yyyy").parse(date);
+        //dataFormatada = new SimpleDateFormat("dd/MM/yyyy").format(dataDMA);
+
         return dataDMA;
     }
 
@@ -194,5 +194,12 @@ public class Formatting {
         } catch (Exception e) {
             System.err.println(e);
         }
+    }
+
+    public static Date dateForDatabase(String data) throws ParseException {
+        SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
+        Date datas = null;
+        datas = formato.parse(data);
+        return (datas);
     }
 }

@@ -5,13 +5,9 @@
  */
 package view;
 
-import control.Cargo;
 import control.DadosBancarios;
-import control.Setor;
 import dao.BancoDAO;
-import dao.CargoDAO;
 import dao.DadosBancariosDAO;
-import dao.SetorDAO;
 import javax.swing.JOptionPane;
 
 /**
@@ -365,8 +361,8 @@ public class IfrDadosBancarios extends javax.swing.JInternalFrame {
                 tfdIdBanco.setText(String.valueOf(ap.getId_banco()));
                 tfdConta.setText(String.valueOf(ap.getConta()));
                 tfdAgencia.setText(String.valueOf(ap.getAgencia()));
-                tfdBanco.setText(String.valueOf(new BancoDAO().consultarId(ap.getId_banco())));
-               
+                tfdBanco.setText((new BancoDAO().consultarId(ap.getId_banco())).getNome());
+
                 jTabbedPane1.setSelectedIndex(0);
             } else {
                 System.out.println("erro na consulta");
@@ -378,7 +374,7 @@ public class IfrDadosBancarios extends javax.swing.JInternalFrame {
 
     private void btnSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvarActionPerformed
         DadosBancarios dados = new DadosBancarios();
-        if (!tfdConta.getText().equals("") && !tfdAgencia.getText().equals("")) {
+            if (!tfdConta.getText().equals("") && !tfdAgencia.getText().equals("") && !tfdIdBanco.getText().equals("") && !tfdBanco.getText().equals("")) {
             dados.setId_dados(id);
             dados.setId_banco(Integer.parseInt(tfdIdBanco.getText()));
             dados.setConta(Integer.parseInt(tfdConta.getText()));
