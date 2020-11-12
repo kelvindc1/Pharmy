@@ -1,25 +1,26 @@
 package view;
 
 import lib.CombosDAO;
-import lib.SoNumeros;
 import dao.ProdutoDAO;
 import control.Produto;
-import java.awt.event.ItemEvent;
 import java.math.BigDecimal;
+import javax.swing.DefaultComboBoxModel;
+import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
+import lib.ComboItens;
 
 /**
  *
  * @author kelvin.costa
  */
 public class IfrProduto extends javax.swing.JInternalFrame {
-    
+
     int id_prod = 0;
     private int codigoApresentacao = 0;
-    
+
     public IfrProduto() {
         initComponents();
-        
+
         new ProdutoDAO().popularTabela(tblProduto, "");
 
         //DefaultTableModel modelo = (DefaultTableModel) tblProduto.getModel();
@@ -27,10 +28,10 @@ public class IfrProduto extends javax.swing.JInternalFrame {
         new CombosDAO().popularCombo("apresentacao", cmbTpRemedio);
         new CombosDAO().popularCombo("categoria", cmbCategoria);
         tfdId.setText(new ProdutoDAO().proximaId());
+        definirComboTipo(cmbTipo);
         rbAtivo.setSelected(true);
-        tfdValorunit.setDocument(new SoNumeros());
     }
-    
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -494,7 +495,7 @@ public class IfrProduto extends javax.swing.JInternalFrame {
     private void btnSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvarActionPerformed
         Produto prod = new Produto();
         boolean flag = true;
-        
+
         prod.setId_produto(id_prod);
         prod.setId_cat(cmbCategoria.getSelectedIndex());
         prod.setId_marca(Integer.valueOf(tfdId_marca.getText()));
@@ -504,51 +505,41 @@ public class IfrProduto extends javax.swing.JInternalFrame {
         prod.setId_forne(Integer.parseInt(tfdIdFornecedor.getText()));
         prod.setId_tpremedio(cmbTpRemedio.getSelectedIndex());
         prod.setPreco(BigDecimal.valueOf(Double.parseDouble(tffValor.getText())));
-        
-        prod.setTipo(cmbTipo.getSelectedItem());
-        
-        
-        
-        
-        
-        prod.setUsuario(tfdUsuario.getText());
-        prod.setEmail(tfdEmail.getText());
-        
-        if (prod.getId_func() != 0 && !prod.getEmail().equals("") && !prod.getUsuario().equals("") && !prod.getUsuario().equals("") && !tffSenha.getText().equals("") && tffSenha.getText().equals(tffRepSenha.getText())) {
-            prod.setSenha(String.valueOf(tffSenha.getPassword()));
-            if (rbAtivo.isSelected()) {
-                prod.setSituacao("A");
-            } else {
-                prod.setSituacao("I");
-            }
-
-            // salvar
-            LoginDAO apDAO = new LoginDAO();
-            
-            if (apDAO.salvar(prod) && flag == true) {
-                // exibir msg
-                JOptionPane.showMessageDialog(null, "Registro salvo com sucesso!");
-
-                // limpar campos
-                tfdFuncionario.setText("");
-                tfdId.setText(idFunc + "");
-                tffSenha.setText("");
-                tffRepSenha.setText("");
-                tfdUsuario.setText("");
-                tfdEmail.setText("");
-                rbAtivo.setSelected(true);
-                
-                btnFechar.requestFocus();
-
-                // atualiza ID
-                id = 0;
-                new LoginDAO().popularTabela(tblLogin, tfdBusca.getText());
-            } else {
-                JOptionPane.showMessageDialog(null, "Problemas ao salvar registro!");
-            }
+        ComboItens ci = (ComboItens) cmbTipo.getSelectedItem();
+        prod.setTipo(ci.getDescricao());
+        if (rbAtivo.isSelected()) {
+            prod.setSituacao("A");
         } else {
-            JOptionPane.showMessageDialog(null, "Campos não preenchidos!");
-            
+            prod.setSituacao("I");
+        }
+
+        // salvar
+        ProdutoDAO apDAO = new ProdutoDAO();
+
+        if (apDAO.salvar(prod) && flag == true) {
+            // exibir msg
+            JOptionPane.showMessageDialog(null, "Registro salvo com sucesso!");
+
+            // limpar campos
+            tfdDescricao.setText("");
+            tfdFornecedor.setText("");
+            tffValor.setText("");
+            tfdGramatura.setText("");
+            tfdIdFornecedor.setText("");
+            tfdId_marca.setText("");
+            tfdMarca.setText("");
+            rbAtivo.setSelected(true);
+            cmbCategoria.setSelectedIndex(0);
+            cmbTipo.setSelectedIndex(0);
+            cmbTpRemedio.setSelectedIndex(0);
+
+            btnFechar.requestFocus();
+
+            // atualiza ID
+            id_prod = 0;
+            new ProdutoDAO().popularTabela(tblProduto, tfdBusca.getText());
+        } else {
+            JOptionPane.showMessageDialog(null, "Problemas ao salvar registro!");
         }
 
     }//GEN-LAST:event_btnSalvarActionPerformed
@@ -559,33 +550,33 @@ public class IfrProduto extends javax.swing.JInternalFrame {
 
     private void btnEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarActionPerformed
         try {
-            
+
             String idString = String.valueOf(tblProduto.getValueAt(tblProduto.getSelectedRow(), 0));
-            
+
             id_prod = Integer.parseInt(idString);
-            
+
             ProdutoDAO pDAO = new ProdutoDAO();
-            
+
             Produto p = pDAO.consultarId(id_prod);
-            
+
             if (p != null) {
-                
+
                 tfdDescricao.setText(p.getDescricao());
                 jCheckBox1.setSelected(p.getSituacao().equals("A"));
-                
+
                 tfdValorunit.setText(p.getValor_unit().toString());
-                
+
                 Apresentacao apresentacao = new ApresentacaoDAO().consultarId(p.getId_apre());
                 ComboItem cbItem = new ComboItem(apresentacao.getId_apre(), apresentacao.getDescricao());
                 cmbTpRemedio.getModel().setSelectedItem(cbItem);
-                
+
                 tfdId.setText(String.valueOf(p.getId_prod()));
-                
+
                 jTabbedPane1.setSelectedIndex(0);
             } else {
                 System.out.println("Erro na consulta");
             }
-            
+
         } catch (ArrayIndexOutOfBoundsException e) {
             JOptionPane.showMessageDialog(null, "Selecione um registro para editar");
         }
@@ -594,13 +585,13 @@ public class IfrProduto extends javax.swing.JInternalFrame {
 
     private void btnExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcluirActionPerformed
         try {
-            
+
             String idString = String.valueOf(tblProduto.getValueAt(tblProduto.getSelectedRow(), 0));
-            
+
             id_prod = Integer.parseInt(idString);
-            
+
             ProdutoDAO pDAO = new ProdutoDAO();
-            
+
             if (JOptionPane.showConfirmDialog(null, "Deseja realmente excluir?") == JOptionPane.OK_OPTION) {
                 if (pDAO.excluir(id_prod)) {
                     JOptionPane.showMessageDialog(null, "Registro excluído com sucesso!");
@@ -609,17 +600,17 @@ public class IfrProduto extends javax.swing.JInternalFrame {
                     JOptionPane.showMessageDialog(null, "Problemas ao excluir registro!");
                 }
             }
-            
+
         } catch (ArrayIndexOutOfBoundsException e) {
             JOptionPane.showMessageDialog(null, "Selecione um registro para excluir");
         }
     }//GEN-LAST:event_btnExcluirActionPerformed
 
     private void cmbTpRemedioItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cmbTpRemedioItemStateChanged
-        if (evt.getStateChange() == ItemEvent.SELECTED) {
+        /* if (evt.getStateChange() == ItemEvent.SELECTED) {
             ComboItem ci = (ComboItem) cmbTpRemedio.getSelectedItem();
             codigoApresentacao = ci.getCodigo();
-        }
+        }*/
     }//GEN-LAST:event_cmbTpRemedioItemStateChanged
 
     private void btnBuscar2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscar2ActionPerformed
@@ -701,11 +692,20 @@ public class IfrProduto extends javax.swing.JInternalFrame {
     void definirValorFuncao(String id, String nome) {
         tfdId_marca.setText(id);
         tfdMarca.setText(nome);
-        
+
     }
 
     void definirValorFuncaoFornecedor(String id, String nome) {
         tfdIdFornecedor.setText(id);
         tfdFornecedor.setText(nome);
+    }
+
+    void definirComboTipo(JComboBox cmb) {
+        cmb.removeAllItems();
+        String[] descricao = {"Selecionar", "Pomada", "Comprimido", "Gel"};
+        for (int i = 0; i < descricao.length; i++) {
+            ComboItens item = new ComboItens();
+            item.setCodigo(i);
+        }
     }
 }
