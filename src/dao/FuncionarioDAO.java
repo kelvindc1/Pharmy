@@ -16,6 +16,7 @@ import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumn;
 import lib.ConexaoBD;
+import lib.Formatting;
 import lib.IDAO_T;
 
 /**
@@ -353,11 +354,11 @@ public class FuncionarioDAO implements IDAO_T<Funcionario> {
 
                 dadosTabela[lin][0] = resultadoQ.getInt("id_func");
                 dadosTabela[lin][1] = resultadoQ.getString("nome");
-                dadosTabela[lin][2] = Formatting.resultadoQ.getString("cpf");
+                dadosTabela[lin][2] = Formatting.ajustarCpf(resultadoQ.getString("cpf"));
                 dadosTabela[lin][3] = resultadoQ.getString("rg");
-                dadosTabela[lin][4] = resultadoQ.getDate("dt_demissao");
+                dadosTabela[lin][4] = Formatting.ajustaDataDMA(resultadoQ.getString("dt_demissao"));
                 dadosTabela[lin][5] = resultadoQ.getString("sexo");
-                dadosTabela[lin][6] = resultadoQ.getString("telefone");
+                dadosTabela[lin][6] = Formatting.ajustarTelefone(resultadoQ.getString("telefone"));
 
                 // caso a coluna precise exibir uma imagem
 //                if (resultadoQ.getBoolean("Situacao")) {

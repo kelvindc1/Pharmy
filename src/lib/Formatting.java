@@ -202,4 +202,36 @@ public class Formatting {
         datas = formato.parse(data);
         return (datas);
     }
+
+    public static String ajustarTelefone(String campo) {
+        JFormattedTextField tfd = new JFormattedTextField();
+        try {
+            MaskFormatter m = new MaskFormatter();
+            m.setPlaceholderCharacter(' ');
+            m.setMask("(##)####-####");
+            tfd.setFormatterFactory(null);
+            tfd.setFormatterFactory(new DefaultFormatterFactory(m));
+            tfd.setValue(null);
+            tfd.setText(campo);
+        } catch (Exception e) {
+            System.err.println(e);
+        }
+        return tfd.getText();
+    }
+
+    public static String ajustarCpf(String campo) {
+        JFormattedTextField tfd = new JFormattedTextField();
+        try {
+            MaskFormatter m = new MaskFormatter();
+            m.setPlaceholderCharacter(' ');
+            m.setMask("###.###.###-##");
+            tfd.setFormatterFactory(null);
+            tfd.setFormatterFactory(new DefaultFormatterFactory(m));
+            tfd.setValue(null);
+            tfd.setText(campo);
+        } catch (Exception e) {
+            System.err.println(e);
+        }
+        return tfd.getText();
+    }
 }
