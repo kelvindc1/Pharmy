@@ -5,26 +5,30 @@
  */
 package view;
 
-import control.Categoria;
-import dao.CategoriaDAO;
+import control.Cargo;
+import control.DadosBancarios;
+import control.Setor;
+import dao.BancoDAO;
+import dao.CargoDAO;
+import dao.DadosBancariosDAO;
+import dao.SetorDAO;
 import javax.swing.JOptionPane;
 
 /**
  *
  * @author Win10
  */
-public class IfrCategoria extends javax.swing.JInternalFrame {
+public class IfrDadosBancarios extends javax.swing.JInternalFrame {
 
     int id = 0;
 
     /**
      * Creates new form IfrFuncao
      */
-    public IfrCategoria() {
+    public IfrDadosBancarios() {
         initComponents();
-        new CategoriaDAO().popularTabela(tblTipoRemedio, "");
-        rbAtivo.setSelected(true);
-        tfdId.setText(new CategoriaDAO().proximaId());
+        new DadosBancariosDAO().popularTabela(tblSetor, "");
+        tfdId.setText(new DadosBancariosDAO().proximaId());
     }
 
     /**
@@ -44,18 +48,23 @@ public class IfrCategoria extends javax.swing.JInternalFrame {
         jLabel3 = new javax.swing.JLabel();
         btnFechar = new javax.swing.JButton();
         tfdId = new javax.swing.JTextField();
+        tfdConta = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
-        jLabel11 = new javax.swing.JLabel();
-        rbAtivo = new javax.swing.JRadioButton();
-        rbInativo = new javax.swing.JRadioButton();
         jLabel26 = new javax.swing.JLabel();
         btnSalvar = new javax.swing.JButton();
-        jScrollPane3 = new javax.swing.JScrollPane();
-        jtaDescricao = new javax.swing.JTextArea();
+        jLabel7 = new javax.swing.JLabel();
+        tfdIdBanco = new javax.swing.JTextField();
+        jLabel8 = new javax.swing.JLabel();
+        tfdBanco = new javax.swing.JTextField();
+        jLabel9 = new javax.swing.JLabel();
+        jLabel10 = new javax.swing.JLabel();
+        btnBuscar = new javax.swing.JButton();
+        jLabel12 = new javax.swing.JLabel();
+        tfdAgencia = new javax.swing.JTextField();
         jPanel2 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        tblTipoRemedio = new javax.swing.JTable();
+        tblSetor = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
         tfdBusca = new javax.swing.JTextField();
         btnPesquisar = new javax.swing.JButton();
@@ -64,12 +73,12 @@ public class IfrCategoria extends javax.swing.JInternalFrame {
 
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
-        setTitle("Cadastro: Categoria de Produto");
+        setTitle("Cadastro: Dados Bancarios");
         setName(""); // NOI18N
 
         jLabel2.setText("Id");
 
-        jLabel3.setText("Descrição");
+        jLabel3.setText("Conta");
 
         btnFechar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/system/icons/iconeFechar.png"))); // NOI18N
         btnFechar.setText("Fechar");
@@ -87,25 +96,6 @@ public class IfrCategoria extends javax.swing.JInternalFrame {
         jLabel6.setForeground(new java.awt.Color(255, 0, 51));
         jLabel6.setText("*");
 
-        jLabel11.setText("Situação");
-
-        buttonGroup1.add(rbAtivo);
-        rbAtivo.setText("Ativo");
-        rbAtivo.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        rbAtivo.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                rbAtivoActionPerformed(evt);
-            }
-        });
-
-        buttonGroup1.add(rbInativo);
-        rbInativo.setText("Inativo");
-        rbInativo.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                rbInativoActionPerformed(evt);
-            }
-        });
-
         jLabel26.setForeground(new java.awt.Color(255, 0, 51));
         jLabel26.setText("* ");
 
@@ -117,9 +107,29 @@ public class IfrCategoria extends javax.swing.JInternalFrame {
             }
         });
 
-        jtaDescricao.setColumns(20);
-        jtaDescricao.setRows(5);
-        jScrollPane3.setViewportView(jtaDescricao);
+        jLabel7.setText("Id Banco");
+
+        tfdIdBanco.setEnabled(false);
+
+        jLabel8.setForeground(new java.awt.Color(255, 0, 51));
+        jLabel8.setText("*");
+
+        tfdBanco.setEnabled(false);
+
+        jLabel9.setText("Banco");
+
+        jLabel10.setForeground(new java.awt.Color(255, 0, 51));
+        jLabel10.setText("*");
+
+        btnBuscar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/system/icons/seo-social-web-network-internet_340_icon-iconscom_61497.png"))); // NOI18N
+        btnBuscar.setText("Buscar");
+        btnBuscar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBuscarActionPerformed(evt);
+            }
+        });
+
+        jLabel12.setText("Agencia");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -132,34 +142,49 @@ public class IfrCategoria extends javax.swing.JInternalFrame {
                         .addComponent(jLabel3)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabel6)
-                        .addContainerGap(449, Short.MAX_VALUE))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(tfdId, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addComponent(jLabel2)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(jLabel5)))
+                                .addGap(18, 18, 18)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(tfdIdBanco, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addComponent(jLabel7)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(jLabel8)))
+                                .addGap(18, 18, 18)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addComponent(jLabel9)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(jLabel10))
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addComponent(tfdBanco, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(btnBuscar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                                 .addGap(0, 281, Short.MAX_VALUE)
                                 .addComponent(btnSalvar, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
                                 .addComponent(btnFechar, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addComponent(jLabel2)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(jLabel5))
-                                    .addComponent(tfdId, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(0, 0, Short.MAX_VALUE))
-                            .addComponent(jScrollPane3))
+                                .addComponent(tfdConta, javax.swing.GroupLayout.PREFERRED_SIZE, 255, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(0, 0, Short.MAX_VALUE)))
                         .addGap(18, 18, 18))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(rbAtivo)
-                                .addGap(18, 18, 18)
-                                .addComponent(rbInativo))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jLabel11)
+                                .addComponent(jLabel12)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jLabel26)))
+                                .addComponent(jLabel26))
+                            .addComponent(tfdAgencia, javax.swing.GroupLayout.PREFERRED_SIZE, 255, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(0, 0, Short.MAX_VALUE))))
         );
         jPanel1Layout.setVerticalGroup(
@@ -168,24 +193,30 @@ public class IfrCategoria extends javax.swing.JInternalFrame {
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
-                    .addComponent(jLabel5))
+                    .addComponent(jLabel5)
+                    .addComponent(jLabel7)
+                    .addComponent(jLabel8)
+                    .addComponent(jLabel9)
+                    .addComponent(jLabel10))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(tfdId, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(tfdId, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(tfdIdBanco, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(tfdBanco, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnBuscar))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel6)
+                    .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(tfdConta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel3)
-                    .addComponent(jLabel6))
+                    .addComponent(jLabel26)
+                    .addComponent(jLabel12))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 158, Short.MAX_VALUE)
-                .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel11)
-                    .addComponent(jLabel26))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(rbAtivo)
-                    .addComponent(rbInativo))
-                .addGap(41, 41, 41)
+                .addComponent(tfdAgencia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 182, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnSalvar)
                     .addComponent(btnFechar))
@@ -194,7 +225,7 @@ public class IfrCategoria extends javax.swing.JInternalFrame {
 
         jTabbedPane1.addTab("Cadastro", jPanel1);
 
-        tblTipoRemedio.setModel(new javax.swing.table.DefaultTableModel(
+        tblSetor.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -205,7 +236,7 @@ public class IfrCategoria extends javax.swing.JInternalFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jScrollPane1.setViewportView(tblTipoRemedio);
+        jScrollPane1.setViewportView(tblSetor);
 
         jLabel1.setText("Busca");
 
@@ -246,13 +277,14 @@ public class IfrCategoria extends javax.swing.JInternalFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(btnEditar, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(8, 8, 8))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 497, Short.MAX_VALUE)
+                    .addComponent(jScrollPane1)
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(jLabel1)
                         .addGap(18, 18, 18)
-                        .addComponent(tfdBusca)
-                        .addGap(18, 18, 18)
-                        .addComponent(btnPesquisar)))
+                        .addComponent(tfdBusca, javax.swing.GroupLayout.PREFERRED_SIZE, 308, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(33, 33, 33)
+                        .addComponent(btnPesquisar)
+                        .addGap(0, 13, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
@@ -264,7 +296,7 @@ public class IfrCategoria extends javax.swing.JInternalFrame {
                     .addComponent(tfdBusca, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnPesquisar))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 279, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 283, Short.MAX_VALUE)
                 .addGap(18, 18, 18)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(btnEditar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -293,22 +325,22 @@ public class IfrCategoria extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btnFecharActionPerformed
 
     private void btnPesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPesquisarActionPerformed
-        new CategoriaDAO().popularTabela(tblTipoRemedio, tfdBusca.getText());
+        new DadosBancariosDAO().popularTabela(tblSetor, tfdBusca.getText());
     }//GEN-LAST:event_btnPesquisarActionPerformed
 
     private void btnExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcluirActionPerformed
         try {
-            String idString = String.valueOf(tblTipoRemedio.getValueAt(tblTipoRemedio.getSelectedRow(), 0));
+            String idString = String.valueOf(tblSetor.getValueAt(tblSetor.getSelectedRow(), 0));
 
             id = Integer.parseInt(idString);
 
-            CategoriaDAO apDAO = new CategoriaDAO();
+            DadosBancariosDAO apDAO = new DadosBancariosDAO();
 
             if (JOptionPane.showConfirmDialog(null, "Deseja realmente excluir?") == JOptionPane.OK_OPTION) {
                 if (apDAO.excluir(id)) {
                     JOptionPane.showMessageDialog(null, "Registro excluído com sucesso!");
-                    new CategoriaDAO().popularTabela(tblTipoRemedio, tfdBusca.getText());
-                    tfdId.setText(new CategoriaDAO().proximaId());
+                    new DadosBancariosDAO().popularTabela(tblSetor, tfdBusca.getText());
+                    tfdId.setText(new DadosBancariosDAO().proximaId());
                 } else {
                     JOptionPane.showMessageDialog(null, "Problemas ao excluir registro!");
                 }
@@ -320,22 +352,21 @@ public class IfrCategoria extends javax.swing.JInternalFrame {
 
     private void btnEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarActionPerformed
         try {
-            String idString = String.valueOf(tblTipoRemedio.getValueAt(tblTipoRemedio.getSelectedRow(), 0));
+            String idString = String.valueOf(tblSetor.getValueAt(tblSetor.getSelectedRow(), 0));
 
             id = Integer.parseInt(idString);
 
-            CategoriaDAO apDAO = new CategoriaDAO();
+            DadosBancariosDAO apDAO = new DadosBancariosDAO();
 
-            Categoria ap = apDAO.consultarId(id);
+            DadosBancarios ap = apDAO.consultarId(id);
 
             if (ap != null) {
-                tfdId.setText(String.valueOf(ap.getId_cat()));
-                jtaDescricao.setText(ap.getDescricao());
-                if (ap.getSituacao().equals("A")) {
-                    rbAtivo.setSelected(true);
-                } else {
-                    rbInativo.setSelected(true);
-                }
+                tfdId.setText(String.valueOf(ap.getId_dados()));
+                tfdIdBanco.setText(String.valueOf(ap.getId_banco()));
+                tfdConta.setText(String.valueOf(ap.getConta()));
+                tfdAgencia.setText(String.valueOf(ap.getAgencia()));
+                tfdBanco.setText(String.valueOf(new BancoDAO().consultarId(ap.getId_banco())));
+               
                 jTabbedPane1.setSelectedIndex(0);
             } else {
                 System.out.println("erro na consulta");
@@ -346,52 +377,55 @@ public class IfrCategoria extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btnEditarActionPerformed
 
     private void btnSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvarActionPerformed
-        if (!jtaDescricao.equals("")) {
-            Categoria tp = new Categoria();
-            tp.setId_cat(id);
-            tp.setDescricao(jtaDescricao.getText());
-            if (rbAtivo.isSelected()) {
-                tp.setSituacao("A");
-            } else {
-                tp.setSituacao("I");
-            }
+        DadosBancarios dados = new DadosBancarios();
+        if (!tfdConta.getText().equals("") && !tfdAgencia.getText().equals("")) {
+            dados.setId_dados(id);
+            dados.setId_banco(Integer.parseInt(tfdIdBanco.getText()));
+            dados.setConta(Integer.parseInt(tfdConta.getText()));
+            dados.setAgencia(Integer.parseInt(tfdAgencia.getText()));
 
             // salvar
-            CategoriaDAO catDAO = new CategoriaDAO();
+            DadosBancariosDAO setorDAO = new DadosBancariosDAO();
 
-            if (catDAO.salvar(tp)) {
+            if (setorDAO.salvar(dados)) {
                 // exibir msg
                 JOptionPane.showMessageDialog(null, "Registro salvo com sucesso!");
 
                 // limpar campos
-                jtaDescricao.setText("");
-                tfdId.setText(new CategoriaDAO().proximaId());
-                rbAtivo.setSelected(true);
+                tfdConta.setText("");
+                tfdAgencia.setText("");
+                tfdIdBanco.setText("");
+                tfdBanco.setText("");
 
                 btnFechar.requestFocus();
 
                 // atualiza ID
                 id = 0;
-                new CategoriaDAO().popularTabela(tblTipoRemedio, tfdBusca.getText());
-                tfdId.setText(new CategoriaDAO().proximaId());
+                new DadosBancariosDAO().popularTabela(tblSetor, tfdBusca.getText());
+                tfdId.setText(new DadosBancariosDAO().proximaId());
             } else {
                 JOptionPane.showMessageDialog(null, "Problemas ao salvar registro!");
             }
         } else {
             JOptionPane.showMessageDialog(null, "Campos não preenchidos!");
         }
+
+
     }//GEN-LAST:event_btnSalvarActionPerformed
 
-    private void rbInativoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbInativoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_rbInativoActionPerformed
-
-    private void rbAtivoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbAtivoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_rbAtivoActionPerformed
+    private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
+        DlgPesquisarBanco dlgPesquisarBanco = new DlgPesquisarBanco(null, true, this);
+        dlgPesquisarBanco.setVisible(true);
 
 
+    }//GEN-LAST:event_btnBuscarActionPerformed
+
+    void definirValorFuncao(String id, String nome) {
+        tfdIdBanco.setText(id);
+        tfdBanco.setText(nome);
+    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnBuscar;
     private javax.swing.JButton btnEditar;
     private javax.swing.JButton btnExcluir;
     private javax.swing.JButton btnFechar;
@@ -400,22 +434,26 @@ public class IfrCategoria extends javax.swing.JInternalFrame {
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel26;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JTabbedPane jTabbedPane1;
-    private javax.swing.JTextArea jtaDescricao;
-    private javax.swing.JRadioButton rbAtivo;
-    private javax.swing.JRadioButton rbInativo;
-    private javax.swing.JTable tblTipoRemedio;
+    private javax.swing.JTable tblSetor;
+    private javax.swing.JTextField tfdAgencia;
+    private javax.swing.JTextField tfdBanco;
     private javax.swing.JTextField tfdBusca;
+    private javax.swing.JTextField tfdConta;
     private javax.swing.JTextField tfdId;
+    private javax.swing.JTextField tfdIdBanco;
     // End of variables declaration//GEN-END:variables
 }

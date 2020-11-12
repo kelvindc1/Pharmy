@@ -5,7 +5,6 @@
  */
 package view;
 
-import control.Funcao;
 import control.Tipo_Remedio;
 import dao.FuncaoDAO;
 import dao.Tipo_RemedioDAO;
@@ -295,7 +294,7 @@ public class IfrTipoRemedio extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btnFecharActionPerformed
 
     private void btnPesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPesquisarActionPerformed
-        new FuncaoDAO().popularTabela(tblTipoRemedio, tfdBusca.getText());
+        new Tipo_RemedioDAO().popularTabela(tblTipoRemedio, tfdBusca.getText());
     }//GEN-LAST:event_btnPesquisarActionPerformed
 
     private void btnExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcluirActionPerformed
@@ -310,6 +309,7 @@ public class IfrTipoRemedio extends javax.swing.JInternalFrame {
                 if (apDAO.excluir(id)) {
                     JOptionPane.showMessageDialog(null, "Registro excluído com sucesso!");
                     new Tipo_RemedioDAO().popularTabela(tblTipoRemedio, tfdBusca.getText());
+                    tfdId.setText(new Tipo_RemedioDAO().proximaId());
                 } else {
                     JOptionPane.showMessageDialog(null, "Problemas ao excluir registro!");
                 }
@@ -349,7 +349,7 @@ public class IfrTipoRemedio extends javax.swing.JInternalFrame {
     private void btnSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvarActionPerformed
         if (!jtaDescricao.equals("")) {
             Tipo_Remedio tp = new Tipo_Remedio();
-            tp.setId_tpremedio(Integer.parseInt(tfdId.getText()));
+            tp.setId_tpremedio(id);
             tp.setDescricao(jtaDescricao.getText());
             if (rbAtivo.isSelected()) {
                 tp.setSituacao("A");
@@ -374,7 +374,7 @@ public class IfrTipoRemedio extends javax.swing.JInternalFrame {
                 // atualiza ID
                 id = 0;
                 new Tipo_RemedioDAO().popularTabela(tblTipoRemedio, tfdBusca.getText());
-                tfdId.setText(new FuncaoDAO().proximaId());
+                tfdId.setText(new Tipo_RemedioDAO().proximaId());
             } else {
                 JOptionPane.showMessageDialog(null, "Problemas ao salvar registro!");
             }

@@ -1,4 +1,3 @@
-
 package dao;
 
 import control.Tipo_Servicos;
@@ -18,8 +17,9 @@ import lib.IDAO_T;
  *
  * @author kelvin.costa
  */
-public class Tipo_ServicosDAO implements IDAO_T<Tipo_Servicos>{
-     private ResultSet resultadoQ = null;
+public class Tipo_ServicosDAO implements IDAO_T<Tipo_Servicos> {
+
+    private ResultSet resultadoQ = null;
 
     @Override
     public boolean salvar(Tipo_Servicos o) {
@@ -34,8 +34,8 @@ public class Tipo_ServicosDAO implements IDAO_T<Tipo_Servicos>{
             } else {
                 sql = "UPDATE tipo_servicos "
                         + "SET descricao = '" + o.getDescricao() + "',"
-                        + "situacao = '" + o.getSituacao() + "',"
-                        + "WHERE id = " + o.getId_tpservicos();
+                        + "situacao = '" + o.getSituacao() + "' "
+                        + "WHERE id_tpservicos = " + o.getId_tpservicos();
             }
 
             System.out.println("SQL: " + sql);
@@ -44,7 +44,7 @@ public class Tipo_ServicosDAO implements IDAO_T<Tipo_Servicos>{
 
             return true;
         } catch (Exception e) {
-            System.out.println("Erro ao salvar Tipo de Serviço = " + e);
+            System.out.println("Erro ao salvar TIPO DE SERVICO = " + e);
             return false;
         }
     }
@@ -61,7 +61,7 @@ public class Tipo_ServicosDAO implements IDAO_T<Tipo_Servicos>{
 
             String sql = "DELETE "
                     + "FROM tipo_servicos "
-                    + "WHERE id = " + id;
+                    + "WHERE id_tpservicos = " + id;
 
             System.out.println("SQL: " + sql);
 
@@ -94,7 +94,7 @@ public class Tipo_ServicosDAO implements IDAO_T<Tipo_Servicos>{
 
             String sql = "SELECT * "
                     + "FROM tipo_servicos "
-                    + "WHERE id = " + id;
+                    + "WHERE id_tpservicos = " + id;
 
             System.out.println("SQL: " + sql);
 
@@ -117,7 +117,8 @@ public class Tipo_ServicosDAO implements IDAO_T<Tipo_Servicos>{
         }
         return tpServicos;
     }
-     public void popularTabela(JTable tabela, String criterio) {
+
+    public void popularTabela(JTable tabela, String criterio) {
         // dados da tabela
         Object[][] dadosTabela = null;
 
@@ -149,13 +150,14 @@ public class Tipo_ServicosDAO implements IDAO_T<Tipo_Servicos>{
         try {
             resultadoQ = ConexaoBD.getInstance().getConnection().createStatement().executeQuery(""
                     + "SELECT * "
-                    + "FROM tipo_servicos TS "
+                    + "FROM tipo_servicos ts "
                     + "WHERE "
-                    + "TS.descricao ILIKE '%" + criterio + "%'");
+                    + "ts.descricao ILIKE '%" + criterio + "%' "
+                    + "ORDER BY ts.id_tpservicos");
 
             while (resultadoQ.next()) {
 
-                dadosTabela[lin][0] = resultadoQ.getInt("id_tpremedio");
+                dadosTabela[lin][0] = resultadoQ.getInt("id_tpservicos");
                 dadosTabela[lin][1] = resultadoQ.getString("descricao");
                 dadosTabela[lin][2] = resultadoQ.getString("situacao");
 
@@ -168,7 +170,7 @@ public class Tipo_ServicosDAO implements IDAO_T<Tipo_Servicos>{
                 lin++;
             }
         } catch (Exception e) {
-            System.out.println("problemas para popular tabela de CATEGORIA");
+            System.out.println("problemas para popular tabela de TIPO DE SERVIÇO");
             System.out.println(e);
         }
 
@@ -251,8 +253,5 @@ public class Tipo_ServicosDAO implements IDAO_T<Tipo_Servicos>{
         }
         return resp;
     }
-    
-    
+
 }
-
-

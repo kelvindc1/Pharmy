@@ -5,13 +5,7 @@
  */
 package view;
 
-import control.Categoria;
-import control.Funcao;
-import control.Tipo_Remedio;
 import control.Tipo_Servicos;
-import dao.CategoriaDAO;
-import dao.FuncaoDAO;
-import dao.Tipo_RemedioDAO;
 import dao.Tipo_ServicosDAO;
 import javax.swing.JOptionPane;
 
@@ -28,7 +22,7 @@ public class IfrTipoServico extends javax.swing.JInternalFrame {
      */
     public IfrTipoServico() {
         initComponents();
-        new Tipo_ServicosDAO().popularTabela(tblTipoRemedio, "");
+        new Tipo_ServicosDAO().popularTabela(tblTipoServico, "");
         rbAtivo.setSelected(true);
         tfdId.setText(new Tipo_ServicosDAO().proximaId());
     }
@@ -61,7 +55,7 @@ public class IfrTipoServico extends javax.swing.JInternalFrame {
         jtaDescricao = new javax.swing.JTextArea();
         jPanel2 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        tblTipoRemedio = new javax.swing.JTable();
+        tblTipoServico = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
         tfdBusca = new javax.swing.JTextField();
         btnPesquisar = new javax.swing.JButton();
@@ -70,7 +64,7 @@ public class IfrTipoServico extends javax.swing.JInternalFrame {
 
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
-        setTitle("Cadastro: Categoria de Produto");
+        setTitle("Cadastro: Tipo de Serviço");
         setName(""); // NOI18N
 
         jLabel2.setText("Id");
@@ -200,7 +194,7 @@ public class IfrTipoServico extends javax.swing.JInternalFrame {
 
         jTabbedPane1.addTab("Cadastro", jPanel1);
 
-        tblTipoRemedio.setModel(new javax.swing.table.DefaultTableModel(
+        tblTipoServico.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -211,7 +205,7 @@ public class IfrTipoServico extends javax.swing.JInternalFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jScrollPane1.setViewportView(tblTipoRemedio);
+        jScrollPane1.setViewportView(tblTipoServico);
 
         jLabel1.setText("Busca");
 
@@ -299,12 +293,12 @@ public class IfrTipoServico extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btnFecharActionPerformed
 
     private void btnPesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPesquisarActionPerformed
-        new Tipo_ServicosDAO().popularTabela(tblTipoRemedio, tfdBusca.getText());
+        new Tipo_ServicosDAO().popularTabela(tblTipoServico, tfdBusca.getText());
     }//GEN-LAST:event_btnPesquisarActionPerformed
 
     private void btnExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcluirActionPerformed
         try {
-            String idString = String.valueOf(tblTipoRemedio.getValueAt(tblTipoRemedio.getSelectedRow(), 0));
+            String idString = String.valueOf(tblTipoServico.getValueAt(tblTipoServico.getSelectedRow(), 0));
 
             id = Integer.parseInt(idString);
 
@@ -313,7 +307,8 @@ public class IfrTipoServico extends javax.swing.JInternalFrame {
             if (JOptionPane.showConfirmDialog(null, "Deseja realmente excluir?") == JOptionPane.OK_OPTION) {
                 if (apDAO.excluir(id)) {
                     JOptionPane.showMessageDialog(null, "Registro excluído com sucesso!");
-                    new Tipo_ServicosDAO().popularTabela(tblTipoRemedio, tfdBusca.getText());
+                    new Tipo_ServicosDAO().popularTabela(tblTipoServico, tfdBusca.getText());
+                    tfdId.setText(new Tipo_ServicosDAO().proximaId());
                 } else {
                     JOptionPane.showMessageDialog(null, "Problemas ao excluir registro!");
                 }
@@ -325,7 +320,7 @@ public class IfrTipoServico extends javax.swing.JInternalFrame {
 
     private void btnEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarActionPerformed
         try {
-            String idString = String.valueOf(tblTipoRemedio.getValueAt(tblTipoRemedio.getSelectedRow(), 0));
+            String idString = String.valueOf(tblTipoServico.getValueAt(tblTipoServico.getSelectedRow(), 0));
 
             id = Integer.parseInt(idString);
 
@@ -353,7 +348,7 @@ public class IfrTipoServico extends javax.swing.JInternalFrame {
     private void btnSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvarActionPerformed
         if (!jtaDescricao.equals("")) {
             Tipo_Servicos ts = new Tipo_Servicos();
-            ts.setId_tpservicos(Integer.parseInt(tfdId.getText()));
+            ts.setId_tpservicos(id);
             ts.setDescricao(jtaDescricao.getText());
             if (rbAtivo.isSelected()) {
                 ts.setSituacao("A");
@@ -377,8 +372,7 @@ public class IfrTipoServico extends javax.swing.JInternalFrame {
 
                 // atualiza ID
                 id = 0;
-                new Tipo_ServicosDAO().popularTabela(tblTipoRemedio, tfdBusca.getText());
-                tfdId.setText(new Tipo_ServicosDAO().proximaId());
+                new Tipo_ServicosDAO().popularTabela(tblTipoServico, tfdBusca.getText());
             } else {
                 JOptionPane.showMessageDialog(null, "Problemas ao salvar registro!");
             }
@@ -419,7 +413,7 @@ public class IfrTipoServico extends javax.swing.JInternalFrame {
     private javax.swing.JTextArea jtaDescricao;
     private javax.swing.JRadioButton rbAtivo;
     private javax.swing.JRadioButton rbInativo;
-    private javax.swing.JTable tblTipoRemedio;
+    private javax.swing.JTable tblTipoServico;
     private javax.swing.JTextField tfdBusca;
     private javax.swing.JTextField tfdId;
     // End of variables declaration//GEN-END:variables

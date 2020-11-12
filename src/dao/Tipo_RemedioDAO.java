@@ -39,8 +39,8 @@ public class Tipo_RemedioDAO implements IDAO_T<Tipo_Remedio> {
             } else {
                 sql = "UPDATE tipo_remedio "
                         + "SET descricao = '" + o.getDescricao() + "',"
-                        + "situacao = '" + o.getSituacao() + "',"
-                        + "WHERE id = " + o.getId_tpremedio();
+                        + "situacao = '" + o.getSituacao() + "' "
+                        + "WHERE id_tpremedio = " + o.getId_tpremedio();
             }
 
             System.out.println("SQL: " + sql);
@@ -49,7 +49,7 @@ public class Tipo_RemedioDAO implements IDAO_T<Tipo_Remedio> {
 
             return true;
         } catch (Exception e) {
-            System.out.println("Erro ao salvar Tipo de Remédio = " + e);
+            System.out.println("Erro ao salvar TIPO DE REMÉDIO = " + e);
             return false;
         }
     }
@@ -66,7 +66,7 @@ public class Tipo_RemedioDAO implements IDAO_T<Tipo_Remedio> {
 
             String sql = "DELETE "
                     + "FROM tipo_remedio "
-                    + "WHERE id = " + id;
+                    + "WHERE id_tpremedio = " + id;
 
             System.out.println("SQL: " + sql);
 
@@ -99,7 +99,7 @@ public class Tipo_RemedioDAO implements IDAO_T<Tipo_Remedio> {
 
             String sql = "SELECT * "
                     + "FROM tipo_remedio "
-                    + "WHERE id = " + id;
+                    + "WHERE id_tpremedio = " + id;
 
             System.out.println("SQL: " + sql);
 

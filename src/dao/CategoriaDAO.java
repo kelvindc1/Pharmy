@@ -39,8 +39,8 @@ public class CategoriaDAO implements IDAO_T<Categoria> {
             } else {
                 sql = "UPDATE categoria "
                         + "SET descricao = '" + o.getDescricao() + "',"
-                        + "situacao = '" + o.getSituacao() + "',"
-                        + "WHERE id = " + o.getId_cat();
+                        + "situacao = '" + o.getSituacao() + "' "
+                        + "WHERE id_cat = " + o.getId_cat();
             }
 
             System.out.println("SQL: " + sql);
@@ -66,7 +66,7 @@ public class CategoriaDAO implements IDAO_T<Categoria> {
 
             String sql = "DELETE "
                     + "FROM categoria "
-                    + "WHERE id = " + id;
+                    + "WHERE id_cat = " + id;
 
             System.out.println("SQL: " + sql);
 
@@ -99,7 +99,7 @@ public class CategoriaDAO implements IDAO_T<Categoria> {
 
             String sql = "SELECT * "
                     + "FROM categoria "
-                    + "WHERE id = " + id;
+                    + "WHERE id_cat = " + id;
 
             System.out.println("SQL: " + sql);
 
@@ -161,7 +161,7 @@ public class CategoriaDAO implements IDAO_T<Categoria> {
 
             while (resultadoQ.next()) {
 
-                dadosTabela[lin][0] = resultadoQ.getInt("id_tpremedio");
+                dadosTabela[lin][0] = resultadoQ.getInt("id_cat");
                 dadosTabela[lin][1] = resultadoQ.getString("descricao");
                 dadosTabela[lin][2] = resultadoQ.getString("situacao");
 

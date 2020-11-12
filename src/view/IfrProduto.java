@@ -549,7 +549,7 @@ public class IfrProduto extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btnPesquisarActionPerformed
 
     private void btnEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarActionPerformed
-        try {
+      /*  try {
 
             String idString = String.valueOf(tblProduto.getValueAt(tblProduto.getSelectedRow(), 0));
 
@@ -580,7 +580,7 @@ public class IfrProduto extends javax.swing.JInternalFrame {
         } catch (ArrayIndexOutOfBoundsException e) {
             JOptionPane.showMessageDialog(null, "Selecione um registro para editar");
         }
-
+*/
     }//GEN-LAST:event_btnEditarActionPerformed
 
     private void btnExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcluirActionPerformed
