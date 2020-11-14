@@ -13,13 +13,13 @@ import javax.swing.JOptionPane;
  */
 public class IfrBanco extends javax.swing.JInternalFrame {
 
-    int id = 0;
+    int id_banco = 0;
 
     public IfrBanco() {
         initComponents();
 
         new BancoDAO().popularTabela(tblBanco, "");
-        tfdId.setText(new BancoDAO().proximaId());
+        //tfdId.setText(new BancoDAO().proximaId());
     }
 
     @SuppressWarnings("unchecked")
@@ -231,27 +231,39 @@ public class IfrBanco extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btnFecharActionPerformed
 
     private void btnSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvarActionPerformed
-        if (!tfdNome.equals("")) {
-            Banco ts = new Banco();
-            ts.setId_banco(id);
-            ts.setNome(tfdNome.getText());
+        boolean continuar = true;
+        Banco b = new Banco();
+        
+        if (tfdNome.getText().equals("")){
+            JOptionPane.showMessageDialog(null, "Preencha todos os campos obrigatórios (*)");
+            continuar = false;
+            tfdNome.requestFocus();
+        }
+     
+        if (continuar) {
+                  
+            Banco banco = new Banco();
+            
+            banco.setNome(tfdNome.getText());
+            
+            banco.setId_banco(id_banco);
 
             // salvar
-            BancoDAO tsDAO = new BancoDAO();
+            BancoDAO bDAO = new BancoDAO();
 
-            if (tsDAO.salvar(ts)) {
+            if (bDAO.salvar(banco)) {
                 // exibir msg
                 JOptionPane.showMessageDialog(null, "Registro salvo com sucesso!");
 
                 // limpar campos
                 tfdNome.setText("");
-                tfdId.setText(new BancoDAO().proximaId());
+                tfdId.setText("");
 
-                btnFechar.requestFocus();
+                tfdNome.requestFocus();
 
                 // atualiza ID
-                id = 0;
-                new BancoDAO().popularTabela(tblBanco, tfdBusca.getText());
+                id_banco = 0;
+                
             } else {
                 JOptionPane.showMessageDialog(null, "Problemas ao salvar registro!");
             }
@@ -269,17 +281,17 @@ public class IfrBanco extends javax.swing.JInternalFrame {
 
             String idString = String.valueOf(tblBanco.getValueAt(tblBanco.getSelectedRow(), 0));
 
-            id = Integer.parseInt(idString);
+            id_banco = Integer.parseInt(idString);
 
-            BancoDAO eDAO = new BancoDAO();
+            BancoDAO bDAO = new BancoDAO();
 
-            Banco e = eDAO.consultarId(id);
+            Banco b = bDAO.consultarId(id_banco);
 
-            if (e != null) {
+            if (b != null) {
 
-                tfdNome.setText(e.getNome());
+                tfdNome.setText(b.getNome());
 
-                tfdId.setText(String.valueOf(e.getId_banco()));
+                tfdId.setText(String.valueOf(b.getId_banco()));
 
                 jTabbedPane1.setSelectedIndex(0);
             } else {
@@ -297,15 +309,14 @@ public class IfrBanco extends javax.swing.JInternalFrame {
 
             String idString = String.valueOf(tblBanco.getValueAt(tblBanco.getSelectedRow(), 0));
 
-            id = Integer.parseInt(idString);
+            id_banco = Integer.parseInt(idString);
 
-            BancoDAO eDAO = new BancoDAO();
+            BancoDAO bDAO = new BancoDAO();
 
             if (JOptionPane.showConfirmDialog(null, "Deseja realmente excluir?") == JOptionPane.OK_OPTION) {
-                if (eDAO.excluir(id)) {
+                if (bDAO.excluir(id_banco)) {
                     JOptionPane.showMessageDialog(null, "Registro excluído com sucesso!");
                     new BancoDAO().popularTabela(tblBanco, tfdBusca.getText());
-                    tfdId.setText(new BancoDAO().proximaId());
                 } else {
                     JOptionPane.showMessageDialog(null, "Problemas ao excluir registro!");
                 }
