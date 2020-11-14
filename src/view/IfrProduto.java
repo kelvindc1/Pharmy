@@ -3,6 +3,7 @@ package view;
 import lib.CombosDAO;
 import dao.ProdutoDAO;
 import control.Produto;
+import control.Tipo_Remedio;
 import java.math.BigDecimal;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JComboBox;
@@ -25,8 +26,8 @@ public class IfrProduto extends javax.swing.JInternalFrame {
 
         //DefaultTableModel modelo = (DefaultTableModel) tblProduto.getModel();
         //tblProduto.setRowSorter(new TableRowSorter(modelo));
-        new CombosDAO().popularCombo("apresentacao", cmbTpRemedio);
-        new CombosDAO().popularCombo("categoria", cmbCategoria);
+        //new CombosDAO().popularCombo("descricao", cmbTpRemedio);
+        //new CombosDAO().popularCombo("categoria", cmbCategoria);
         tfdId.setText(new ProdutoDAO().proximaId());
         definirComboTipo(cmbTipo);
         rbAtivo.setSelected(true);
@@ -42,14 +43,6 @@ public class IfrProduto extends javax.swing.JInternalFrame {
         jLabel25 = new javax.swing.JLabel();
         btnFechar = new javax.swing.JButton();
         jTabbedPane1 = new javax.swing.JTabbedPane();
-        jPanel2 = new javax.swing.JPanel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        tblProduto = new javax.swing.JTable();
-        jLabel1 = new javax.swing.JLabel();
-        tfdBusca = new javax.swing.JTextField();
-        btnPesquisar = new javax.swing.JButton();
-        btnExcluir = new javax.swing.JButton();
-        btnEditar = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
@@ -87,6 +80,14 @@ public class IfrProduto extends javax.swing.JInternalFrame {
         tffValor = new javax.swing.JFormattedTextField();
         jLabel15 = new javax.swing.JLabel();
         cmbTipo = new javax.swing.JComboBox<>();
+        jPanel2 = new javax.swing.JPanel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        tblProduto = new javax.swing.JTable();
+        jLabel1 = new javax.swing.JLabel();
+        tfdBusca = new javax.swing.JTextField();
+        btnPesquisar = new javax.swing.JButton();
+        btnExcluir = new javax.swing.JButton();
+        btnEditar = new javax.swing.JButton();
         jLabel24 = new javax.swing.JLabel();
 
         jLabel23.setForeground(new java.awt.Color(255, 0, 51));
@@ -104,85 +105,6 @@ public class IfrProduto extends javax.swing.JInternalFrame {
                 btnFecharActionPerformed(evt);
             }
         });
-
-        tblProduto.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
-            },
-            new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
-            }
-        ));
-        jScrollPane1.setViewportView(tblProduto);
-
-        jLabel1.setText("Busca");
-
-        btnPesquisar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/system/icons/seo-social-web-network-internet_340_icon-iconscom_61497.png"))); // NOI18N
-        btnPesquisar.setText("Pesquisar");
-        btnPesquisar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnPesquisarActionPerformed(evt);
-            }
-        });
-
-        btnExcluir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/system/icons/trash-can_115312 (1).png"))); // NOI18N
-        btnExcluir.setText("Excluir");
-        btnExcluir.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnExcluirActionPerformed(evt);
-            }
-        });
-
-        btnEditar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/system/icons/iconeEditar.png"))); // NOI18N
-        btnEditar.setText("Editar");
-        btnEditar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnEditarActionPerformed(evt);
-            }
-        });
-
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(btnExcluir, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(btnEditar, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 604, Short.MAX_VALUE)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(jLabel1)
-                        .addGap(18, 18, 18)
-                        .addComponent(tfdBusca)
-                        .addGap(18, 18, 18)
-                        .addComponent(btnPesquisar)))
-                .addContainerGap())
-        );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
-                    .addComponent(tfdBusca, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnPesquisar))
-                .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 110, Short.MAX_VALUE)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnExcluir)
-                    .addComponent(btnEditar))
-                .addContainerGap())
-        );
-
-        jTabbedPane1.addTab("Consulta", jPanel2);
 
         jLabel2.setText("Id");
 
@@ -459,6 +381,85 @@ public class IfrProduto extends javax.swing.JInternalFrame {
 
         jTabbedPane1.addTab("Cadastro", jPanel1);
 
+        tblProduto.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane1.setViewportView(tblProduto);
+
+        jLabel1.setText("Busca");
+
+        btnPesquisar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/system/icons/seo-social-web-network-internet_340_icon-iconscom_61497.png"))); // NOI18N
+        btnPesquisar.setText("Pesquisar");
+        btnPesquisar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnPesquisarActionPerformed(evt);
+            }
+        });
+
+        btnExcluir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/system/icons/trash-can_115312 (1).png"))); // NOI18N
+        btnExcluir.setText("Excluir");
+        btnExcluir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnExcluirActionPerformed(evt);
+            }
+        });
+
+        btnEditar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/system/icons/iconeEditar.png"))); // NOI18N
+        btnEditar.setText("Editar");
+        btnEditar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEditarActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(btnExcluir, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(btnEditar, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 604, Short.MAX_VALUE)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addComponent(jLabel1)
+                        .addGap(18, 18, 18)
+                        .addComponent(tfdBusca)
+                        .addGap(18, 18, 18)
+                        .addComponent(btnPesquisar)))
+                .addContainerGap())
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel1)
+                    .addComponent(tfdBusca, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnPesquisar))
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 110, Short.MAX_VALUE)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnExcluir)
+                    .addComponent(btnEditar))
+                .addContainerGap())
+        );
+
+        jTabbedPane1.addTab("Consulta", jPanel2);
+
         jLabel24.setForeground(new java.awt.Color(255, 0, 51));
         jLabel24.setText("Campos com * são obrigatórios");
 
@@ -549,7 +550,7 @@ public class IfrProduto extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btnPesquisarActionPerformed
 
     private void btnEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarActionPerformed
-      /*  try {
+        /*try {
 
             String idString = String.valueOf(tblProduto.getValueAt(tblProduto.getSelectedRow(), 0));
 
@@ -564,10 +565,10 @@ public class IfrProduto extends javax.swing.JInternalFrame {
                 tfdDescricao.setText(p.getDescricao());
                 jCheckBox1.setSelected(p.getSituacao().equals("A"));
 
-                tfdValorunit.setText(p.getValor_unit().toString());
+                tfdPreco.setText(p.getPreco().toString());
 
-                Apresentacao apresentacao = new ApresentacaoDAO().consultarId(p.getId_apre());
-                ComboItem cbItem = new ComboItem(apresentacao.getId_apre(), apresentacao.getDescricao());
+                Tipo_Remedio tp_remedio = new Tipo_RemedioDAO().consultarId(p.getId_tp_remedio());
+                ComboItens cbItem = new ComboItens(tp_remedio.getId_tp_remedio(), tp_remedio.getDescricao());
                 cmbTpRemedio.getModel().setSelectedItem(cbItem);
 
                 tfdId.setText(String.valueOf(p.getId_prod()));
@@ -580,7 +581,7 @@ public class IfrProduto extends javax.swing.JInternalFrame {
         } catch (ArrayIndexOutOfBoundsException e) {
             JOptionPane.showMessageDialog(null, "Selecione um registro para editar");
         }
-*/
+        */
     }//GEN-LAST:event_btnEditarActionPerformed
 
     private void btnExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcluirActionPerformed

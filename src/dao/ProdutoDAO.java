@@ -115,7 +115,7 @@ public class ProdutoDAO  implements IDAO_T <Produto> {
             String sql = "SELECT * "
                     + "FROM produto "
                     + "WHERE id_produto = " + id
-                    + "ORDER BY id_produto";
+                    + " ORDER BY id_produto";
  
             System.out.println("SQL: " + sql);
 
@@ -127,7 +127,7 @@ public class ProdutoDAO  implements IDAO_T <Produto> {
                 produto = new Produto();
 
                 // obtem dados do RS
-                produto.setId_produto(resultadoQ.getInt("id_prod"));
+                produto.setId_produto(resultadoQ.getInt("id_produto"));
                 produto.setId_cat(resultadoQ.getInt("id_cat"));
                 produto.setId_marca(resultadoQ.getInt("id_marca"));
                 produto.setNome(resultadoQ.getString("nome"));
@@ -155,8 +155,8 @@ public class ProdutoDAO  implements IDAO_T <Produto> {
         // cabecalho da tabela
         Object[] cabecalho = new Object[5];
         cabecalho[0] = "Código";
-        cabecalho[1] = "Descrição";
-        cabecalho[2] = "Marca";
+        cabecalho[1] = "Nome";
+        cabecalho[2] = "Gramatura";
         cabecalho[3] = "Preço";
         cabecalho[4] = "Situação";
        
@@ -166,7 +166,7 @@ public class ProdutoDAO  implements IDAO_T <Produto> {
                     + "SELECT count(*) "
                     + "FROM produto "
                     + "WHERE "
-                    + "DESCRICAO ILIKE '%" + criterio + "%'");
+                    + "NOME ILIKE '%" + criterio + "%'");
 
             resultadoQ.next();
 
@@ -182,15 +182,15 @@ public class ProdutoDAO  implements IDAO_T <Produto> {
         try {
             resultadoQ = ConexaoBD.getInstance().getConnection().createStatement().executeQuery(""
                     + "SELECT * "
-                    + "FROM produto "
+                    + "FROM produto"
                     + "WHERE "
-                    + "DESCRICAO ILIKE '%" + criterio + "%' ORDER BY id_prod");
+                    + "NOME ILIKE '%" + criterio + "%' ORDER BY id_produto");
 
             while (resultadoQ.next()) {
 
                 dadosTabela[lin][0] = resultadoQ.getInt("id_produto");
-                dadosTabela[lin][1] = resultadoQ.getString("descricao");
-                dadosTabela[lin][2] = resultadoQ.getString("marca");
+                dadosTabela[lin][1] = resultadoQ.getString("nome");
+                dadosTabela[lin][2] = resultadoQ.getString("gramatura");
                 dadosTabela[lin][3] = resultadoQ.getBigDecimal("preco");
                 dadosTabela[lin][4] = resultadoQ.getString("situacao");
 

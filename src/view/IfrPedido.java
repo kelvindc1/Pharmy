@@ -71,10 +71,10 @@ public class IfrPedido extends javax.swing.JInternalFrame {
         new CombosDAO().popularCombo("funcionario", "id_func", "nome", cmbFunc, "where situacao = 'A' ORDER BY nome");
         new CombosDAO().popularCombo("funcionario", "id_func", "nome", cmbFunc2, "where situacao = 'A' ORDER BY nome");
         //new CombosDAO().popularCombo("produto", cmbProduto);
-        new CombosDAO().popularCombo("produto", "id_prod", "descricao", cmbProduto, "where situacao = 'A' ORDER BY descricao");
+        new CombosDAO().popularCombo("produto", "id_produto", "nome", cmbProduto, "where situacao = 'A' ORDER BY nome");
 
-        new CombosDAO().popularCombo("forma_pagamento", "id_pag", "descricao", cmbPagamento, "ORDER BY id_pag");
-        new CombosDAO().popularCombo("forma_pagamento", "id_pag", "descricao", cmbPagamento2, "ORDER BY id_pag");
+        new CombosDAO().popularCombo("forma_pagamento", "id_forma_pag", "descricao", cmbPagamento, "ORDER BY id_forma_pag");
+        new CombosDAO().popularCombo("forma_pagamento", "id_forma_pag", "descricao", cmbPagamento2, "ORDER BY id_forma_pag");
 
         SpQuantidade.setModel(new SpinnerNumberModel(0, 0, 100, 1));
         SpQtd2.setModel(new SpinnerNumberModel(0, 0, 100, 1));
