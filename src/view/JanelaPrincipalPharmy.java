@@ -371,7 +371,7 @@ public class JanelaPrincipalPharmy extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenu2ActionPerformed
 
     private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
-        /* IfrPedido ifrPedido = new IfrPedido();
+         IfrPedido ifrPedido = new IfrPedido();
         jDesktopPane1.add(ifrPedido);
         ifrPedido.setVisible(true);
     }//GEN-LAST:event_jMenuItem4ActionPerformed
@@ -420,7 +420,6 @@ public class JanelaPrincipalPharmy extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItem10ActionPerformed
 
     private void jMenuItem11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem11ActionPerformed
-        /*
         try {
             // Compila o relatorio
             JasperReport relatorio = JasperCompileManager.compileReport(getClass().getResourceAsStream("/relatorios/report_Produtos.jrxml"));
@@ -435,8 +434,7 @@ public class JanelaPrincipalPharmy extends javax.swing.JFrame {
             JasperViewer.viewReport(impressao, false);
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "Erro ao gerar relatório: " + e);
-        }
-         */
+        }        
     }//GEN-LAST:event_jMenuItem11ActionPerformed
 
     private void jMenuItem12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem12ActionPerformed
