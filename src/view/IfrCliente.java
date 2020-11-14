@@ -32,7 +32,9 @@ public class IfrCliente extends javax.swing.JInternalFrame {
         Formatting.formatarCpf(tffCpf);
         Formatting.formatarTelefone(tffTelefone);
         Formatting.formatarData(tffDataCadastro);
-
+        Formatting.formatarRG(tffRg);
+        rbAtivo.setSelected(true);
+        tfdId.setText(new ClienteDAO().proximaId());
         //tfdSalario.setDocument(new SoNumeros());
         //Formatacao.formatarDecimal(tfdSalario);
         if (!tffDataCadastro.getText().equals("")) {
@@ -62,8 +64,6 @@ public class IfrCliente extends javax.swing.JInternalFrame {
         jLabel7 = new javax.swing.JLabel();
         rbFeminino = new javax.swing.JRadioButton();
         jLabel9 = new javax.swing.JLabel();
-        jLabel11 = new javax.swing.JLabel();
-        jCheckBox1 = new javax.swing.JCheckBox();
         cmbCidade = new javax.swing.JComboBox<>();
         jLabel18 = new javax.swing.JLabel();
         jLabel19 = new javax.swing.JLabel();
@@ -76,8 +76,12 @@ public class IfrCliente extends javax.swing.JInternalFrame {
         tffTelefone = new javax.swing.JFormattedTextField();
         tffDataCadastro = new javax.swing.JFormattedTextField();
         jLabel15 = new javax.swing.JLabel();
-        tfdRg = new javax.swing.JTextField();
         jLabel32 = new javax.swing.JLabel();
+        jLabel11 = new javax.swing.JLabel();
+        rbAtivo = new javax.swing.JRadioButton();
+        rbInativo = new javax.swing.JRadioButton();
+        jLabel26 = new javax.swing.JLabel();
+        tffRg = new javax.swing.JFormattedTextField();
         jPanel2 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tblCliente = new javax.swing.JTable();
@@ -126,10 +130,6 @@ public class IfrCliente extends javax.swing.JInternalFrame {
 
         jLabel9.setText("Data de cadastro");
 
-        jLabel11.setText("Situação");
-
-        jCheckBox1.setText("Ativo");
-
         cmbCidade.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
                 cmbCidadeItemStateChanged(evt);
@@ -161,6 +161,26 @@ public class IfrCliente extends javax.swing.JInternalFrame {
         jLabel32.setForeground(new java.awt.Color(255, 0, 51));
         jLabel32.setText("* ");
 
+        jLabel11.setText("Situação");
+
+        rbAtivo.setText("Ativo");
+        rbAtivo.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        rbAtivo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rbAtivoActionPerformed(evt);
+            }
+        });
+
+        rbInativo.setText("Inativo");
+        rbInativo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rbInativoActionPerformed(evt);
+            }
+        });
+
+        jLabel26.setForeground(new java.awt.Color(255, 0, 51));
+        jLabel26.setText("* ");
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -168,6 +188,15 @@ public class IfrCliente extends javax.swing.JInternalFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabel11)
+                        .addGap(62, 62, 62)
+                        .addComponent(rbAtivo)
+                        .addGap(18, 18, 18)
+                        .addComponent(rbInativo)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jLabel26)
+                        .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel15)
@@ -180,53 +209,49 @@ public class IfrCliente extends javax.swing.JInternalFrame {
                             .addComponent(tfdId, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                    .addComponent(cmbCidade, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(tfdRg, javax.swing.GroupLayout.DEFAULT_SIZE, 247, Short.MAX_VALUE)
+                                    .addComponent(cmbCidade, javax.swing.GroupLayout.Alignment.LEADING, 0, 247, Short.MAX_VALUE)
                                     .addComponent(tffCpf)
-                                    .addComponent(tfdNome))
+                                    .addComponent(tfdNome)
+                                    .addComponent(tffRg))
                                 .addGap(10, 10, 10)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel32, javax.swing.GroupLayout.Alignment.TRAILING)
                                     .addComponent(jLabel19)
                                     .addComponent(jLabel27)
-                                    .addComponent(jLabel29)))))
-                    .addComponent(jLabel11)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(105, 105, 105)
-                        .addComponent(jCheckBox1)))
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btnSalvar, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap())
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(194, 194, 194)
-                                .addComponent(tffDataCadastro, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(91, 91, 91)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(jLabel7)
-                                            .addComponent(jLabel6))
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                                .addComponent(rbMasculino)
-                                                .addGap(37, 37, 37)
-                                                .addComponent(rbFeminino))
-                                            .addComponent(tffTelefone, javax.swing.GroupLayout.DEFAULT_SIZE, 183, Short.MAX_VALUE)))
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addComponent(jLabel9)
-                                        .addGap(0, 0, Short.MAX_VALUE)))))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                    .addComponent(jLabel29))))
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel28)
-                            .addComponent(jLabel31)
-                            .addComponent(jLabel23))
-                        .addGap(53, 53, 53))))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(btnSalvar, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addContainerGap())
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addGap(194, 194, 194)
+                                        .addComponent(tffDataCadastro, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addGap(91, 91, 91)
+                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                    .addComponent(jLabel7)
+                                                    .addComponent(jLabel6))
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                                        .addComponent(rbMasculino)
+                                                        .addGap(37, 37, 37)
+                                                        .addComponent(rbFeminino))
+                                                    .addComponent(tffTelefone, javax.swing.GroupLayout.DEFAULT_SIZE, 183, Short.MAX_VALUE)))
+                                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                                .addComponent(jLabel9)
+                                                .addGap(0, 0, Short.MAX_VALUE)))))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel28)
+                                    .addComponent(jLabel31)
+                                    .addComponent(jLabel23))
+                                .addGap(53, 53, 53))))))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -254,22 +279,25 @@ public class IfrCliente extends javax.swing.JInternalFrame {
                             .addComponent(jLabel28))
                         .addGap(18, 18, 18)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(tfdRg, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel32)
                             .addComponent(jLabel15)
                             .addComponent(jLabel9)
                             .addComponent(tffDataCadastro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel31))
+                            .addComponent(jLabel31)
+                            .addComponent(tffRg, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(cmbCidade, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel18)
                             .addComponent(jLabel29))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 63, Short.MAX_VALUE)
+                        .addGap(18, 18, 18)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel11)
-                            .addComponent(jCheckBox1)
-                            .addComponent(btnSalvar)))
+                            .addComponent(rbAtivo)
+                            .addComponent(rbInativo)
+                            .addComponent(jLabel26)
+                            .addComponent(jLabel11))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 44, Short.MAX_VALUE)
+                        .addComponent(btnSalvar))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -351,7 +379,7 @@ public class IfrCliente extends javax.swing.JInternalFrame {
                     .addComponent(tfdBusca, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnPesquisarCliente))
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 180, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 202, Short.MAX_VALUE)
                 .addGap(18, 18, 18)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnExcluir)
@@ -382,7 +410,7 @@ public class IfrCliente extends javax.swing.JInternalFrame {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addComponent(jTabbedPane1)
+                .addComponent(jTabbedPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 338, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(btnFechar)
@@ -390,7 +418,7 @@ public class IfrCliente extends javax.swing.JInternalFrame {
                 .addGap(14, 14, 14))
         );
 
-        setBounds(250, 110, 861, 394);
+        setBounds(250, 110, 861, 416);
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnFecharActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFecharActionPerformed
@@ -399,22 +427,34 @@ public class IfrCliente extends javax.swing.JInternalFrame {
 
     private void btnSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvarActionPerformed
         boolean continuar = true;
+        boolean sexo = false;
         Cliente cliente = new Cliente();
 
         if (tfdNome.getText().equals("")
-                || cmbCidade.getSelectedItem().equals("Selecione")
-                || tffCpf.getText().equals("   .   .   -  ")
-                || tffTelefone.getText().equals("(  )    -    ")
-                || tfdRg.getText().equals("")) {
+                || cmbCidade.getSelectedIndex() == 0
+                || Formatting.removerFormatacao(tffCpf.getText()).equals("")
+                || Formatting.removerFormatacao(tffTelefone.getText()).equals("")
+                || Formatting.removerFormatacao(tffRg.getText()).equals("")
+                || Formatting.removerFormatacao(tffDataCadastro.getText()).equals("")) {
+
             JOptionPane.showMessageDialog(null, "Preencha todos os campos obrigatórios (*)");
             continuar = false;
             tfdNome.requestFocus();
         }
-
-        /*if (rbFeminino.getSelectedIcon().equals("") || rbMasculino.getSelectedIcon().equals("")) {
-            JOptionPane.showMessageDialog(null, "Preencha todos os campos obrigatórios (*)");
-            continuar = false;
-        } */
+        if (continuar) {
+            sexo = false;
+            if (rbFeminino.isSelected()) {
+                sexo = true;
+            }
+            if (rbMasculino.isSelected()) {
+                sexo = true;
+            }
+            if (!sexo) {
+                JOptionPane.showMessageDialog(null, "Preencha todos os campos obrigatórios (*)");
+                continuar = false;
+            }
+        }
+        /*
         if (tffDataCadastro.getText().trim().length() == 10) {
             if (Validation.validarDataFormatada(tffDataCadastro.getText())) {
                 System.out.println("Data Ok");
@@ -423,7 +463,7 @@ public class IfrCliente extends javax.swing.JInternalFrame {
             }
         } else {
             System.out.println("Preencha adequadamente");
-        }
+        }/*
 
         /*if (tffCpf.getText().trim().length() == 14) {
             if (Validacao.validarCPF(Formatacao.limpaCaracter(tffCpf.getText()))) {
@@ -462,15 +502,16 @@ public class IfrCliente extends javax.swing.JInternalFrame {
             }
 
             cliente.setTelefone(Formatting.removerFormatacao(tffTelefone.getText()));
-                      
-            cliente.setSituacao("I");
-            if (jCheckBox1.isSelected()) {
+
+            if (rbAtivo.isSelected()) {
                 cliente.setSituacao("A");
+            } else {
+                cliente.setSituacao("I");
             }
 
             cliente.setCpf(Formatting.removerFormatacao(tffCpf.getText()));
-            
-            cliente.setRg(tfdRg.getText());
+
+            cliente.setRg(tffRg.getText());
 
             cliente.setId_cliente(id_cliente);
 
@@ -485,17 +526,16 @@ public class IfrCliente extends javax.swing.JInternalFrame {
                     JOptionPane.showMessageDialog(null, "Registro salvo com sucesso!");
 
                     tfdNome.setText("");
-                    //sexo               
-                    tffDataCadastro.setText("");
+
+                    tffDataCadastro.setText(Formatting.getDataAtual());
                     tffTelefone.setText("");
                     tffCpf.setText("");
-                    tfdRg.setText("");
+                    tffRg.setText("");
                     cmbCidade.setSelectedIndex(0);
-                    tfdId.setText("");
-                    //situacao
-
+                    tfdId.setText(new ClienteDAO().proximaId());
                     tfdNome.requestFocus();
-
+                    rbFeminino.setSelected(false);
+                    rbMasculino.setSelected(false);
                     id_cliente = 0;
 
                 } else {
@@ -503,22 +543,6 @@ public class IfrCliente extends javax.swing.JInternalFrame {
                 }
             }
         }
-
-//        try {
-////          Statement st = automedquinta.AutoMedQuinta.conexao.createStatement();
-//            Statement st = ConexaoBD.getInstance().getConnection().createStatement();
-//
-//            String sql = "INSERT INTO apresentacao VALUES ("
-//                    + "DEFAULT, "
-//                    + "'" + tfdDescricao.getText() + "')";
-//
-//            System.out.println("SQL: " + sql);
-//
-//            int resultado = st.executeUpdate(sql);
-//
-//        } tffDataCadastron e) {
-//            System.out.println("Erro salvar apresentação = " + e);
-//        }
     }//GEN-LAST:event_btnSalvarActionPerformed
 
     private void btnPesquisarClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPesquisarClienteActionPerformed
@@ -538,12 +562,16 @@ public class IfrCliente extends javax.swing.JInternalFrame {
 
             if (cliente != null) {
                 tfdNome.setText(cliente.getNome());
+                //tffDataCadastro.setText(Formatting.ajustaDataDMA(String.valueOf(cliente.getDt_cadastro())));
                 tffDataCadastro.setText(Formatting.ajustaDataDMA(String.valueOf(cliente.getDt_cadastro())));
                 tffCpf.setText(cliente.getCpf());
-                tfdRg.setText(cliente.getRg());
+                tffRg.setText(cliente.getRg());
                 tffTelefone.setText(String.valueOf(cliente.getTelefone()));
-                jCheckBox1.setSelected(cliente.getSituacao().equals("A"));
-
+                if (cliente.getSituacao().equals("A")) {
+                    rbAtivo.setSelected(true);
+                } else {
+                    rbInativo.setSelected(true);
+                }
                 Cidade cidade = new CidadeDAO().consultarId(cliente.getId_cid());
                 ComboItens cbItem = new ComboItens(cidade.getId_cid(), cidade.getNome());
                 cmbCidade.getModel().setSelectedItem(cbItem);
@@ -594,6 +622,14 @@ public class IfrCliente extends javax.swing.JInternalFrame {
         }
     }//GEN-LAST:event_cmbCidadeItemStateChanged
 
+    private void rbAtivoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbAtivoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_rbAtivoActionPerformed
+
+    private void rbInativoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbInativoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_rbInativoActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnEditar;
@@ -603,7 +639,6 @@ public class IfrCliente extends javax.swing.JInternalFrame {
     private javax.swing.JButton btnSalvar;
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JComboBox<String> cmbCidade;
-    private javax.swing.JCheckBox jCheckBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel15;
@@ -612,6 +647,7 @@ public class IfrCliente extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel23;
     private javax.swing.JLabel jLabel24;
+    private javax.swing.JLabel jLabel26;
     private javax.swing.JLabel jLabel27;
     private javax.swing.JLabel jLabel28;
     private javax.swing.JLabel jLabel29;
@@ -626,15 +662,17 @@ public class IfrCliente extends javax.swing.JInternalFrame {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTabbedPane jTabbedPane1;
+    private javax.swing.JRadioButton rbAtivo;
     private javax.swing.JRadioButton rbFeminino;
+    private javax.swing.JRadioButton rbInativo;
     private javax.swing.JRadioButton rbMasculino;
     private javax.swing.JTable tblCliente;
     private javax.swing.JTextField tfdBusca;
     private javax.swing.JTextField tfdId;
     private javax.swing.JTextField tfdNome;
-    private javax.swing.JTextField tfdRg;
     private javax.swing.JFormattedTextField tffCpf;
     private javax.swing.JFormattedTextField tffDataCadastro;
+    private javax.swing.JFormattedTextField tffRg;
     private javax.swing.JFormattedTextField tffTelefone;
     // End of variables declaration//GEN-END:variables
 }

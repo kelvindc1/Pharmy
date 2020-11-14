@@ -53,7 +53,7 @@ public class ClienteDAO implements IDAO_T<Cliente> {
                         + "sexo ='" + o.getSexo() + "',"
                         + "id_cid ='" + o.getId_cid() + "',"
                         + "situacao = '" + o.getSituacao() + "'"
-                        + "WHERE id = " + o.getId_cliente();
+                        + "WHERE id_cliente = " + o.getId_cliente();
             }
 
             System.out.println("SQL: " + sql);
@@ -80,7 +80,7 @@ public class ClienteDAO implements IDAO_T<Cliente> {
 
             String sql = "DELETE "
                     + "FROM cliente "
-                    + "WHERE id = " + id;
+                    + "WHERE id_cliente = " + id;
 
             System.out.println("SQL: " + sql);
 
@@ -113,7 +113,7 @@ public class ClienteDAO implements IDAO_T<Cliente> {
 
             String sql = "SELECT * "
                     + "FROM cliente "
-                    + "WHERE id = " + id;
+                    + "WHERE id_cliente = " + id;
 
             System.out.println("SQL: " + sql);
 
@@ -125,12 +125,12 @@ public class ClienteDAO implements IDAO_T<Cliente> {
                 pessoa = new Cliente();
 
                 // obtem dados do RS
-                pessoa.setId_cliente(resultadoQ.getInt("id"));
+                pessoa.setId_cliente(resultadoQ.getInt("id_cliente"));
                 pessoa.setNome(resultadoQ.getString("nome"));
                 pessoa.setCpf(resultadoQ.getString("cpf"));
                 pessoa.setRg(resultadoQ.getString("rg"));
                 pessoa.setTelefone(resultadoQ.getString("telefone"));
-                pessoa.setDt_cadastro(resultadoQ.getTime("dt_cadastro"));  //verificar se o getTime ta certo
+                pessoa.setDt_cadastro(resultadoQ.getDate("dt_cadastro"));  
                 pessoa.setSexo(resultadoQ.getString("sexo"));
                 pessoa.setId_cid(resultadoQ.getInt("id_cid"));
                 pessoa.setSituacao(resultadoQ.getString("situacao"));
@@ -187,11 +187,11 @@ public class ClienteDAO implements IDAO_T<Cliente> {
 
                 dadosTabela[lin][0] = resultadoQ.getInt("id_cliente");
                 dadosTabela[lin][1] = resultadoQ.getString("nome");
-                dadosTabela[lin][2] = resultadoQ.getString("cpf");
+                dadosTabela[lin][2] = Formatting.ajustarCpf(resultadoQ.getString("cpf"));
                 dadosTabela[lin][3] = resultadoQ.getString("rg");
-                dadosTabela[lin][4] = resultadoQ.getString("telefone");
+                dadosTabela[lin][4] = Formatting.ajustarTelefone(resultadoQ.getString("telefone"));
                 dadosTabela[lin][5] = resultadoQ.getString("sexo");
-                dadosTabela[lin][6] = resultadoQ.getDate("dt_cadastro");
+                dadosTabela[lin][6] = Formatting.ajustaDataDMA(resultadoQ.getString("dt_cadastro"));
                 dadosTabela[lin][7] = resultadoQ.getString("situacao");
 
                 // caso a coluna precise exibir uma imagem
@@ -268,6 +268,22 @@ public class ClienteDAO implements IDAO_T<Cliente> {
                 return this;
             }
         });
+    }
+     public String proximaId() {
+        String resp = "";
+        try {
+            resultadoQ = ConexaoBD.getInstance().getConnection().createStatement().executeQuery(""
+                    + "SELECT MAX(os.id_cliente) "
+                    + "FROM cliente os");
+
+            resultadoQ.next();
+            int aux = resultadoQ.getInt("max");
+            aux = aux + 1;
+            resp = aux + "";
+        } catch (Exception e) {
+            System.out.println("Erro ao achar próxima ID: " + e);
+        }
+        return resp;
     }
     
 }

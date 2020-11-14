@@ -208,7 +208,7 @@ public class Formatting {
         try {
             MaskFormatter m = new MaskFormatter();
             m.setPlaceholderCharacter(' ');
-            m.setMask("(##)####-####");
+            m.setMask("(##)#####-####");
             tfd.setFormatterFactory(null);
             tfd.setFormatterFactory(new DefaultFormatterFactory(m));
             tfd.setValue(null);
@@ -233,5 +233,18 @@ public class Formatting {
             System.err.println(e);
         }
         return tfd.getText();
+    }
+    
+      public static void formatarRG(JFormattedTextField campo) {
+        try {
+            MaskFormatter m = new MaskFormatter();
+            m.setPlaceholderCharacter(' ');
+            m.setMask("##########");
+            campo.setFormatterFactory(null);
+            campo.setFormatterFactory(new DefaultFormatterFactory(m));
+            campo.setValue(null);
+        } catch (Exception e) {
+            System.err.println(e);
+        }
     }
 }

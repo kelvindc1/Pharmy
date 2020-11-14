@@ -9,12 +9,7 @@ import dao.FuncionarioDAO;
 import control.Cidade;
 import control.Funcionario;
 import java.awt.event.ItemEvent;
-import java.sql.Timestamp;
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
-import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JDesktopPane;
@@ -45,6 +40,7 @@ public class IfrFuncionario extends javax.swing.JInternalFrame {
         Formatting.formatarData(tffDataNascimento);
         Formatting.formatarData(tffDataAdmissao);
         Formatting.formatarData(tffDataDemissao);
+        Formatting.formatarRG(tffRg);
 
         //tfdSalario.setDocument(new SoNumeros());
         //Formatacao.formatarDecimal(tfdSalario);
@@ -94,11 +90,10 @@ public class IfrFuncionario extends javax.swing.JInternalFrame {
         tffDataDemissao = new javax.swing.JFormattedTextField();
         tffDataNascimento = new javax.swing.JFormattedTextField();
         jLabel15 = new javax.swing.JLabel();
-        tfdRg = new javax.swing.JTextField();
         jLabel32 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         rbAtivo = new javax.swing.JRadioButton();
-        rbInativo2 = new javax.swing.JRadioButton();
+        rbInativo = new javax.swing.JRadioButton();
         jLabel11 = new javax.swing.JLabel();
         jLabel26 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
@@ -110,6 +105,7 @@ public class IfrFuncionario extends javax.swing.JInternalFrame {
         jLabel33 = new javax.swing.JLabel();
         tfdIdDadosBancarios = new javax.swing.JTextField();
         jLabel8 = new javax.swing.JLabel();
+        tffRg = new javax.swing.JFormattedTextField();
         jPanel2 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tblFuncionario = new javax.swing.JTable();
@@ -209,10 +205,10 @@ public class IfrFuncionario extends javax.swing.JInternalFrame {
             }
         });
 
-        rbInativo2.setText("Inativo");
-        rbInativo2.addActionListener(new java.awt.event.ActionListener() {
+        rbInativo.setText("Inativo");
+        rbInativo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                rbInativo2ActionPerformed(evt);
+                rbInativoActionPerformed(evt);
             }
         });
 
@@ -284,10 +280,10 @@ public class IfrFuncionario extends javax.swing.JInternalFrame {
                                     .addComponent(tfdId, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addGroup(jPanel1Layout.createSequentialGroup()
                                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                            .addComponent(tfdRg, javax.swing.GroupLayout.DEFAULT_SIZE, 247, Short.MAX_VALUE)
-                                            .addComponent(tffCpf)
+                                            .addComponent(tffCpf, javax.swing.GroupLayout.DEFAULT_SIZE, 247, Short.MAX_VALUE)
                                             .addComponent(tfdNome)
-                                            .addComponent(tffDataNascimento))
+                                            .addComponent(tffDataNascimento)
+                                            .addComponent(tffRg, javax.swing.GroupLayout.DEFAULT_SIZE, 247, Short.MAX_VALUE))
                                         .addGap(10, 10, 10)
                                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                             .addComponent(jLabel32, javax.swing.GroupLayout.Alignment.TRAILING)
@@ -306,7 +302,7 @@ public class IfrFuncionario extends javax.swing.JInternalFrame {
                                             .addGroup(jPanel1Layout.createSequentialGroup()
                                                 .addComponent(rbAtivo)
                                                 .addGap(18, 18, 18)
-                                                .addComponent(rbInativo2)
+                                                .addComponent(rbInativo)
                                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                                 .addComponent(jLabel26))
                                             .addComponent(cmbCidade, javax.swing.GroupLayout.PREFERRED_SIZE, 247, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -389,9 +385,9 @@ public class IfrFuncionario extends javax.swing.JInternalFrame {
                             .addComponent(jLabel5))
                         .addGap(18, 18, 18)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(tfdRg, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel32)
-                            .addComponent(jLabel15))
+                            .addComponent(jLabel15)
+                            .addComponent(tffRg, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -432,7 +428,7 @@ public class IfrFuncionario extends javax.swing.JInternalFrame {
                     .addComponent(jLabel11)
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(rbAtivo)
-                        .addComponent(rbInativo2)
+                        .addComponent(rbInativo)
                         .addComponent(jLabel26)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -448,7 +444,7 @@ public class IfrFuncionario extends javax.swing.JInternalFrame {
                     .addComponent(tfdIdDadosBancarios, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton4)
                     .addComponent(jButton3))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 20, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 67, Short.MAX_VALUE)
                 .addComponent(btnSalvar)
                 .addContainerGap())
         );
@@ -524,7 +520,7 @@ public class IfrFuncionario extends javax.swing.JInternalFrame {
                     .addComponent(tfdBusca, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnPesquisar))
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 295, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 342, Short.MAX_VALUE)
                 .addGap(18, 18, 18)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnExcluir)
@@ -555,7 +551,7 @@ public class IfrFuncionario extends javax.swing.JInternalFrame {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addComponent(jTabbedPane1)
+                .addComponent(jTabbedPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 478, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(btnFechar)
@@ -563,7 +559,7 @@ public class IfrFuncionario extends javax.swing.JInternalFrame {
                 .addGap(14, 14, 14))
         );
 
-        setBounds(250, 110, 861, 509);
+        setBounds(250, 110, 861, 556);
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnFecharActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFecharActionPerformed
@@ -572,6 +568,9 @@ public class IfrFuncionario extends javax.swing.JInternalFrame {
 
     private void btnSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvarActionPerformed
         boolean continuar = true;
+        boolean flag = true;
+        boolean flagBlack = true;
+
         Funcionario func = new Funcionario();
 
         if (tfdNome.getText().equals("")
@@ -580,7 +579,7 @@ public class IfrFuncionario extends javax.swing.JInternalFrame {
                 || tffCpf.getText().equals("   .   .   -  ")
                 || tffTelefone.getText().equals("(  )    -    ")
                 || tffDataAdmissao.getText().equals("  /  /    ")
-                || tfdRg.getText().equals("")
+                || tffRg.getText().equals("")
                 || tfdIdContrato.getText().equals("")
                 || tfdIdDadosBancarios.getText().equals("")) {
             JOptionPane.showMessageDialog(null, "Preencha todos os campos obrigatórios (*)");
@@ -629,17 +628,15 @@ public class IfrFuncionario extends javax.swing.JInternalFrame {
                 if (rbMasculino.isSelected()) {
                     func.setSexo("M");
                 }
-                
-                
-                
+
                 if (Formatting.removerFormatacao(tffDataDemissao.getText()).equals("")) {
-                    func.setDt_demissao(null);
+                    flag = false;
                 } else {
                     func.setDt_demissao(Formatting.dateForDatabase(tffDataDemissao.getText()));
                 }
                 func.setDt_nasc(Formatting.dateForDatabase(tffDataNascimento.getText()));
                 func.setDt_admissao(Formatting.dateForDatabase(tffDataAdmissao.getText()));
-                
+
 
                 /*
                 String data = tffDataNascimento.getText();
@@ -679,7 +676,7 @@ public class IfrFuncionario extends javax.swing.JInternalFrame {
                 func.setId_dados(Integer.parseInt(tfdIdDadosBancarios.getText()));
                 func.setId_contrato(Integer.parseInt(tfdIdContrato.getText()));
                 func.setCpf(Formatting.removerFormatacao(tffCpf.getText()));
-                func.setRg(tfdRg.getText());
+                func.setRg(tffRg.getText());
 
                 // ID CONTRATO    (COLOCAR NA TELA E AQUI)
                 // ID DADOS       (COLOCAR NA TELA E AQUI)
@@ -693,33 +690,62 @@ public class IfrFuncionario extends javax.swing.JInternalFrame {
 
                 // salvar
                 FuncionarioDAO funcDAO = new FuncionarioDAO();
+                if (flag) {
+                    if (funcDAO.salvar(func)) {
 
-                if (funcDAO.salvar(func)) {
+                        JOptionPane.showMessageDialog(null, "Registro salvo com sucesso!");
 
-                    JOptionPane.showMessageDialog(null, "Registro salvo com sucesso!");
+                        tfdNome.setText("");
+                        //sexo
+                        tffDataNascimento.setText("");
+                        tffDataAdmissao.setText("");
+                        tffDataDemissao.setText("");
+                        tffTelefone.setText("");
+                        tffCpf.setText("");
+                        tffRg.setText("");
+                        cmbCidade.setSelectedIndex(0);
+                        tfdId.setText("");
+                        tfdIdContrato.setText("");
+                        tfdIdDadosBancarios.setText("");
+                        rbFeminino.setSelected(false);
+                        rbMasculino.setSelected(false);
+                        // CAMPO DE CONTRATO (VAI SER O QUE?)
+                        // CAMPO DADOS (VAI SER O QUE?)
+                        tfdNome.requestFocus();
 
-                    tfdNome.setText("");
-                    //sexo
-                    tffDataNascimento.setText("");
-                    tffDataAdmissao.setText("");
-                    tffDataDemissao.setText("");
-                    tffTelefone.setText("");
-                    tffCpf.setText("");
-                    tfdRg.setText("");
-                    cmbCidade.setSelectedIndex(0);
-                    tfdId.setText("");
-                    tfdIdContrato.setText("");
-                    tfdIdDadosBancarios.setText("");
-                    rbFeminino.setSelected(false);
-                    rbMasculino.setSelected(false);
-                    // CAMPO DE CONTRATO (VAI SER O QUE?)
-                    // CAMPO DADOS (VAI SER O QUE?)
-                    tfdNome.requestFocus();
+                        id_func = 0;
 
-                    id_func = 0;
-
+                    } else {
+                        JOptionPane.showMessageDialog(null, "Problemas ao salvar registro!");
+                    }
                 } else {
-                    JOptionPane.showMessageDialog(null, "Problemas ao salvar registro!");
+                    if (funcDAO.salvarSemDemissao(func) && flag == false) {
+
+                        JOptionPane.showMessageDialog(null, "Registro salvo com sucesso!");
+
+                        tfdNome.setText("");
+                        //sexo
+                        tffDataNascimento.setText("");
+                        tffDataAdmissao.setText("");
+                        tffDataDemissao.setText("");
+                        tffTelefone.setText("");
+                        tffCpf.setText("");
+                        tffRg.setText("");
+                        cmbCidade.setSelectedIndex(0);
+                        tfdId.setText("");
+                        tfdIdContrato.setText("");
+                        tfdIdDadosBancarios.setText("");
+                        rbFeminino.setSelected(false);
+                        rbMasculino.setSelected(false);
+                        // CAMPO DE CONTRATO (VAI SER O QUE?)
+                        // CAMPO DADOS (VAI SER O QUE?)
+                        tfdNome.requestFocus();
+
+                        id_func = 0;
+
+                    } else {
+                        JOptionPane.showMessageDialog(null, "Problemas ao salvar registro!");
+                    }
                 }
             } catch (ParseException ex) {
                 Logger.getLogger(IfrFuncionario.class.getName()).log(Level.SEVERE, null, ex);
@@ -764,7 +790,7 @@ public class IfrFuncionario extends javax.swing.JInternalFrame {
                 tffDataDemissao.setText(Formatting.ajustaDataDMA(String.valueOf(func.getDt_demissao())));
                 tffDataNascimento.setText(Formatting.ajustaDataDMA(String.valueOf(func.getDt_nasc())));
                 tffCpf.setText(func.getCpf());
-                tfdRg.setText(func.getRg());
+                tffRg.setText(func.getRg());
                 tffTelefone.setText(String.valueOf(func.getTelefone()));
                 if (func.getSituacao().equals("A")) {
                     rbAtivo.setSelected(true);
@@ -830,9 +856,9 @@ public class IfrFuncionario extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_rbAtivoActionPerformed
 
-    private void rbInativo2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbInativo2ActionPerformed
+    private void rbInativoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbInativoActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_rbInativo2ActionPerformed
+    }//GEN-LAST:event_rbInativoActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
 
@@ -899,8 +925,6 @@ public class IfrFuncionario extends javax.swing.JInternalFrame {
     private javax.swing.JRadioButton rbAtivo;
     private javax.swing.JRadioButton rbFeminino;
     private javax.swing.JRadioButton rbInativo;
-    private javax.swing.JRadioButton rbInativo1;
-    private javax.swing.JRadioButton rbInativo2;
     private javax.swing.JRadioButton rbMasculino;
     private javax.swing.JTable tblFuncionario;
     private javax.swing.JTextField tfdBusca;
@@ -908,11 +932,11 @@ public class IfrFuncionario extends javax.swing.JInternalFrame {
     private javax.swing.JTextField tfdIdContrato;
     private javax.swing.JTextField tfdIdDadosBancarios;
     private javax.swing.JTextField tfdNome;
-    private javax.swing.JTextField tfdRg;
     private javax.swing.JFormattedTextField tffCpf;
     private javax.swing.JFormattedTextField tffDataAdmissao;
     private javax.swing.JFormattedTextField tffDataDemissao;
     private javax.swing.JFormattedTextField tffDataNascimento;
+    private javax.swing.JFormattedTextField tffRg;
     private javax.swing.JFormattedTextField tffTelefone;
     // End of variables declaration//GEN-END:variables
 

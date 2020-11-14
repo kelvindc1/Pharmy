@@ -33,26 +33,6 @@ public class FuncionarioDAO implements IDAO_T<Funcionario> {
             Statement st = ConexaoBD.getInstance().getConnection().createStatement();
             String sql = "";
             if (o.getId_func() == 0) {
-                System.out.println("salvar");
-                System.out.println(o.getDt_demissao());
-                if (o.getDt_demissao().equals("null")){
-                    System.out.println("null asd");
-                    sql = "INSERT INTO funcionario VALUES ("
-                        + "DEFAULT, "
-                        + "'" + o.getNome() + "',"
-                        + "'" + o.getCpf() + "',"
-                        + "'" + o.getRg() + "',"
-                        + "'" + o.getDt_nasc() + "',"
-                        + "'" + o.getDt_admissao() + "',"
-                        + "" + null + ","
-                        + "'" + o.getSexo() + "',"
-                        + "'" + o.getTelefone() + "',"
-                        + "'" + o.getId_contrato() + "',"
-                        + "'" + o.getId_cid() + "',"
-                        + "'" + o.getId_dados() + "',"
-                        + "'" + o.getSituacao() + "')";
-                }else{
-                    System.out.println("not null");
                 sql = "INSERT INTO funcionario VALUES ("
                         + "DEFAULT, "
                         + "'" + o.getNome() + "',"
@@ -67,25 +47,8 @@ public class FuncionarioDAO implements IDAO_T<Funcionario> {
                         + "'" + o.getId_cid() + "',"
                         + "'" + o.getId_dados() + "',"
                         + "'" + o.getSituacao() + "')";
-                }
             } else {
-                 if (o.getDt_demissao().equals(null)){
                 sql = "UPDATE funcionario "
-                        + "SET nome = '" + o.getNome() + "',"
-                        + "cpf = '" + o.getCpf() + "',"
-                        + "rg = '" + o.getRg() + "',"
-                        + "dt_nasc = '" + o.getDt_nasc() + "',"
-                        + "dt_admissao = '" + o.getDt_admissao() + "',"
-                        + "dt_demissao= " + null + ","
-                        + "sexo = '" + o.getSexo() + "',"
-                        + "telefone = '" + o.getTelefone() + "',"
-                        + "id_contrato = '" + o.getId_contrato() + "',"
-                        + "id_cid ='" + o.getId_cid() + "',"
-                        + "id_dados ='" + o.getId_dados() + "',"
-                        + "situacao = '" + o.getSituacao() + "'"
-                        + "WHERE id_func = " + o.getId_func();}
-                 else{
-                     sql = "UPDATE funcionario "
                         + "SET nome = '" + o.getNome() + "',"
                         + "cpf = '" + o.getCpf() + "',"
                         + "rg = '" + o.getRg() + "',"
@@ -98,8 +61,53 @@ public class FuncionarioDAO implements IDAO_T<Funcionario> {
                         + "id_cid ='" + o.getId_cid() + "',"
                         + "id_dados ='" + o.getId_dados() + "',"
                         + "situacao = '" + o.getSituacao() + "'"
-                        + "WHERE id_func = " + o.getId_func(); 
-                 }
+                        + "WHERE id_func = " + o.getId_func();
+            }
+
+            System.out.println("SQL: " + sql);
+
+            int resultado = st.executeUpdate(sql);
+
+            return true;
+        } catch (Exception e) {
+            System.out.println("Erro salvar funcionário = " + e);
+            return false;
+        }
+    }
+    public boolean salvarSemDemissao(Funcionario o) {
+        try {
+            Statement st = ConexaoBD.getInstance().getConnection().createStatement();
+            String sql = "";
+            if (o.getId_func() == 0) {
+                sql = "INSERT INTO funcionario VALUES ("
+                        + "DEFAULT, "
+                        + "'" + o.getNome() + "',"
+                        + "'" + o.getCpf() + "',"
+                        + "'" + o.getRg() + "',"
+                        + "'" + o.getDt_nasc() + "',"
+                        + "'" + o.getDt_admissao() + "',"
+                        + "" + null + ","
+                        + "'" + o.getSexo() + "',"
+                        + "'" + o.getTelefone() + "',"
+                        + "'" + o.getId_contrato() + "',"
+                        + "'" + o.getId_cid() + "',"
+                        + "'" + o.getId_dados() + "',"
+                        + "'" + o.getSituacao() + "')";
+            } else {
+                sql = "UPDATE funcionario "
+                        + "SET nome = '" + o.getNome() + "',"
+                        + "cpf = '" + o.getCpf() + "',"
+                        + "rg = '" + o.getRg() + "',"
+                        + "dt_nasc = '" + o.getDt_nasc() + "',"
+                        + "dt_admissao = '" + o.getDt_admissao() + "',"
+                        + "dt_demissao= " + null +","
+                        + "sexo = '" + o.getSexo() + "',"
+                        + "telefone = '" + o.getTelefone() + "',"
+                        + "id_contrato = '" + o.getId_contrato() + "',"
+                        + "id_cid ='" + o.getId_cid() + "',"
+                        + "id_dados ='" + o.getId_dados() + "',"
+                        + "situacao = '" + o.getSituacao() + "'"
+                        + "WHERE id_func = " + o.getId_func();
             }
 
             System.out.println("SQL: " + sql);
@@ -293,7 +301,8 @@ public class FuncionarioDAO implements IDAO_T<Funcionario> {
             }
         }
         // renderizacao das linhas da tabela = mudar a cor
-        tabela.setDefaultRenderer(Object.class, new DefaultTableCellRenderer() {
+        tabela.setDefaultRenderer(Object.class,
+                 new DefaultTableCellRenderer() {
 
             @Override
             public Component getTableCellRendererComponent(JTable table, Object value,
@@ -307,7 +316,8 @@ public class FuncionarioDAO implements IDAO_T<Funcionario> {
                 }
                 return this;
             }
-        });
+        }
+        );
     }
 
     public void popularTabela(JTable tabela, String criterio) {
@@ -419,7 +429,8 @@ public class FuncionarioDAO implements IDAO_T<Funcionario> {
             }
         }
         // renderizacao das linhas da tabela = mudar a cor
-        tabela.setDefaultRenderer(Object.class, new DefaultTableCellRenderer() {
+        tabela.setDefaultRenderer(Object.class,
+                 new DefaultTableCellRenderer() {
 
             @Override
             public Component getTableCellRendererComponent(JTable table, Object value,
@@ -433,7 +444,8 @@ public class FuncionarioDAO implements IDAO_T<Funcionario> {
                 }
                 return this;
             }
-        });
+        }
+        );
     }
 
 }
