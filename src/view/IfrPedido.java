@@ -776,8 +776,6 @@ public class IfrPedido extends javax.swing.JInternalFrame {
 
         if (tfdValor_unit.getText().equals("")
                 || tffDataPedido.getText().equals("  /  /    ")
-                || tffDataPag.getText().equals("  /  /    ")
-                || tfdIdFinanceiro.getText().equals("")
                 || cmbFunc.getSelectedItem().equals("Selecione")
                 || cmbProduto.getSelectedItem().equals("Selecione")) {
             JOptionPane.showMessageDialog(null, "Preencha todos os campos obrigatórios (*)");
@@ -829,6 +827,8 @@ public class IfrPedido extends javax.swing.JInternalFrame {
                     || tfdQtdTotalItens.getText().equals("")
                     || tfdValorTotal.getText().equals("")
                     || tffDataPedido.getText().equals("  /  /    ")
+                    || tffDataPag.getText().equals("  /  /    ")
+                    || tfdIdFinanceiro.getText().equals("")
                     || cmbPagamento.getSelectedItem().equals("Selecione")
                     || cmbFunc.getSelectedItem().equals("Selecione")
                     || cmbProduto.getSelectedItem().equals("Selecione")) {
