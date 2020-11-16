@@ -46,7 +46,8 @@ public class PedidoDAO implements IDAO_T<Pedido> {
                         + "'" + o.getDt_pag() + "',"
                         + "'" + o.getValor_total() + "',"
                         + "'" + o.getId_financeiro() + "',"
-                        + "'" + o.getSituacao() + "')";
+                        + "'" + o.getSituacao() + "',"
+                        + "'" + o.getQtd_total_itens() + "')";
             } else {
                 sql = "UPDATE pedido "
                         + "SET situacao = '" + o.getSituacao() + "', "
@@ -55,7 +56,8 @@ public class PedidoDAO implements IDAO_T<Pedido> {
                         + "dt_pedido = '" + o.getDt_pedido() + "', "
                         + "id_cliente = '" + o.getId_cliente() + "', "
                         + "dt_pag = '" + o.getDt_pag() + "', "
-                        + "id_financeiro = '" + o.getId_financeiro() + "' "
+                        + "id_financeiro = '" + o.getId_financeiro() + "', "
+                        + "qtd_total_itens = '" + o.getQtd_total_itens() + "' "
                         + "WHERE id_pedido = " + o.getId_pedido();
             }
 
@@ -144,6 +146,7 @@ public class PedidoDAO implements IDAO_T<Pedido> {
                 pedido.setId_financeiro(resultadoQ.getInt("id_financeiro"));
                 pedido.setDt_pedido(resultadoQ.getDate("dt_pedido"));
                 pedido.setDt_pag(resultadoQ.getDate("dt_pag"));
+                pedido.setQtd_total_itens(resultadoQ.getInt("qtd_total_itens"));
             }
 
         } catch (Exception e) {
