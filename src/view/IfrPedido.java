@@ -397,7 +397,7 @@ public class IfrPedido extends javax.swing.JInternalFrame {
                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                     .addComponent(jLabel25))
                                 .addComponent(jLabel29)))
-                        .addGap(0, 183, Short.MAX_VALUE)))
+                        .addGap(0, 200, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
@@ -542,7 +542,7 @@ public class IfrPedido extends javax.swing.JInternalFrame {
                         .addComponent(btnPesquisar)
                         .addGap(18, 18, 18)
                         .addComponent(btnPesquisarItens)
-                        .addGap(0, 350, Short.MAX_VALUE)))
+                        .addGap(0, 367, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
@@ -639,7 +639,7 @@ public class IfrPedido extends javax.swing.JInternalFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jTabbedPane1)
+            .addComponent(jTabbedPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 1053, Short.MAX_VALUE)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(btnFechar, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -654,7 +654,7 @@ public class IfrPedido extends javax.swing.JInternalFrame {
                 .addGap(16, 16, 16))
         );
 
-        setBounds(150, 70, 1052, 694);
+        setBounds(150, 70, 1069, 694);
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnFecharActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFecharActionPerformed
