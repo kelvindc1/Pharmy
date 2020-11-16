@@ -21,7 +21,7 @@ import lib.IDAO_T;
 
 /**
  *
- * @author Win10
+ * @author Win10/kelvin.costa
  */
 public class ItensPedidoDAO implements IDAO_T<ItensPedido> {
 
@@ -43,7 +43,7 @@ public class ItensPedidoDAO implements IDAO_T<ItensPedido> {
             } else {
                 sql = "UPDATE itens_pedido "
                         + "SET id_pedido = '" + o.getPedido().getId_pedido()+ "', "
-                        + "id_prod = '" + o.getProduto().getId_produto()+ "', "
+                        + "id_produto = '" + o.getProduto().getId_produto()+ "', "
                         + "item_quant = '" + o.getItem_quant()+ "',"
                         + "valor_unit = '" + o.getValor_unit() + "',"
                         + "id_servicos = '" + o.getId_servicos() + "',"
@@ -119,12 +119,12 @@ public class ItensPedidoDAO implements IDAO_T<ItensPedido> {
                 itensPed = new ItensPedido();
 
                 // obtem dados do RS
-                itensPed.setId_itens_ped(resultadoQ.getInt("id_itens_prod"));
+                itensPed.setId_itens_ped(resultadoQ.getInt("id_itens_ped"));
                 itensPed.getPedido().setId_pedido(resultadoQ.getInt("id_pedido"));
                 itensPed.getProduto().setId_produto(resultadoQ.getInt("id_produto")); 
                 itensPed.setItem_quant(resultadoQ.getInt("item_quant"));
                 itensPed.setValor_unit(resultadoQ.getBigDecimal("valor_unit"));
-                itensPed.setId_servicos(resultadoQ.getInt("servicos"));
+                itensPed.setId_servicos(resultadoQ.getInt("id_servicos"));
             }
         } catch (Exception e) {
             System.out.println("Erro ao consultar: " + e);
@@ -140,8 +140,8 @@ public class ItensPedidoDAO implements IDAO_T<ItensPedido> {
 
             String sql = "SELECT * "
                     + "FROM itens_pedido i, produto p "
-                    + "WHERE i.id_prod = p.id_prod  "
-                    + " and id_ped = " + id
+                    + "WHERE i.id_produto = p.id_produto  "
+                    + " and id_pedido = " + id
                     + "ORDER BY id_itens_ped";
 
             System.out.println("SQL: " + sql);
