@@ -62,6 +62,7 @@ public class IfrPedido extends javax.swing.JInternalFrame {
         Formatting.formatarData(tffDataPedido);
         Formatting.formatarData(tffDt_inicial);
         Formatting.formatarData(tffDt_final);
+        Formatting.formatarData(tffDataPag);       
 
         if (!tffDataPedido.getText().equals("")) {
             tffDataPedido.setText(Formatting.getDataAtual());
@@ -852,9 +853,17 @@ public class IfrPedido extends javax.swing.JInternalFrame {
             } catch (ParseException ex) {
                 JOptionPane.showMessageDialog(null, "Erro ao converter a data!");
             }
+            
+            try {
+                Date dt_pagamento = new SimpleDateFormat("dd/MM/yyyy").parse(tffDataPag.getText());
+                pedido.setDt_pag(dt_pagamento);
+            } catch (ParseException ex) {
+                JOptionPane.showMessageDialog(null, "Erro ao converter a data!");
+            }
 
             if (codigoPagamento > 0) {
                 //pedido.setId_pag(codigoPagamento);  //VER
+                pedido.setId_financeiro(codigoPagamento); //VER
             }
 
             if (codigoFuncionario > 0) {
