@@ -133,9 +133,12 @@ public class Pedido {
     }
         
     public void calcularValorTotal() {
-        this.valor_total = BigDecimal.valueOf((double) 0);       
+        this.valor_total = BigDecimal.valueOf((double) 0);
+        
         //this.itensPedido.forEach(p -> this.valor_total = this.valor_total.add(p.getValor_unit()) * p.getItem_quant());
-
+        
+        //this.itensPedido.forEach(p -> this.valor_total = this.valor_total + p.getValor_unit() * p.getItem_quant());
+        
     }
 
     public void calcularTotalItens() {
@@ -143,15 +146,21 @@ public class Pedido {
         this.itensPedido.forEach(p -> this.qtd_total_itens = p.getItem_quant() + this.qtd_total_itens);
     }
     
-    /*
-    @Override
-    public String toString() {
-        return "Pedido{" + "id_ped=" + id_pedido + ", situacao=" 
+
+    /*public String toString() {
+        return "Pedido{" + "id_pedido=" + id_pedido + ", situacao=" 
                 + situacao + ", id_func=" + id_func + ", valor_total=" + valor_total 
                 + ", qtd_total_itens=" + qtd_total_itens + ", dt_pedido=" + dt_pedido + '}'; 
                 + ", id_pag=" + id_pag + ", itensPedido=" + itensPedido.toString() + '}';
-    }
-
-   */
-
+    }*/
+    
+    @Override
+    public String toString() {
+        return "Pedido{" + "id_pedido=" + id_pedido + ", id_cliente=" 
+                + id_cliente + ", id_func=" + id_func + ", dt_pedido=" + dt_pedido
+                + ", dt_pag=" + dt_pag + ", valor_total=" + valor_total   
+                + ", id_financeiro=" + id_financeiro + ", situacao=" + situacao
+                + ", qtd_total_itens=" + qtd_total_itens 
+                + ", itensPedido=" + itensPedido.toString() + '}';              
+    } 
 }
