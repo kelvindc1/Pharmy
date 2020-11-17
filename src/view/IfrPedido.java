@@ -996,12 +996,12 @@ public class IfrPedido extends javax.swing.JInternalFrame {
 
     private void popularTableItens(Pedido pedido) {
 
-        String[] colunas = {"Id Produto", "Descrição", "Valor Unit.", "Qtd."};
+        String[] colunas = {"Id Produto", "Nome", "Valor Unit.", "Qtd."};
         Object[][] dadosTabela = new Object[pedido.tamanhoListItens()][4];
 
         for (int linha = 0; linha < pedido.getItensPedido().size(); linha++) {
             dadosTabela[linha][0] = pedido.getItensPedido().get(linha).getProduto().getId_produto();
-            dadosTabela[linha][1] = pedido.getItensPedido().get(linha).getProduto().getDescricao();
+            dadosTabela[linha][1] = pedido.getItensPedido().get(linha).getProduto().getNome();
             dadosTabela[linha][2] = pedido.getItensPedido().get(linha).getValor_unit();
             dadosTabela[linha][3] = pedido.getItensPedido().get(linha).getItem_quant();
         }
