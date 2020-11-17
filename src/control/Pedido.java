@@ -134,8 +134,8 @@ public class Pedido {
         
     public void calcularValorTotal() {
         this.valor_total = BigDecimal.valueOf((double) 0);
-        
-        //this.itensPedido.forEach(p -> this.valor_total = this.valor_total.add(p.getValor_unit()) * p.getItem_quant());
+              
+        //this.itensPedido.forEach(p -> this.valor_total = this.valor_total + p.getValor_unit().multiply(p.getItem_quant()));
         
         //this.itensPedido.forEach(p -> this.valor_total = this.valor_total + p.getValor_unit() * p.getItem_quant());
         
