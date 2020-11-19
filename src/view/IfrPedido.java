@@ -133,10 +133,16 @@ public class IfrPedido extends javax.swing.JInternalFrame {
         jLabel13 = new javax.swing.JLabel();
         jLabel26 = new javax.swing.JLabel();
         jLabel28 = new javax.swing.JLabel();
-        tfdIdFinanceiro = new javax.swing.JTextField();
         btnBuscarFinanceiro = new javax.swing.JButton();
         jLabel29 = new javax.swing.JLabel();
+        jLabel31 = new javax.swing.JLabel();
+        btnBuscarServico = new javax.swing.JButton();
+        jLabel32 = new javax.swing.JLabel();
+        jLabel33 = new javax.swing.JLabel();
+        tfdIdFinanceiro = new javax.swing.JTextField();
+        tfdIdServico = new javax.swing.JTextField();
         jLabel30 = new javax.swing.JLabel();
+        tfdIdCliente = new javax.swing.JTextField();
         jPanel2 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tblPedido = new javax.swing.JTable();
@@ -176,7 +182,7 @@ public class IfrPedido extends javax.swing.JInternalFrame {
             }
         });
 
-        jLabel2.setText("Id");
+        jLabel2.setText("Id Pedido");
 
         jLabel3.setText("Funcionário");
 
@@ -288,8 +294,6 @@ public class IfrPedido extends javax.swing.JInternalFrame {
 
         jLabel28.setText("Id Financeiro");
 
-        tfdIdFinanceiro.setEnabled(false);
-
         btnBuscarFinanceiro.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/system/icons/seo-social-web-network-internet_340_icon-iconscom_61497.png"))); // NOI18N
         btnBuscarFinanceiro.setText("Buscar");
         btnBuscarFinanceiro.addActionListener(new java.awt.event.ActionListener() {
@@ -300,8 +304,23 @@ public class IfrPedido extends javax.swing.JInternalFrame {
 
         jLabel29.setText("__________________________________________________________________________________________________________________________________________");
 
-        jLabel30.setForeground(new java.awt.Color(255, 0, 51));
-        jLabel30.setText("* ");
+        jLabel31.setText("Id Servico");
+
+        btnBuscarServico.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/system/icons/seo-social-web-network-internet_340_icon-iconscom_61497.png"))); // NOI18N
+        btnBuscarServico.setText("Buscar");
+        btnBuscarServico.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBuscarServicoActionPerformed(evt);
+            }
+        });
+
+        jLabel32.setForeground(new java.awt.Color(255, 0, 51));
+        jLabel32.setText("* ");
+
+        jLabel33.setForeground(new java.awt.Color(255, 0, 51));
+        jLabel33.setText("* ");
+
+        jLabel30.setText("Id Cliente");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -322,63 +341,8 @@ public class IfrPedido extends javax.swing.JInternalFrame {
                         .addComponent(jLabel24)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(btnSalvar, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel3)
-                                    .addComponent(jLabel5))
-                                .addGap(12, 12, 12)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(tfdId, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                            .addComponent(cmbFunc, 0, 195, Short.MAX_VALUE)
-                                            .addComponent(cmbProduto, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                                .addComponent(jLabel20))
-                                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                                .addGap(12, 12, 12)
-                                                .addComponent(jLabel21)
-                                                .addGap(30, 30, 30)
-                                                .addComponent(jLabel9)
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                                .addComponent(tfdValor_unit, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addGap(18, 18, 18)
-                                                .addComponent(jLabel10)
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                                .addComponent(SpQuantidade, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addGap(35, 35, 35)
-                                                .addComponent(btAdicionar, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)))))))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btnExcluir2, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addComponent(jLabel28)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(tfdIdFinanceiro))
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addComponent(jLabel12)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(cmbPagamento, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jLabel27)
-                                .addGap(39, 39, 39)
-                                .addComponent(jLabel13)
-                                .addGap(18, 18, 18)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(btnBuscarFinanceiro, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(tffDataPag, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel26)
-                                    .addComponent(jLabel30)))
                             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                 .addGroup(jPanel1Layout.createSequentialGroup()
                                     .addComponent(jLabel4)
@@ -396,8 +360,77 @@ public class IfrPedido extends javax.swing.JInternalFrame {
                                     .addComponent(tfdValorTotal, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                     .addComponent(jLabel25))
-                                .addComponent(jLabel29)))
-                        .addGap(0, 208, Short.MAX_VALUE)))
+                                .addComponent(jLabel29))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(jLabel12)
+                                            .addComponent(jLabel28))
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED))
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addComponent(jLabel31)
+                                        .addGap(32, 32, 32)))
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(cmbPagamento, 0, 139, Short.MAX_VALUE)
+                                    .addComponent(tfdIdFinanceiro)
+                                    .addComponent(tfdIdServico))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addComponent(jLabel27)
+                                        .addGap(39, 39, 39)
+                                        .addComponent(jLabel13))
+                                    .addComponent(jLabel33)
+                                    .addComponent(jLabel32))
+                                .addGap(18, 18, 18)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(btnBuscarFinanceiro, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(tffDataPag, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(btnBuscarServico, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jLabel26))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                    .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
+                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(jLabel3)
+                                            .addComponent(jLabel5))
+                                        .addGap(12, 12, 12)
+                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(tfdId, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                                    .addComponent(cmbFunc, 0, 195, Short.MAX_VALUE)
+                                                    .addComponent(cmbProduto, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                                        .addComponent(jLabel20))
+                                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                                        .addGap(12, 12, 12)
+                                                        .addComponent(jLabel21)
+                                                        .addGap(30, 30, 30)
+                                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                            .addComponent(jLabel9)
+                                                            .addComponent(jLabel30))
+                                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                                                .addComponent(tfdValor_unit, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                                                                .addGap(10, 10, 10)
+                                                                .addComponent(tfdIdCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                                        .addGap(18, 18, 18)
+                                                        .addComponent(jLabel10)
+                                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                                        .addComponent(SpQuantidade, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                        .addGap(35, 35, 35)
+                                                        .addComponent(btAdicionar, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)))))))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(btnExcluir2, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(0, 79, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
@@ -416,7 +449,9 @@ public class IfrPedido extends javax.swing.JInternalFrame {
                         .addContainerGap()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel2)
-                            .addComponent(tfdId, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(tfdId, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel30)
+                            .addComponent(tfdIdCliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(13, 13, 13)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(cmbFunc, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -461,10 +496,16 @@ public class IfrPedido extends javax.swing.JInternalFrame {
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel28)
-                    .addComponent(tfdIdFinanceiro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnBuscarFinanceiro)
-                    .addComponent(jLabel30))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 57, Short.MAX_VALUE)
+                    .addComponent(jLabel33)
+                    .addComponent(tfdIdFinanceiro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel31)
+                    .addComponent(btnBuscarServico)
+                    .addComponent(jLabel32)
+                    .addComponent(tfdIdServico, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 48, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel24, javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
@@ -555,7 +596,7 @@ public class IfrPedido extends javax.swing.JInternalFrame {
                     .addComponent(btnPesquisar)
                     .addComponent(btnPesquisarItens))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 498, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 532, Short.MAX_VALUE)
                 .addGap(18, 18, 18)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnExcluir)
@@ -648,13 +689,13 @@ public class IfrPedido extends javax.swing.JInternalFrame {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addComponent(jTabbedPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 634, Short.MAX_VALUE)
+                .addComponent(jTabbedPane1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(btnFechar)
                 .addGap(16, 16, 16))
         );
 
-        setBounds(150, 70, 1077, 714);
+        setBounds(150, 70, 1077, 748);
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnFecharActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFecharActionPerformed
@@ -823,6 +864,8 @@ public class IfrPedido extends javax.swing.JInternalFrame {
     private void btnSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvarActionPerformed
         boolean continuar = true;
         
+        ItensPedido item = new ItensPedido();
+        
         if(pedido.getItensPedido().size() == 0) {
             if (tfdValor_unit.getText().equals("")
                     || tfdQtdTotalItens.getText().equals("")
@@ -830,6 +873,8 @@ public class IfrPedido extends javax.swing.JInternalFrame {
                     || tffDataPedido.getText().equals("  /  /    ")
                     || tffDataPag.getText().equals("  /  /    ")
                     || tfdIdFinanceiro.getText().equals("")
+                    || tfdIdServico.getText().equals("")
+                    || tfdIdCliente.getText().equals("")
                     || cmbPagamento.getSelectedItem().equals("Selecione")
                     || cmbFunc.getSelectedItem().equals("Selecione")
                     || cmbProduto.getSelectedItem().equals("Selecione")) {
@@ -882,6 +927,18 @@ public class IfrPedido extends javax.swing.JInternalFrame {
             String valor_totalstr = Formatting.removerFormatacao(tfdValorTotal.getText());
             BigDecimal valor_total = BigDecimal.valueOf((double) 0);
             pedido.setValor_total(valor_total);
+            
+            String id_financeirot = Formatting.removerFormatacao(tfdIdFinanceiro.getText());
+            int id_financeiro = Integer.parseInt(id_financeirot);
+            pedido.setId_financeiro(id_financeiro);
+            
+            String id_servicot = Formatting.removerFormatacao(tfdIdServico.getText());
+            int id_servico = Integer.parseInt(id_servicot);
+            item.setId_servicos(id_servico);
+
+            String id_clientet = Formatting.removerFormatacao(tfdIdCliente.getText());
+            int id_cliente = Integer.parseInt(id_clientet);
+            pedido.setId_cliente(id_cliente);
 
             pedido.setId_pedido(id_ped);
 
@@ -916,6 +973,9 @@ public class IfrPedido extends javax.swing.JInternalFrame {
                     SpQuantidade.setValue(0);
                     cmbPagamento.setSelectedIndex(0);
                     tfdId.setText("");
+                    tfdIdFinanceiro.setText("");
+                    tfdIdServico.setText("");
+                    tfdIdCliente.setText("");
 
                     //Remover itens do pedido feito
                     tblProduto.setModel(new DefaultTableModel());
@@ -994,6 +1054,10 @@ public class IfrPedido extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_btnBuscarFinanceiroActionPerformed
 
+    private void btnBuscarServicoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarServicoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnBuscarServicoActionPerformed
+
     private void popularTableItens(Pedido pedido) {
 
         String[] colunas = {"Id Produto", "Nome", "Valor Unit.", "Qtd."};
@@ -1015,6 +1079,7 @@ public class IfrPedido extends javax.swing.JInternalFrame {
     private javax.swing.JSpinner SpQuantidade;
     private javax.swing.JButton btAdicionar;
     private javax.swing.JButton btnBuscarFinanceiro;
+    private javax.swing.JButton btnBuscarServico;
     private javax.swing.JButton btnEditar;
     private javax.swing.JButton btnExcluir;
     private javax.swing.JButton btnExcluir2;
@@ -1056,6 +1121,9 @@ public class IfrPedido extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel29;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel30;
+    private javax.swing.JLabel jLabel31;
+    private javax.swing.JLabel jLabel32;
+    private javax.swing.JLabel jLabel33;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
@@ -1074,7 +1142,9 @@ public class IfrPedido extends javax.swing.JInternalFrame {
     private javax.swing.JTable tblProduto;
     private javax.swing.JTextField tfdBusca;
     private javax.swing.JTextField tfdId;
+    private javax.swing.JTextField tfdIdCliente;
     private javax.swing.JTextField tfdIdFinanceiro;
+    private javax.swing.JTextField tfdIdServico;
     private javax.swing.JTextField tfdQtdTotalItens;
     private javax.swing.JTextField tfdValorTotal;
     private javax.swing.JTextField tfdValor_unit;
