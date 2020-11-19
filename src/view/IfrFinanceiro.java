@@ -83,7 +83,6 @@ public class IfrFinanceiro extends javax.swing.JInternalFrame {
         jLabel18 = new javax.swing.JLabel();
         jLabel19 = new javax.swing.JLabel();
         tffMulta = new javax.swing.JFormattedTextField();
-        jdateCalendario = new com.toedter.calendar.JDateChooser();
         jLabel9 = new javax.swing.JLabel();
         cmbFormaPag = new javax.swing.JComboBox<>();
         jLabel10 = new javax.swing.JLabel();
@@ -250,15 +249,13 @@ public class IfrFinanceiro extends javax.swing.JInternalFrame {
                                                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                                             .addComponent(jLabel19)))
                                                     .addGap(18, 18, 18)
-                                                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                        .addComponent(jLabel9)
-                                                        .addComponent(jdateCalendario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))))
+                                                    .addComponent(jLabel9)))))
                                     .addGap(47, 47, 47)))
                             .addComponent(tffValor, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                 .addComponent(cmbFormaPag, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addComponent(jSeparator1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 494, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addContainerGap(209, Short.MAX_VALUE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel10)
@@ -307,8 +304,7 @@ public class IfrFinanceiro extends javax.swing.JInternalFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(tffDtFinal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(tffDtInicio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addComponent(jdateCalendario, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(tffDtInicio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
@@ -330,7 +326,7 @@ public class IfrFinanceiro extends javax.swing.JInternalFrame {
                 .addComponent(jLabel10)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 102, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 106, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnSalvar)
                     .addComponent(btnFechar))
@@ -428,8 +424,6 @@ public class IfrFinanceiro extends javax.swing.JInternalFrame {
 
         jTabbedPane1.addTab("Consulta", jPanel2);
 
-        jLabel11.setIcon(new javax.swing.ImageIcon("C:\\Projeto\\Pharmy\\Grafico.png")); // NOI18N
-
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
@@ -496,15 +490,15 @@ public class IfrFinanceiro extends javax.swing.JInternalFrame {
 
             FinanceiroDAO apDAO = new FinanceiroDAO();
 
-            Contrato ap = apDAO.consultarId(id);
+            //Contrato ap = apDAO.consultarId(id);
 
-            if (ap != null) {
-                tfdId.setText(String.valueOf(ap.getId_contrato()));
-                tfdIdSetor.setText(String.valueOf(ap.getId_setor()));
-                tffDtFinal.setText(String.valueOf(ap.getSal_ant()));
-                tffValor.setText(String.valueOf(ap.getSal_novo()));
-                tffDtUltimaAlt.setText(String.valueOf(ap.getDt_alteracao()));
-                taDescricao.setText(ap.getObs());
+            if (apDAO != null) {
+                //tfdId.setText(String.valueOf(apDAO.getId_contrato()));
+                //tfdIdSetor.setText(String.valueOf(ap.getId_setor()));
+                //tffDtFinal.setText(String.valueOf(ap.getSal_ant()));
+                //tffValor.setText(String.valueOf(ap.getSal_novo()));
+                //tffDtUltimaAlt.setText(String.valueOf(ap.getDt_alteracao()));
+                //taDescricao.setText(ap.getObs());
 
                 jTabbedPane1.setSelectedIndex(0);
             } else {
@@ -524,15 +518,15 @@ public class IfrFinanceiro extends javax.swing.JInternalFrame {
             JOptionPane.showMessageDialog(null, "Campos não preenchidos!");
             }*/
 
-        cont.setId_contrato(id);
-        cont.setId_setor(Integer.parseInt(tfdIdSetor.getText()));
-        cont.setSal_ant(BigDecimal.valueOf(Double.parseDouble(tffDtFinal.getText())));
-        cont.setSal_novo(BigDecimal.valueOf(Double.parseDouble(tffValor.getText())));
+        //cont.setId_contrato(id);
+        //cont.setId_setor(Integer.parseInt(tfdIdSetor.getText()));
+        //cont.setSal_ant(BigDecimal.valueOf(Double.parseDouble(tffDtFinal.getText())));
+        //cont.setSal_novo(BigDecimal.valueOf(Double.parseDouble(tffValor.getText())));
         /*
             Date dt_nasc = (Date) new SimpleDateFormat("dd/MM/yyyy").parse(tffDtUltimaAlt.getText());
             cont.setDt_alteracao(dt_nasc);
          */
-        cont.setObs(taDescricao.getText());
+        //cont.setObs(taDescricao.getText());
 
         // salvar
         FinanceiroDAO contDAO = new FinanceiroDAO();
@@ -543,19 +537,19 @@ public class IfrFinanceiro extends javax.swing.JInternalFrame {
 
             // limpar campos
             tfdId.setText(new FuncaoDAO().proximaId());
-            tfdIdSetor.setText("");
-            tfdSetor.setText("");
+            //tfdIdSetor.setText("");
+            //tfdSetor.setText("");
             tffDtFinal.setText("0.00");
             tffValor.setText("0.00");
-            tffDtUltimaAlt.setText(Formatting.getDataAtual());
-            taDescricao.setText("");
-            tfdFuncionario.setText("");
+            //tffDtUltimaAlt.setText(Formatting.getDataAtual());
+            //taDescricao.setText("");
+            //tfdFuncionario.setText("");
 
             btnFechar.requestFocus();
 
             // atualiza ID
             id = 0;
-            new FinanceiroDAO().popularTabela(tblContrato, tfdBusca.getText());
+            //new FinanceiroDAO().popularTabela(tblContrato, tfdBusca.getText());
             tfdId.setText(new ContratoDAO().proximaId());
         } else {
             JOptionPane.showMessageDialog(null, "Problemas ao salvar registro!");
@@ -608,7 +602,6 @@ public class IfrFinanceiro extends javax.swing.JInternalFrame {
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JTabbedPane jTabbedPane1;
-    private com.toedter.calendar.JDateChooser jdateCalendario;
     private javax.swing.JTextArea jtaObs;
     private javax.swing.JTable tblContrato;
     private javax.swing.JTextField tfdId;
@@ -622,10 +615,10 @@ public class IfrFinanceiro extends javax.swing.JInternalFrame {
     // End of variables declaration//GEN-END:variables
 
     void definirValor(String id, String nome, String setor) {
-        tfdIdFunc.setText(id);
-        tfdFuncionario.setText(nome);
-        tfdSetor.setText(setor);
+        //tfdIdFunc.setText(id);
+        //tfdFuncionario.setText(nome);
+        //tfdSetor.setText(setor);
         int aux = new SetorDAO().consultarSetor(setor);
-        tfdIdSetor.setText(aux + "");
+        //tfdIdSetor.setText(aux + "");
     }
 }

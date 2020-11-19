@@ -4,7 +4,7 @@ import lib.ConexaoBD;
 import java.util.HashMap;
 import java.util.Map;
 import javax.swing.JOptionPane;
-import lib.Grafico;
+//import lib.Grafico;
 import net.sf.jasperreports.engine.JasperCompileManager;
 import net.sf.jasperreports.engine.JasperFillManager;
 import net.sf.jasperreports.engine.JasperPrint;
@@ -28,7 +28,7 @@ public class JanelaPrincipalPharmy extends javax.swing.JFrame {
     public JanelaPrincipalPharmy() {
         initComponents();
         setExtendedState(MAXIMIZED_BOTH);
-        new Grafico().getGrafico();
+        //new Grafico().getGrafico();
         //setIcon();
     }
 

@@ -6,11 +6,11 @@
  */
 package lib;
 
-import org.jfree.chart.ChartFactory;                                        // captura todos os dados abaixo
-import org.jfree.chart.ChartUtils;                                          // utilitários dos gráficos (números ao redor)
-import org.jfree.chart.JFreeChart;                                          // cria o gráfico
-import org.jfree.chart.plot.PlotOrientation;                                // orientação das linhas
-import org.jfree.data.category.DefaultCategoryDataset;                      // colocar dados no gráfico
+//import org.jfree.chart.ChartFactory;                                        // captura todos os dados abaixo
+//import org.jfree.chart.ChartUtils;                                          // utilitários dos gráficos (números ao redor)
+//import org.jfree.chart.JFreeChart;                                          // cria o gráfico
+//import org.jfree.chart.plot.PlotOrientation;                                // orientação das linhas
+//import org.jfree.data.category.DefaultCategoryDataset;                      // colocar dados no gráfico
 
 import java.io.OutputStream;
 import java.io.FileOutputStream;
@@ -20,14 +20,14 @@ import java.io.IOException;
  *
  * @author Win10
  */
-public class Grafico {
+//public class Grafico {
 
-    private int a = 0;
-    private String b = "Maximo";
-    private String c = "Hora ";
+    //private int a = 0;
+    //private String b = "Maximo";
+    //private String c = "Hora ";
 
-    public void getGrafico(/*String[][] aux*/) {
-        DefaultCategoryDataset dataset = new DefaultCategoryDataset();
+    //public void getGrafico(/*String[][] aux*/) {
+        /*DefaultCategoryDataset dataset = new DefaultCategoryDataset();
 
         dataset.addValue(10, b, c + "1");
         dataset.addValue(20, b, c + "2");
@@ -41,7 +41,9 @@ public class Grafico {
             b = aux[i][1];
             c = aux[i][2];
             dataset.addValue(a, b, c);
-        }*/
+        }
+
+        
         //JFreeChart criarGrafico = ChartFactory.createAreaChart("Nome do gráfico","x dp grafico","y do grafico", DefaultCategoryDataset,PlotOrientation.VERTICAL,legenda,legenda,url)
         JFreeChart criarGrafico = ChartFactory.createAreaChart("Custos", "Dia", "Valor", dataset, PlotOrientation.VERTICAL, true, true, false);
 
@@ -55,5 +57,7 @@ public class Grafico {
 
         }
         System.out.println("Gráfico finalizado");
-    }
-}
+    } 
+}  */
+
+
