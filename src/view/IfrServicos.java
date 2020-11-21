@@ -81,7 +81,7 @@ public class IfrServicos extends javax.swing.JInternalFrame {
         jLabel25.setForeground(new java.awt.Color(255, 0, 51));
         jLabel25.setText("Campos com * são obrigatórios");
 
-        setTitle("Cadastro: Função");
+        setTitle("Cadastro: Serviços");
         setName(""); // NOI18N
 
         jLabel2.setText("Id");
@@ -188,18 +188,18 @@ public class IfrServicos extends javax.swing.JInternalFrame {
                                             .addComponent(tfdIdtpServico))
                                         .addGap(18, 18, 18)
                                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(jLabel6)
                                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                                .addComponent(tfdTpServico, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addGap(18, 18, 18)
-                                                .addComponent(btnBuscarTpServico))
-                                            .addComponent(jLabel6)))
+                                                .addComponent(tfdTpServico, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                                .addComponent(btnBuscarTpServico))))
                                     .addGroup(jPanel1Layout.createSequentialGroup()
                                         .addComponent(jLabel11)
                                         .addGap(33, 33, 33)
                                         .addComponent(rbAtivo)
                                         .addGap(18, 18, 18)
                                         .addComponent(rbInativo)))
-                                .addGap(0, 0, Short.MAX_VALUE)))
+                                .addGap(0, 36, Short.MAX_VALUE)))
                         .addGap(18, 18, 18))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -304,11 +304,11 @@ public class IfrServicos extends javax.swing.JInternalFrame {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(btnExcluir, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btnExcluir)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(btnEditar, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btnEditar, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(8, 8, 8))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 467, Short.MAX_VALUE)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 488, Short.MAX_VALUE)
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(jLabel1)
                         .addGap(18, 18, 18)
@@ -326,11 +326,11 @@ public class IfrServicos extends javax.swing.JInternalFrame {
                     .addComponent(tfdBusca, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnPesquisar))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 284, Short.MAX_VALUE)
-                .addGap(18, 18, 18)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 288, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, 18, Short.MAX_VALUE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(btnEditar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnExcluir, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(btnExcluir, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnEditar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
 
@@ -340,7 +340,7 @@ public class IfrServicos extends javax.swing.JInternalFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jTabbedPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 492, Short.MAX_VALUE)
+            .addComponent(jTabbedPane1)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -422,7 +422,7 @@ public class IfrServicos extends javax.swing.JInternalFrame {
         boolean continuar = true;
         Servicos servicos = new Servicos();
 
-        if (!tfdIdtpServico.getText().equals("") || !tfdDescricao.getText().equals("") || !tfdValor.getText().equals("")) {
+        if (tfdIdtpServico.getText().equals("") || tfdDescricao.getText().equals("") || tfdValor.getText().equals("")) {
             JOptionPane.showMessageDialog(null, "Preencha todos os campos obrigatórios (*)");
             continuar = false;
             tfdDescricao.requestFocus();
@@ -434,7 +434,7 @@ public class IfrServicos extends javax.swing.JInternalFrame {
             
             String id_tp_servicot = Formatting.removerFormatacao(tfdIdtpServico.getText());
             int id_tp_servico = Integer.parseInt(id_tp_servicot);
-            servicos.setId_servicos(id_tp_servico);
+            servicos.setId_tpservicos(id_tp_servico);
                        
             servicos.setDescricao(tfdDescricao.getText());
             
@@ -462,6 +462,7 @@ public class IfrServicos extends javax.swing.JInternalFrame {
                 tfdId.setText("");
                 tfdDescricao.setText("");
                 tfdValor.setText("");
+                tfdTpServico.setText("");
                 rbAtivo.setSelected(true);
 
                 tfdIdtpServico.requestFocus();
@@ -472,8 +473,6 @@ public class IfrServicos extends javax.swing.JInternalFrame {
             } else {
                 JOptionPane.showMessageDialog(null, "Problemas ao salvar registro!");
             }
-        } else {
-            JOptionPane.showMessageDialog(null, "Campos não preenchidos!");
         }
     }//GEN-LAST:event_btnSalvarActionPerformed
 
