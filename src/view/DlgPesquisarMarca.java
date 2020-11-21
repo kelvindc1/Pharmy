@@ -5,9 +5,7 @@
  */
 package view;
 
-import dao.ProdutoDAO;
-
-
+import dao.MarcaDAO;
 
 /**
  *
@@ -29,7 +27,7 @@ public class DlgPesquisarMarca extends javax.swing.JDialog {
         super(parent, modal);
         initComponents();
         produtoView = ifrTratamento;
-        new ProdutoDAO().popularTabela(tblItem2, "");
+        new MarcaDAO().popularTabela(tblItem2, "");
     }
 
     /**

@@ -206,7 +206,7 @@ public class FornecedorDAO implements IDAO_T<Fornecedor> {
                 lin++;
             }
         } catch (Exception e) {
-            System.out.println("problemas para popular tabela de BENEFÍCIOS");
+            System.out.println("problemas para popular tabela de Fornecedores");
             System.out.println(e);
         }
 
