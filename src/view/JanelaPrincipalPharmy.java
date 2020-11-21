@@ -1,5 +1,6 @@
 package view;
 
+import java.awt.Toolkit;
 import lib.ConexaoBD;
 import java.util.HashMap;
 import java.util.Map;
@@ -29,7 +30,8 @@ public class JanelaPrincipalPharmy extends javax.swing.JFrame {
         initComponents();
         setExtendedState(MAXIMIZED_BOTH);
         //new Grafico().getGrafico();
-        //setIcon();
+        
+        setIcon();
     }
 
     @SuppressWarnings("unchecked")
@@ -540,7 +542,8 @@ public class JanelaPrincipalPharmy extends javax.swing.JFrame {
     private javax.swing.JPopupMenu.Separator jSeparator1;
     // End of variables declaration//GEN-END:variables
 
-    /*private void setIcon() {
-        setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/images.system.branding/linkedin_banner_image_1.png")));
-    }*/
+    private void setIcon() {
+        setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("favicon.png")));
+    }
+
 }
