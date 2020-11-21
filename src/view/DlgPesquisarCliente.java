@@ -49,7 +49,7 @@ public class DlgPesquisarCliente extends javax.swing.JDialog {
         btnSelecionar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setTitle("Buscar: Função");
+        setTitle("Buscar: Cliente");
 
         jLabel1.setText("Busca");
 

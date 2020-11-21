@@ -320,7 +320,7 @@ public class PedidoDAO implements IDAO_T<Pedido> {
             }
 
             if (f.getForma_pagamento() != null) {
-                sql = sql + " AND id_forma_pag = " + f.getForma_pagamento();
+                sql = sql + " AND id_financeiro = " + f.getForma_pagamento();
             }
 
             if (f.getQtd_itens() != 0) {
