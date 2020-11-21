@@ -301,7 +301,7 @@ public class IfrTipoBeneficio extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btnSalvarActionPerformed
 
     private void btnPesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPesquisarActionPerformed
-        new PaisDAO().popularTabela(tblTpBeneficio, tfdBusca.getText());
+        new Tipo_BeneficioDAO().popularTabela(tblTpBeneficio, tfdBusca.getText());
     }//GEN-LAST:event_btnPesquisarActionPerformed
 
     private void btnEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarActionPerformed

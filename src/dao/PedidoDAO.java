@@ -75,7 +75,7 @@ public class PedidoDAO implements IDAO_T<Pedido> {
             return id;
 
         } catch (Exception e) {
-            System.out.println("Erro salvar produto = " + e);
+            System.out.println("Erro salvar pedido = " + e);
             return 0;
         }
     }
@@ -195,7 +195,7 @@ public class PedidoDAO implements IDAO_T<Pedido> {
 
             while (resultadoQ.next()) {
 
-                dadosTabela[lin][0] = resultadoQ.getInt("id_ped");
+                dadosTabela[lin][0] = resultadoQ.getInt("id_pedido");
                 dadosTabela[lin][1] = resultadoQ.getBigDecimal("valor_total");
                 dadosTabela[lin][2] = resultadoQ.getInt("qtd_total_itens");
                 dadosTabela[lin][3] = Formatting.ajustaDataDMA(resultadoQ.getDate("dt_pedido").toString());

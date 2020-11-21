@@ -819,6 +819,7 @@ public class IfrPedido extends javax.swing.JInternalFrame {
         if (tfdValor_unit.getText().equals("")
                 || tffDataPedido.getText().equals("  /  /    ")
                 || cmbFunc.getSelectedItem().equals("Selecione")
+                || tfdIdServico.getText().equals("")
                 || cmbProduto.getSelectedItem().equals("Selecione")) {
             JOptionPane.showMessageDialog(null, "Preencha todos os campos obrigatórios (*)");
             continuar = false;
@@ -838,8 +839,13 @@ public class IfrPedido extends javax.swing.JInternalFrame {
 
             item.setItem_quant((int) SpQuantidade.getValue());
             item.setValor_unit(produto.getPreco());
+                       
+            String id_servicot = Formatting.removerFormatacao(tfdIdServico.getText());
+            int id_servico = Integer.parseInt(id_servicot);
+            item.setId_servicos(id_servico);
+            
             pedido.adicionarItemPedido(item);
-
+            
             //Não deixar editar a célula
             //tblProduto.
             popularTableItens(pedido);
@@ -932,17 +938,19 @@ public class IfrPedido extends javax.swing.JInternalFrame {
             int id_financeiro = Integer.parseInt(id_financeirot);
             pedido.setId_financeiro(id_financeiro);
             
-            String id_servicot = Formatting.removerFormatacao(tfdIdServico.getText());
-            int id_servico = Integer.parseInt(id_servicot);
-            item.setId_servicos(id_servico);
-
             String id_clientet = Formatting.removerFormatacao(tfdIdCliente.getText());
             int id_cliente = Integer.parseInt(id_clientet);
             pedido.setId_cliente(id_cliente);
+                     
+            //String id_servicot = Formatting.removerFormatacao(tfdIdServico.getText());
+            //int id_servico = Integer.parseInt(id_servicot);
+            //item.setId_servicos(id_servico);
+            
 
             pedido.setId_pedido(id_ped);
 
             // salvar
+       
             PedidoDAO pDAO = new PedidoDAO();
             id_ped = pDAO.salvarPed(pedido);
 
@@ -976,6 +984,7 @@ public class IfrPedido extends javax.swing.JInternalFrame {
                     tfdIdFinanceiro.setText("");
                     tfdIdServico.setText("");
                     tfdIdCliente.setText("");
+                    tffDataPag.setText("");
 
                     //Remover itens do pedido feito
                     tblProduto.setModel(new DefaultTableModel());
