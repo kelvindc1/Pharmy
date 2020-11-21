@@ -736,7 +736,7 @@ public class IfrPedido extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btnFecharActionPerformed
 
     private void btnEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarActionPerformed
-        try {
+        /*try {
 
             String idString = String.valueOf(tblPedido.getValueAt(tblPedido.getSelectedRow(), 0));
 
@@ -778,7 +778,7 @@ public class IfrPedido extends javax.swing.JInternalFrame {
 
         } catch (ArrayIndexOutOfBoundsException e) {
             JOptionPane.showMessageDialog(null, "Selecione um registro para editar");
-        }
+        }*/
     }//GEN-LAST:event_btnEditarActionPerformed
 
     private void btnExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcluirActionPerformed

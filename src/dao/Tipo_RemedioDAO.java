@@ -154,9 +154,9 @@ public class Tipo_RemedioDAO implements IDAO_T<Tipo_Remedio> {
         try {
             resultadoQ = ConexaoBD.getInstance().getConnection().createStatement().executeQuery(""
                     + "SELECT count(*) "
-                    + "FROM tipo_remedio tp "
+                    + "FROM tipo_remedio "
                     + "WHERE "
-                    + "tp.descricao ILIKE '%" + criterio + "%'");
+                    + "DESCRICAO ILIKE '%" + criterio + "%'");
 
             resultadoQ.next();
 
@@ -172,9 +172,9 @@ public class Tipo_RemedioDAO implements IDAO_T<Tipo_Remedio> {
         try {
             resultadoQ = ConexaoBD.getInstance().getConnection().createStatement().executeQuery(""
                     + "SELECT * "
-                    + "FROM tipo_remedio tp "
+                    + "FROM tipo_remedio "
                     + "WHERE "
-                    + "tp.descricao ILIKE '%" + criterio + "%'");
+                    + "DESCRICAO ILIKE '%" + criterio + "%'");
 
             while (resultadoQ.next()) {
 

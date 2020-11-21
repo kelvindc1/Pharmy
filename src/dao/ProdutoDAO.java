@@ -134,7 +134,7 @@ public class ProdutoDAO  implements IDAO_T <Produto> {
                 produto.setGramatura(resultadoQ.getString("gramatura"));               
                 produto.setDescricao(resultadoQ.getString("descricao"));
                 produto.setId_forne(resultadoQ.getInt("id_forne"));
-                produto.setId_tpremedio(resultadoQ.getInt("gramatura"));              
+                produto.setId_tpremedio(resultadoQ.getInt("id_tpremedio"));              
                 produto.setPreco(resultadoQ.getBigDecimal("preco"));
                 produto.setTipo(resultadoQ.getString("tipo"));
                 produto.setSituacao(resultadoQ.getString("situacao"));
@@ -182,9 +182,9 @@ public class ProdutoDAO  implements IDAO_T <Produto> {
         try {
             resultadoQ = ConexaoBD.getInstance().getConnection().createStatement().executeQuery(""
                     + "SELECT * "
-                    + "FROM produto"
+                    + "FROM produto "
                     + "WHERE "
-                    + "NOME ILIKE '%" + criterio + "%' ORDER BY id_produto");
+                    + "nome ILIKE '%" + criterio + "%' ORDER BY id_produto");
 
             while (resultadoQ.next()) {
 
