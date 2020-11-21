@@ -5,6 +5,7 @@
  */
 package dao;
 
+import control.Pais;
 import control.Servicos;
 import java.awt.Color;
 import java.awt.Component;
@@ -26,8 +27,13 @@ public class ServicosDAO implements IDAO_T<Servicos> {
 
     private ResultSet resultadoQ = null;
 
-    @Override
+    //@Override
     public boolean salvar(Servicos o) {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
+        
+    //@Override
+    public int salvarS(Servicos o) {
         try {
             Statement st = ConexaoBD.getInstance().getConnection().createStatement();
             String sql = "";
@@ -43,7 +49,7 @@ public class ServicosDAO implements IDAO_T<Servicos> {
                         + "SET id_tpservicos = '" + o.getId_tpservicos() + "',"
                         + "descricao = '" + o.getDescricao() + "',"
                         + "valor = '" + o.getValor() + "',"
-                        + "situacao = '" + o.getSituacao() + "',"
+                        + "situacao = '" + o.getSituacao() + "' "
                         + "WHERE id_servicos = " + o.getId_servicos();
             }
 
@@ -51,12 +57,22 @@ public class ServicosDAO implements IDAO_T<Servicos> {
 
             int resultado = st.executeUpdate(sql);
 
-            return true;
-        } catch (Exception e) {
-            System.out.println("Erro salvar Serviço = " + e);
-            return false;
-        }
+            st.executeUpdate(sql, Statement.RETURN_GENERATED_KEYS);
+            resultadoQ = st.getGeneratedKeys();
+            
+            int id = 0;
+            if (resultadoQ.next()) {
+                id = resultadoQ.getInt(1);
+            }
 
+            System.out.println(id);
+
+            return id;
+                      
+        } catch (Exception e) {
+            System.out.println("Erro salvar Serviço = " + e); 
+            return 0;
+        }
     }
 
     @Override
@@ -148,7 +164,7 @@ public class ServicosDAO implements IDAO_T<Servicos> {
                     + "SELECT count(*) "
                     + "FROM servicos "
                     + "WHERE "
-                    + "NOME ILIKE '%" + criterio + "%'");
+                    + "DESCRICAO ILIKE '%" + criterio + "%'");
 
             resultadoQ.next();
 

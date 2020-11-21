@@ -9,7 +9,9 @@ import control.Funcao;
 import control.Servicos;
 import dao.FuncaoDAO;
 import dao.ServicosDAO;
+import java.math.BigDecimal;
 import javax.swing.JOptionPane;
+import lib.Formatting;
 
 /**
  *
@@ -140,6 +142,11 @@ public class IfrServicos extends javax.swing.JInternalFrame {
 
         btnBuscarTpServico.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/system/icons/seo-social-web-network-internet_340_icon-iconscom_61497.png"))); // NOI18N
         btnBuscarTpServico.setText("Buscar");
+        btnBuscarTpServico.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBuscarTpServicoActionPerformed(evt);
+            }
+        });
 
         jLabel8.setText("Valor");
 
@@ -301,7 +308,7 @@ public class IfrServicos extends javax.swing.JInternalFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(btnEditar, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(8, 8, 8))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 428, Short.MAX_VALUE)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 467, Short.MAX_VALUE)
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(jLabel1)
                         .addGap(18, 18, 18)
@@ -333,7 +340,7 @@ public class IfrServicos extends javax.swing.JInternalFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jTabbedPane1)
+            .addComponent(jTabbedPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 492, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -412,28 +419,40 @@ public class IfrServicos extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_rbInativoActionPerformed
 
     private void btnSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvarActionPerformed
+        boolean continuar = true;
         Servicos servicos = new Servicos();
 
         if (!tfdIdtpServico.getText().equals("") || !tfdDescricao.getText().equals("") || !tfdValor.getText().equals("")) {
-            
-            servicos.setId_servicos(id);
+            JOptionPane.showMessageDialog(null, "Preencha todos os campos obrigatórios (*)");
+            continuar = false;
+            tfdDescricao.requestFocus();
+        }
+        
+         if (continuar) {
 
-            tfdIdtpServico.setText(String.valueOf(servicos.getId_tpservicos()));
+            //tfdIdtpServico.setText(String.valueOf(servicos.getId_tpservicos()));
+            
+            String id_tp_servicot = Formatting.removerFormatacao(tfdIdtpServico.getText());
+            int id_tp_servico = Integer.parseInt(id_tp_servicot);
+            servicos.setId_servicos(id_tp_servico);
                        
             servicos.setDescricao(tfdDescricao.getText());
             
-            tfdValor.setText(String.valueOf(servicos.getValor()));
+            servicos.setValor(BigDecimal.valueOf(Double.parseDouble(tfdValor.getText())));
 
             if (rbAtivo.isSelected()) {
                 servicos.setSituacao("A");
             } else {
                 servicos.setSituacao("I");
             }
+            
+            servicos.setId_servicos(id);
 
             // salvar
             ServicosDAO servDAO = new ServicosDAO();
+            id = servDAO.salvarS(servicos);
 
-            if (servDAO.salvar(servicos)) {
+            if (id > 0) {
                 // exibir msg
                 JOptionPane.showMessageDialog(null, "Registro salvo com sucesso!");
 
@@ -442,6 +461,7 @@ public class IfrServicos extends javax.swing.JInternalFrame {
                 tfdIdtpServico.setText("");
                 tfdId.setText("");
                 tfdDescricao.setText("");
+                tfdValor.setText("");
                 rbAtivo.setSelected(true);
 
                 tfdIdtpServico.requestFocus();
@@ -456,6 +476,11 @@ public class IfrServicos extends javax.swing.JInternalFrame {
             JOptionPane.showMessageDialog(null, "Campos não preenchidos!");
         }
     }//GEN-LAST:event_btnSalvarActionPerformed
+
+    private void btnBuscarTpServicoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarTpServicoActionPerformed
+        DlgPesquisarTipoServicos dlgPesquisarTpServico = new DlgPesquisarTipoServicos(null, true, this);
+        dlgPesquisarTpServico.setVisible(true);
+    }//GEN-LAST:event_btnBuscarTpServicoActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -494,4 +519,10 @@ public class IfrServicos extends javax.swing.JInternalFrame {
     private javax.swing.JTextField tfdTpServico;
     private javax.swing.JTextField tfdValor;
     // End of variables declaration//GEN-END:variables
+     
+    void definirValorFuncaoTpServicos(String id, String nome) {
+        tfdIdtpServico.setText(id);
+        tfdTpServico.setText(nome);
+    }
+
 }
