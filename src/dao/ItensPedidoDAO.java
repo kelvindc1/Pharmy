@@ -195,7 +195,7 @@ public class ItensPedidoDAO implements IDAO_T<ItensPedido> {
 
         // cabecalho da tabela
         Object[] cabecalho = new Object[3];
-        cabecalho[0] = "Descrição";
+        cabecalho[0] = "Nome";
         cabecalho[1] = "Valor unitário";
         cabecalho[2] = "Quantidade";
 
@@ -221,14 +221,14 @@ public class ItensPedidoDAO implements IDAO_T<ItensPedido> {
         // efetua consulta na tabela
         try {
             resultadoQ = ConexaoBD.getInstance().getConnection().createStatement().executeQuery(""
-                    + "SELECT p.descricao, ip.valor_unitario, ip.qtd_item "
+                    + "SELECT p.nome, ip.valor_unit, ip.item_quant "
                     + "FROM itens_pedido ip, produto p "
                     + "WHERE ip.id_produto=p.id_produto AND id_pedido = " + id 
                     + "ORDER BY id_pedido" );
 
             while (resultadoQ.next()) {
 
-                dadosTabela[lin][0] = resultadoQ.getString("descricao");
+                dadosTabela[lin][0] = resultadoQ.getString("nome");
                 dadosTabela[lin][1] = resultadoQ.getBigDecimal("valor_unit");
                 dadosTabela[lin][2] = resultadoQ.getInt("item_quant");
 
