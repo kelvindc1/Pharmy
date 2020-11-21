@@ -141,7 +141,7 @@ public class ItensPedidoDAO implements IDAO_T<ItensPedido> {
             String sql = "SELECT * "
                     + "FROM itens_pedido i, produto p "
                     + "WHERE i.id_produto = p.id_produto  "
-                    + " and id_pedido = " + id
+                    + "AND id_pedido = " + id
                     + "ORDER BY id_itens_ped";
 
             System.out.println("SQL: " + sql);
