@@ -145,15 +145,7 @@ public class Pedido {
         this.qtd_total_itens = 0;
         this.itensPedido.forEach(p -> this.qtd_total_itens = p.getItem_quant() + this.qtd_total_itens);
     }
-    
-
-    /*public String toString() {
-        return "Pedido{" + "id_pedido=" + id_pedido + ", situacao=" 
-                + situacao + ", id_func=" + id_func + ", valor_total=" + valor_total 
-                + ", qtd_total_itens=" + qtd_total_itens + ", dt_pedido=" + dt_pedido + '}'; 
-                + ", id_pag=" + id_pag + ", itensPedido=" + itensPedido.toString() + '}';
-    }*/
-    
+       
     @Override
     public String toString() {
         return "Pedido{" + "id_pedido=" + id_pedido + ", id_cliente=" 
