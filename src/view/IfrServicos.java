@@ -6,7 +6,9 @@
 package view;
 
 import control.Funcao;
+import control.Servicos;
 import dao.FuncaoDAO;
+import dao.ServicosDAO;
 import javax.swing.JOptionPane;
 
 /**
@@ -22,9 +24,10 @@ public class IfrServicos extends javax.swing.JInternalFrame {
      */
     public IfrServicos() {
         initComponents();
-        new FuncaoDAO().popularTabela(tblFuncao, "");
-        rbAtivo.setSelected(true);
-        tfdId.setText(new FuncaoDAO().proximaId());
+        
+        new ServicosDAO().popularTabela(tbServicos, "");
+        
+        rbAtivo.setSelected(true);        
     }
 
     /**
@@ -38,27 +41,33 @@ public class IfrServicos extends javax.swing.JInternalFrame {
 
         jComboBox1 = new javax.swing.JComboBox<>();
         buttonGroup1 = new javax.swing.ButtonGroup();
+        jLabel25 = new javax.swing.JLabel();
         jTabbedPane1 = new javax.swing.JTabbedPane();
         jPanel1 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
         btnFechar = new javax.swing.JButton();
         tfdId = new javax.swing.JTextField();
-        tfdNome = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
-        JtaDescricao = new javax.swing.JTextArea();
-        jLabel6 = new javax.swing.JLabel();
+        tfdDescricao = new javax.swing.JTextArea();
         jLabel11 = new javax.swing.JLabel();
         rbAtivo = new javax.swing.JRadioButton();
         rbInativo = new javax.swing.JRadioButton();
         jLabel26 = new javax.swing.JLabel();
         jLabel27 = new javax.swing.JLabel();
         btnSalvar = new javax.swing.JButton();
+        jLabel7 = new javax.swing.JLabel();
+        tfdIdtpServico = new javax.swing.JTextField();
+        tfdTpServico = new javax.swing.JTextField();
+        btnBuscarTpServico = new javax.swing.JButton();
+        jLabel8 = new javax.swing.JLabel();
+        jLabel28 = new javax.swing.JLabel();
+        tfdValor = new javax.swing.JTextField();
+        jLabel6 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        tblFuncao = new javax.swing.JTable();
+        tbServicos = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
         tfdBusca = new javax.swing.JTextField();
         btnPesquisar = new javax.swing.JButton();
@@ -67,12 +76,13 @@ public class IfrServicos extends javax.swing.JInternalFrame {
 
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
+        jLabel25.setForeground(new java.awt.Color(255, 0, 51));
+        jLabel25.setText("Campos com * são obrigatórios");
+
         setTitle("Cadastro: Função");
         setName(""); // NOI18N
 
         jLabel2.setText("Id");
-
-        jLabel3.setText("Nome");
 
         btnFechar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/system/icons/iconeFechar.png"))); // NOI18N
         btnFechar.setText("Fechar");
@@ -89,12 +99,9 @@ public class IfrServicos extends javax.swing.JInternalFrame {
 
         jLabel4.setText("Descrição");
 
-        JtaDescricao.setColumns(20);
-        JtaDescricao.setRows(5);
-        jScrollPane2.setViewportView(JtaDescricao);
-
-        jLabel6.setForeground(new java.awt.Color(255, 0, 51));
-        jLabel6.setText("*");
+        tfdDescricao.setColumns(20);
+        tfdDescricao.setRows(5);
+        jScrollPane2.setViewportView(tfdDescricao);
 
         jLabel11.setText("Situação");
 
@@ -129,6 +136,19 @@ public class IfrServicos extends javax.swing.JInternalFrame {
             }
         });
 
+        jLabel7.setText("Id Tipo de Serviço");
+
+        btnBuscarTpServico.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/system/icons/seo-social-web-network-internet_340_icon-iconscom_61497.png"))); // NOI18N
+        btnBuscarTpServico.setText("Buscar");
+
+        jLabel8.setText("Valor");
+
+        jLabel28.setForeground(new java.awt.Color(255, 0, 51));
+        jLabel28.setText("Campos com * são obrigatórios");
+
+        jLabel6.setForeground(new java.awt.Color(255, 0, 51));
+        jLabel6.setText("*");
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -136,43 +156,57 @@ public class IfrServicos extends javax.swing.JInternalFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabel28)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btnSalvar, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(btnFechar, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(7, 7, 7))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jLabel3)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jLabel6))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jLabel4)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jLabel27)))
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(tfdNome)
                             .addComponent(jScrollPane2)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                                .addGap(0, 281, Short.MAX_VALUE)
-                                .addComponent(btnSalvar, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(btnFechar, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addComponent(jLabel2)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(jLabel5))
-                                    .addComponent(tfdId, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                                .addComponent(jLabel2)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                .addComponent(jLabel5))
+                                            .addComponent(tfdId, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addGap(35, 35, 35)
+                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                            .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                            .addComponent(tfdIdtpServico))
+                                        .addGap(18, 18, 18)
+                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                                .addComponent(tfdTpServico, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addGap(18, 18, 18)
+                                                .addComponent(btnBuscarTpServico))
+                                            .addComponent(jLabel6)))
                                     .addGroup(jPanel1Layout.createSequentialGroup()
                                         .addComponent(jLabel11)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(jLabel26)
-                                        .addGap(18, 18, 18)
+                                        .addGap(33, 33, 33)
                                         .addComponent(rbAtivo)
                                         .addGap(18, 18, 18)
                                         .addComponent(rbInativo)))
                                 .addGap(0, 0, Short.MAX_VALUE)))
-                        .addGap(18, 18, 18))))
+                        .addGap(18, 18, 18))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(jLabel4)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jLabel27))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(tfdValor, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jLabel26)))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -180,41 +214,42 @@ public class IfrServicos extends javax.swing.JInternalFrame {
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
-                    .addComponent(jLabel5))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(tfdId, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel3)
+                    .addComponent(jLabel5)
+                    .addComponent(jLabel7)
                     .addComponent(jLabel6))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(tfdNome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(tfdId, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(tfdIdtpServico, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(tfdTpServico, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnBuscarTpServico))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel4)
+                    .addComponent(jLabel27))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel8)
+                    .addComponent(tfdValor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel26))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel11)
                     .addComponent(rbAtivo)
-                    .addComponent(rbInativo)
-                    .addComponent(jLabel26))
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(18, 18, 18)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel4)
-                            .addComponent(jLabel27))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 136, Short.MAX_VALUE)
-                        .addGap(52, 52, 52))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(btnSalvar)
-                            .addComponent(btnFechar))
-                        .addContainerGap())))
+                    .addComponent(rbInativo))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 32, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnSalvar)
+                    .addComponent(btnFechar)
+                    .addComponent(jLabel28))
+                .addGap(29, 29, 29))
         );
 
         jTabbedPane1.addTab("Cadastro", jPanel1);
 
-        tblFuncao.setModel(new javax.swing.table.DefaultTableModel(
+        tbServicos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -225,7 +260,7 @@ public class IfrServicos extends javax.swing.JInternalFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jScrollPane1.setViewportView(tblFuncao);
+        jScrollPane1.setViewportView(tbServicos);
 
         jLabel1.setText("Busca");
 
@@ -266,7 +301,7 @@ public class IfrServicos extends javax.swing.JInternalFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(btnEditar, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(8, 8, 8))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 497, Short.MAX_VALUE)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 428, Short.MAX_VALUE)
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(jLabel1)
                         .addGap(18, 18, 18)
@@ -284,7 +319,7 @@ public class IfrServicos extends javax.swing.JInternalFrame {
                     .addComponent(tfdBusca, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnPesquisar))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 279, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 284, Short.MAX_VALUE)
                 .addGap(18, 18, 18)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(btnEditar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -313,21 +348,21 @@ public class IfrServicos extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btnFecharActionPerformed
 
     private void btnPesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPesquisarActionPerformed
-        new FuncaoDAO().popularTabela(tblFuncao, tfdBusca.getText());
+        new ServicosDAO().popularTabela(tbServicos, tfdBusca.getText());
     }//GEN-LAST:event_btnPesquisarActionPerformed
 
     private void btnExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcluirActionPerformed
         try {
-            String idString = String.valueOf(tblFuncao.getValueAt(tblFuncao.getSelectedRow(), 0));
+            String idString = String.valueOf(tbServicos.getValueAt(tbServicos.getSelectedRow(), 0));
 
             id = Integer.parseInt(idString);
 
-            FuncaoDAO apDAO = new FuncaoDAO();
+            ServicosDAO sDAO = new ServicosDAO();
 
             if (JOptionPane.showConfirmDialog(null, "Deseja realmente excluir?") == JOptionPane.OK_OPTION) {
-                if (apDAO.excluir(id)) {
+                if (sDAO.excluir(id)) {
                     JOptionPane.showMessageDialog(null, "Registro excluído com sucesso!");
-                    new FuncaoDAO().popularTabela(tblFuncao, tfdBusca.getText());
+                    new ServicosDAO().popularTabela(tbServicos, tfdBusca.getText());
                 } else {
                     JOptionPane.showMessageDialog(null, "Problemas ao excluir registro!");
                 }
@@ -339,19 +374,21 @@ public class IfrServicos extends javax.swing.JInternalFrame {
 
     private void btnEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarActionPerformed
         try {
-            String idString = String.valueOf(tblFuncao.getValueAt(tblFuncao.getSelectedRow(), 0));
+            String idString = String.valueOf(tbServicos.getValueAt(tbServicos.getSelectedRow(), 0));
 
             id = Integer.parseInt(idString);
 
-            FuncaoDAO apDAO = new FuncaoDAO();
+            ServicosDAO sDAO = new ServicosDAO();
 
-            Funcao ap = apDAO.consultarId(id);
+            Servicos s = sDAO.consultarId(id);
 
-            if (ap != null) {
-                tfdId.setText(String.valueOf(ap.getId_funcao()));
-                tfdNome.setText(ap.getNome());
-                JtaDescricao.setText(ap.getDescricao());
-                if (ap.getSituacao().equals("A")) {
+            if (s != null) {
+                tfdId.setText(String.valueOf(s.getId_servicos()));
+                tfdIdtpServico.setText(String.valueOf(s.getId_tpservicos()));
+                tfdDescricao.setText(s.getDescricao());
+                tfdValor.setText(s.getValor().toString());
+                
+                if (s.getSituacao().equals("A")) {
                     rbAtivo.setSelected(true);
                 } else {
                     rbInativo.setSelected(true);
@@ -375,50 +412,54 @@ public class IfrServicos extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_rbInativoActionPerformed
 
     private void btnSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvarActionPerformed
-        Funcao funcao = new Funcao();
+        Servicos servicos = new Servicos();
 
-        if (!tfdNome.getText().equals("") && !JtaDescricao.getText().equals("")) {
-            funcao.setId_funcao(id);
-            funcao.setNome(tfdNome.getText());
-            funcao.setDescricao(JtaDescricao.getText());
+        if (!tfdIdtpServico.getText().equals("") || !tfdDescricao.getText().equals("") || !tfdValor.getText().equals("")) {
+            
+            servicos.setId_servicos(id);
+
+            tfdIdtpServico.setText(String.valueOf(servicos.getId_tpservicos()));
+                       
+            servicos.setDescricao(tfdDescricao.getText());
+            
+            tfdValor.setText(String.valueOf(servicos.getValor()));
 
             if (rbAtivo.isSelected()) {
-                funcao.setSituacao("A");
+                servicos.setSituacao("A");
             } else {
-                funcao.setSituacao("I");
+                servicos.setSituacao("I");
             }
 
             // salvar
-            FuncaoDAO funcaDAO = new FuncaoDAO();
+            ServicosDAO servDAO = new ServicosDAO();
 
-            if (funcaDAO.salvar(funcao)) {
+            if (servDAO.salvar(servicos)) {
                 // exibir msg
                 JOptionPane.showMessageDialog(null, "Registro salvo com sucesso!");
 
                 // limpar campos
-                tfdNome.setText("");
-                tfdId.setText(new FuncaoDAO().proximaId());
-                JtaDescricao.setText("");
+                tfdDescricao.setText("");
+                tfdIdtpServico.setText("");
+                tfdId.setText("");
+                tfdDescricao.setText("");
                 rbAtivo.setSelected(true);
 
-                btnFechar.requestFocus();
+                tfdIdtpServico.requestFocus();
 
                 // atualiza ID
                 id = 0;
-                new FuncaoDAO().popularTabela(tblFuncao, tfdBusca.getText());
-                tfdId.setText(new FuncaoDAO().proximaId());
+                
             } else {
                 JOptionPane.showMessageDialog(null, "Problemas ao salvar registro!");
             }
         } else {
             JOptionPane.showMessageDialog(null, "Campos não preenchidos!");
         }
-
     }//GEN-LAST:event_btnSalvarActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTextArea JtaDescricao;
+    private javax.swing.JButton btnBuscarTpServico;
     private javax.swing.JButton btnEditar;
     private javax.swing.JButton btnExcluir;
     private javax.swing.JButton btnFechar;
@@ -429,12 +470,15 @@ public class IfrServicos extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel25;
     private javax.swing.JLabel jLabel26;
     private javax.swing.JLabel jLabel27;
-    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel28;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
@@ -442,9 +486,12 @@ public class IfrServicos extends javax.swing.JInternalFrame {
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JRadioButton rbAtivo;
     private javax.swing.JRadioButton rbInativo;
-    private javax.swing.JTable tblFuncao;
+    private javax.swing.JTable tbServicos;
     private javax.swing.JTextField tfdBusca;
+    private javax.swing.JTextArea tfdDescricao;
     private javax.swing.JTextField tfdId;
-    private javax.swing.JTextField tfdNome;
+    private javax.swing.JTextField tfdIdtpServico;
+    private javax.swing.JTextField tfdTpServico;
+    private javax.swing.JTextField tfdValor;
     // End of variables declaration//GEN-END:variables
 }

@@ -40,13 +40,12 @@ public class JanelaPrincipalPharmy extends javax.swing.JFrame {
         jDesktopPane1 = new javax.swing.JDesktopPane();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
+        jMenuItem21 = new javax.swing.JMenuItem();
         jMenuItem22 = new javax.swing.JMenuItem();
         jMenuItem6 = new javax.swing.JMenuItem();
-        jMenuItem2 = new javax.swing.JMenuItem();
         jMenuItem3 = new javax.swing.JMenuItem();
-        jMenuItem21 = new javax.swing.JMenuItem();
-        jMenuItem7 = new javax.swing.JMenuItem();
         jMenuItem23 = new javax.swing.JMenuItem();
+        jMenuItem7 = new javax.swing.JMenuItem();
         jSeparator1 = new javax.swing.JPopupMenu.Separator();
         jMenuItem18 = new javax.swing.JMenuItem();
         jMenuItem14 = new javax.swing.JMenuItem();
@@ -56,8 +55,8 @@ public class JanelaPrincipalPharmy extends javax.swing.JFrame {
         jMenuItem20 = new javax.swing.JMenuItem();
         jMenuItem1 = new javax.swing.JMenuItem();
         jMenuItem12 = new javax.swing.JMenuItem();
-        jMenuItem5 = new javax.swing.JMenuItem();
         jMenuItem19 = new javax.swing.JMenuItem();
+        jMenuItem29 = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
         jMenuItem4 = new javax.swing.JMenuItem();
         jMenu4 = new javax.swing.JMenu();
@@ -108,6 +107,14 @@ public class JanelaPrincipalPharmy extends javax.swing.JFrame {
             }
         });
 
+        jMenuItem21.setText("Benefícios");
+        jMenuItem21.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem21ActionPerformed(evt);
+            }
+        });
+        jMenu1.add(jMenuItem21);
+
         jMenuItem22.setText("Contrato");
         jMenuItem22.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -124,14 +131,6 @@ public class JanelaPrincipalPharmy extends javax.swing.JFrame {
         });
         jMenu1.add(jMenuItem6);
 
-        jMenuItem2.setText("Produto");
-        jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem2ActionPerformed(evt);
-            }
-        });
-        jMenu1.add(jMenuItem2);
-
         jMenuItem3.setText("Fornecedor");
         jMenuItem3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -140,13 +139,13 @@ public class JanelaPrincipalPharmy extends javax.swing.JFrame {
         });
         jMenu1.add(jMenuItem3);
 
-        jMenuItem21.setText("Benefícios");
-        jMenuItem21.addActionListener(new java.awt.event.ActionListener() {
+        jMenuItem23.setText("Produto");
+        jMenuItem23.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem21ActionPerformed(evt);
+                jMenuItem23ActionPerformed(evt);
             }
         });
-        jMenu1.add(jMenuItem21);
+        jMenu1.add(jMenuItem23);
 
         jMenuItem7.setText("Funcionário");
         jMenuItem7.addActionListener(new java.awt.event.ActionListener() {
@@ -155,14 +154,6 @@ public class JanelaPrincipalPharmy extends javax.swing.JFrame {
             }
         });
         jMenu1.add(jMenuItem7);
-
-        jMenuItem23.setText("Produto");
-        jMenuItem23.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem23ActionPerformed(evt);
-            }
-        });
-        jMenu1.add(jMenuItem23);
         jMenu1.add(jSeparator1);
 
         jMenuItem18.setText("Cargo");
@@ -229,14 +220,6 @@ public class JanelaPrincipalPharmy extends javax.swing.JFrame {
         });
         jMenu1.add(jMenuItem12);
 
-        jMenuItem5.setText("Tipo de Benefício");
-        jMenuItem5.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem5ActionPerformed(evt);
-            }
-        });
-        jMenu1.add(jMenuItem5);
-
         jMenuItem19.setText("Setor");
         jMenuItem19.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -244,6 +227,14 @@ public class JanelaPrincipalPharmy extends javax.swing.JFrame {
             }
         });
         jMenu1.add(jMenuItem19);
+
+        jMenuItem29.setText("Servicos");
+        jMenuItem29.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem29ActionPerformed(evt);
+            }
+        });
+        jMenu1.add(jMenuItem29);
 
         jMenuBar1.add(jMenu1);
 
@@ -335,12 +326,6 @@ public class JanelaPrincipalPharmy extends javax.swing.JFrame {
     private void jMenu1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenu1ActionPerformed
 
     }//GEN-LAST:event_jMenu1ActionPerformed
-
-    private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
-        IfrProduto ifrProduto = new IfrProduto();
-        jDesktopPane1.add(ifrProduto);
-        ifrProduto.setVisible(true);
-    }//GEN-LAST:event_jMenuItem2ActionPerformed
 
     private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
         //IfrFornecedor ifrFornecedor = new IfrFornecedor();
@@ -493,12 +478,6 @@ public class JanelaPrincipalPharmy extends javax.swing.JFrame {
         ifrBeneficio.setVisible(true);
     }//GEN-LAST:event_jMenuItem21ActionPerformed
 
-    private void jMenuItem5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem5ActionPerformed
-        IfrTipoBeneficio ifrTipoBeneficio = new IfrTipoBeneficio();
-        jDesktopPane1.add(ifrTipoBeneficio);
-        ifrTipoBeneficio.setVisible(true);
-    }//GEN-LAST:event_jMenuItem5ActionPerformed
-
     private void jMenuItem22ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem22ActionPerformed
         IfrContrato ifrContrato = new IfrContrato();
         jDesktopPane1.add(ifrContrato);
@@ -511,6 +490,12 @@ public class JanelaPrincipalPharmy extends javax.swing.JFrame {
         ifrProduto.setVisible(true);
 
     }//GEN-LAST:event_jMenuItem23ActionPerformed
+
+    private void jMenuItem29ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem29ActionPerformed
+        IfrServicos ifrServicos = new IfrServicos();
+        jDesktopPane1.add(ifrServicos);
+        ifrServicos.setVisible(true);
+    }//GEN-LAST:event_jMenuItem29ActionPerformed
 
     public static void main(String args[]) {
 
@@ -541,14 +526,13 @@ public class JanelaPrincipalPharmy extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem17;
     private javax.swing.JMenuItem jMenuItem18;
     private javax.swing.JMenuItem jMenuItem19;
-    private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem20;
     private javax.swing.JMenuItem jMenuItem21;
     private javax.swing.JMenuItem jMenuItem22;
     private javax.swing.JMenuItem jMenuItem23;
+    private javax.swing.JMenuItem jMenuItem29;
     private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItem4;
-    private javax.swing.JMenuItem jMenuItem5;
     private javax.swing.JMenuItem jMenuItem6;
     private javax.swing.JMenuItem jMenuItem7;
     private javax.swing.JMenuItem jMenuItem8;
