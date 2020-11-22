@@ -1,4 +1,3 @@
-
 package control;
 
 import java.math.BigDecimal;
@@ -11,7 +10,7 @@ import java.util.List;
  * @author kelvin.costa
  */
 public class Pedido {
-    
+
     private int id_pedido;
     private int id_cliente;
     private int id_func;
@@ -33,7 +32,6 @@ public class Pedido {
         this.id_financeiro = id_financeiro;
         this.situacao = situacao;
     }*/
-
     public int getId_pedido() {
         return id_pedido;
     }
@@ -97,7 +95,7 @@ public class Pedido {
     public void setSituacao(String situacao) {
         this.situacao = situacao;
     }
-    
+
     public int getQtd_total_itens() {
         return qtd_total_itens;
     }
@@ -105,7 +103,7 @@ public class Pedido {
     public void setQtd_total_itens(int qtd_total_itens) {
         this.qtd_total_itens = qtd_total_itens;
     }
-    
+
     public List<ItensPedido> getItensPedido() {
         return itensPedido;
     }
@@ -131,28 +129,27 @@ public class Pedido {
     public int tamanhoListItens() {
         return this.itensPedido.size();
     }
-        
+
     public void calcularValorTotal() {
         this.valor_total = BigDecimal.valueOf((double) 0);
-       
-        //this.itensPedido.forEach(p -> this.valor_total = this.valor_total + p.getValor_unit().multiply(p.getItem_quant()));
-        
-        //this.itensPedido.forEach(p -> this.valor_total = this.valor_total + p.getValor_unit() * p.getItem_quant());
-        
+
+        this.itensPedido.forEach(p -> {
+            this.valor_total = this.valor_total.add(p.getValor_unit().multiply(new BigDecimal(p.getItem_quant())));
+        });
     }
 
     public void calcularTotalItens() {
         this.qtd_total_itens = 0;
         this.itensPedido.forEach(p -> this.qtd_total_itens = p.getItem_quant() + this.qtd_total_itens);
     }
-       
+
     @Override
     public String toString() {
-        return "Pedido{" + "id_pedido=" + id_pedido + ", id_cliente=" 
+        return "Pedido{" + "id_pedido=" + id_pedido + ", id_cliente="
                 + id_cliente + ", id_func=" + id_func + ", dt_pedido=" + dt_pedido
-                + ", dt_pag=" + dt_pag + ", valor_total=" + valor_total   
+                + ", dt_pag=" + dt_pag + ", valor_total=" + valor_total
                 + ", id_financeiro=" + id_financeiro + ", situacao=" + situacao
-                + ", qtd_total_itens=" + qtd_total_itens 
-                + ", itensPedido=" + itensPedido.toString() + '}';              
-    } 
+                + ", qtd_total_itens=" + qtd_total_itens
+                + ", itensPedido=" + itensPedido.toString() + '}';
+    }
 }
