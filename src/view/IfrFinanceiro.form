@@ -559,7 +559,7 @@
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace min="-2" pref="104" max="-2" attributes="0"/>
-                      <Component id="jLabel11" min="-2" pref="556" max="-2" attributes="0"/>
+                      <Component id="Desenho" min="-2" pref="556" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                   </Group>
               </Group>
@@ -580,7 +580,7 @@
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Component id="bntGerar" min="-2" pref="71" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="jLabel11" min="-2" max="-2" attributes="0"/>
+                      <Component id="Desenho" min="-2" max="-2" attributes="0"/>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Component id="DesenhoGrafico" min="-2" pref="324" max="-2" attributes="0"/>
                       <EmptySpace max="32767" attributes="0"/>
@@ -655,7 +655,7 @@
                 <Property name="text" type="java.lang.String" value="Tipo"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JLabel" name="jLabel11">
+            <Component class="javax.swing.JLabel" name="Desenho">
               <Properties>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                   <Image iconType="2" name="C:\Projeto\Pharmy\Grafico.png"/>

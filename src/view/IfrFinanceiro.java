@@ -111,7 +111,7 @@ public class IfrFinanceiro extends javax.swing.JInternalFrame {
         rbGraficoSaida = new javax.swing.JRadioButton();
         rbGraficoEntrada = new javax.swing.JRadioButton();
         jLabel24 = new javax.swing.JLabel();
-        jLabel11 = new javax.swing.JLabel();
+        Desenho = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tblContrato = new javax.swing.JTable();
@@ -407,7 +407,7 @@ public class IfrFinanceiro extends javax.swing.JInternalFrame {
         jLabel24.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel24.setText("Tipo");
 
-        jLabel11.setIcon(new javax.swing.ImageIcon("C:\\Projeto\\Pharmy\\Grafico.png")); // NOI18N
+        Desenho.setIcon(new javax.swing.ImageIcon("C:\\Projeto\\Pharmy\\Grafico.png")); // NOI18N
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -440,7 +440,7 @@ public class IfrFinanceiro extends javax.swing.JInternalFrame {
                 .addContainerGap())
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addGap(104, 104, 104)
-                .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 556, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(Desenho, javax.swing.GroupLayout.PREFERRED_SIZE, 556, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
         jPanel3Layout.setVerticalGroup(
@@ -458,7 +458,7 @@ public class IfrFinanceiro extends javax.swing.JInternalFrame {
                 .addGap(18, 18, 18)
                 .addComponent(bntGerar, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel11)
+                .addComponent(Desenho)
                 .addGap(18, 18, 18)
                 .addComponent(DesenhoGrafico, javax.swing.GroupLayout.PREFERRED_SIZE, 324, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -854,7 +854,7 @@ public class IfrFinanceiro extends javax.swing.JInternalFrame {
             }
             System.out.println("----------------------");
             new Grafico().getGrafico(x, tffDt3.getText(), tffDt4.getText(), "Entrada");
-            DesenhoGrafico.setIcon(new javax.swing.ImageIcon("C:\\Projeto\\Pharmy\\Grafico.png"));
+            Desenho.setIcon(new javax.swing.ImageIcon("C:\\Projeto\\Pharmy\\Grafico.png"));
         } else {
             //new FinanceiroDAO().consultar("S", tffDt3.getText(), tffDt4.getText());
             x = new FinanceiroDAO().consultar("S", tffDt3.getText(), tffDt4.getText());
@@ -866,7 +866,7 @@ public class IfrFinanceiro extends javax.swing.JInternalFrame {
             }
             System.out.println("----------------------");
             new Grafico().getGrafico(x, tffDt3.getText(), tffDt4.getText(), "Saída");
-            DesenhoGrafico.setIcon(new javax.swing.ImageIcon("C:\\Projeto\\Pharmy\\Grafico.png"));
+            Desenho.setIcon(new javax.swing.ImageIcon("C:\\Projeto\\Pharmy\\Grafico.png"));
         }
         //-----------TESTE-----------
 
@@ -875,6 +875,7 @@ public class IfrFinanceiro extends javax.swing.JInternalFrame {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel Desenho;
     private javax.swing.JLabel DesenhoGrafico;
     private javax.swing.JButton bntGerar;
     private javax.swing.JButton btnEditar;
@@ -890,7 +891,6 @@ public class IfrFinanceiro extends javax.swing.JInternalFrame {
     private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
-    private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
