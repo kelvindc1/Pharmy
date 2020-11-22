@@ -5,18 +5,19 @@
  */
 package dao;
 
-import control.Banco;
 import control.Financeiro;
 import java.awt.Color;
 import java.awt.Component;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.Date;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumn;
 import lib.ConexaoBD;
+import lib.Formatting;
 import lib.IDAO_T;
 
 /**
@@ -32,28 +33,54 @@ public class FinanceiroDAO implements IDAO_T<Financeiro> {
         try {
             Statement st = ConexaoBD.getInstance().getConnection().createStatement();
             String sql = "";
-            if (o.getId_financeiro() == 0) {
-                sql = "INSERT INTO financeiro VALUES ("
-                        + "DEFAULT, "
-                        + "'" + o.getTp_conta()+ "',"
-                        + "'" + o.getValor() + "',"
-                        + "'" + o.getDt_inicio() + "',"
-                        + "'" + o.getDt_inicio() + "',"
-                        + "'" + o.getDt_pag() + "',"
-                        + "'" + o.getObs()+ "',"
-                        + "'" + o.getMulta() + "',"
-                        + "'" + o.getId_forma_pag() + "')";
+            if (o.getDt_pag() == null) {
+                if (o.getId_financeiro() == 0) {
+                    sql = "INSERT INTO financeiro VALUES ("
+                            + "DEFAULT, "
+                            + "'" + o.getTp_conta() + "',"
+                            + "'" + o.getValor() + "',"
+                            + "'" + o.getDt_inicio() + "',"
+                            + "'" + o.getDt_final() + "',"
+                            + " null , "
+                            + "'" + o.getObs() + "',"
+                            + "'" + o.getMulta() + "',"
+                            + "'" + o.getId_forma_pag() + "')";
+                } else {
+                    sql = "UPDATE financeiro "
+                            + "SET tp_conta = '" + o.getTp_conta() + "', "
+                            + "valor = '" + o.getValor() + "', "
+                            + "dt_inicio = '" + o.getDt_inicio() + "', "
+                            + "dt_final = '" + o.getDt_final() + "', "
+                            + "dt_pag = null , "
+                            + "obs = '" + o.getObs() + "', "
+                            + "multa = '" + o.getMulta() + "', "
+                            + "id_forma_pag = '" + o.getId_forma_pag() + "' "
+                            + "WHERE id_financeiro = " + o.getId_financeiro();
+                }
             } else {
-                sql = "UPDATE financeiro "
-                        + "SET tp_conta = '" + o.getTp_conta() + "', "
-                        + "valor = '"+o.getValor() +"', "
-                        + "dt_inicio = '"+o.getDt_inicio() +"', "
-                        + "dt_final = '"+o.getDt_final() +"', "
-                        + "dt_pag = '"+o.getDt_pag() +"', "
-                        + "obs = '"+o.getObs() +"', "
-                        + "multa = '"+o.getMulta() +"', "
-                        + "id_forma_pag = '"+o.getId_forma_pag() +"' "
-                        + "WHERE id_financeiro = " + o.getId_financeiro();
+                if (o.getId_financeiro() == 0) {
+                    sql = "INSERT INTO financeiro VALUES ("
+                            + "DEFAULT, "
+                            + "'" + o.getTp_conta() + "',"
+                            + "'" + o.getValor() + "',"
+                            + "'" + o.getDt_inicio() + "',"
+                            + "'" + o.getDt_final() + "',"
+                            + "'" + o.getDt_pag() + "',"
+                            + "'" + o.getObs() + "',"
+                            + "'" + o.getMulta() + "',"
+                            + "'" + o.getId_forma_pag() + "')";
+                } else {
+                    sql = "UPDATE financeiro "
+                            + "SET tp_conta = '" + o.getTp_conta() + "', "
+                            + "valor = '" + o.getValor() + "', "
+                            + "dt_inicio = '" + o.getDt_inicio() + "', "
+                            + "dt_final = '" + o.getDt_final() + "', "
+                            + "dt_pag = '" + o.getDt_pag() + "', "
+                            + "obs = '" + o.getObs() + "', "
+                            + "multa = '" + o.getMulta() + "', "
+                            + "id_forma_pag = '" + o.getId_forma_pag() + "' "
+                            + "WHERE id_financeiro = " + o.getId_financeiro();
+                }
             }
 
             System.out.println("SQL: " + sql);
@@ -98,9 +125,35 @@ public class FinanceiroDAO implements IDAO_T<Financeiro> {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
-    @Override
-    public ArrayList<Financeiro> consultar(String criterio) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public ArrayList<Financeiro> consultar(String tp, String dt1, String dt2) {
+        Financeiro finaceiro = null;
+        ArrayList<Financeiro> x = new ArrayList();
+        try {
+            Statement st = ConexaoBD.getInstance().getConnection().createStatement();
+
+            String sql = "SELECT (f.valor+f.multa) AS valor ,f.dt_inicio "
+                    + "FROM financeiro f "
+                    + "WHERE f.tp_conta = '"+tp+"' AND f.dt_inicio BETWEEN '"+dt1+"' AND '"+dt2+"'";
+
+            System.out.println("SQL: " + sql);
+
+            // executa consulta
+            resultadoQ = st.executeQuery(sql);
+
+            // avanca ResultSet
+            if (resultadoQ.next()) {
+                finaceiro = new Financeiro();
+
+                // obtem dados do RS
+                finaceiro.setValor(resultadoQ.getBigDecimal("valor"));
+                finaceiro.setDt_inicio(resultadoQ.getDate("dt_inicio"));
+                x.add(finaceiro);
+            }
+
+        } catch (Exception e) {
+            System.out.println("Erro ao consultar ArrayList: " + e);
+        }
+        return x;
     }
 
     @Override
@@ -126,7 +179,8 @@ public class FinanceiroDAO implements IDAO_T<Financeiro> {
                 // obtem dados do RS
                 finaceiro.setId_financeiro(resultadoQ.getInt("id_financeiro"));
                 finaceiro.setTp_conta(resultadoQ.getString("tp_conta"));
-                finaceiro.setDt_inicio(resultadoQ.getDate("dt_inico"));
+                finaceiro.setValor(resultadoQ.getBigDecimal("valor"));
+                finaceiro.setDt_inicio(resultadoQ.getDate("dt_inicio"));
                 finaceiro.setDt_final(resultadoQ.getDate("dt_final"));
                 finaceiro.setDt_pag(resultadoQ.getDate("dt_pag"));
                 finaceiro.setObs(resultadoQ.getString("obs"));
@@ -141,40 +195,78 @@ public class FinanceiroDAO implements IDAO_T<Financeiro> {
         return finaceiro;
     }
 
-    public void popularTabela(JTable tabela, String data1, String data2) {
+    public void popularTabela(JTable tabela, String data1, String data2, String criterio, String tp) {
 // dados da tabela
         Object[][] dadosTabela = null;
+        String dt1 = "01/01/1900";
+        String dt2 = "31/12/2080";
 
         // cabecalho da tabela
-        Object[] cabecalho = new Object[8];
+        Object[] cabecalho = new Object[9];
         cabecalho[0] = "Id";
-        cabecalho[1] = "Tipo de Conta";
-        cabecalho[2] = "Data Início";
-        cabecalho[3] = "Data Final";
-        cabecalho[4] = "Data Pagamento";
-        cabecalho[5] = "Observação";
-        cabecalho[6] = "Multa";
-        cabecalho[7] = "Forma de Pagamento";
-        
-        
-        if (data1.equals("")){
-            data1 = "01/01/1910";
-        }
-        if (data2.equals("")){
-            data2 = "31/12/2080";
-        }
+        cabecalho[1] = "Título";
+        cabecalho[2] = "Tipo de Conta";
+        cabecalho[3] = "Valor";
+        cabecalho[4] = "Multa";
+        cabecalho[5] = "Forma de Pagamento";
+        cabecalho[6] = "Data Início";
+        cabecalho[7] = "Data Final";
+        cabecalho[8] = "Data Pagamento";
 
         // cria matriz de acordo com nº de registros da tabela
         try {
-            resultadoQ = ConexaoBD.getInstance().getConnection().createStatement().executeQuery(""
-                    + "SELECT count(*) "
-                    + "FROM financeiro f "
-                    + "WHERE "
-                    + "f.dt_inicio BETWEEN '"+data1+"' AND '"+data2+"'");
 
+            System.out.println("---------00");
+
+            if (Formatting.removerFormatacao(data1).equals("") && Formatting.removerFormatacao(data2).equals("")) {
+
+                System.out.println("---------01");
+
+                if (tp.equals("")) {
+
+                    System.out.println("---------02");
+
+                    resultadoQ = ConexaoBD.getInstance().getConnection().createStatement().executeQuery(""
+                            + "SELECT count(*) "
+                            + "FROM financeiro f "
+                            + "WHERE f.obs ILIKE '%" + criterio + "%' AND "
+                            + "f.dt_inicio BETWEEN '" + dt1 + "' AND '" + dt2 + "'");
+                } else {
+
+                    System.out.println("---------03");
+
+                    resultadoQ = ConexaoBD.getInstance().getConnection().createStatement().executeQuery(""
+                            + "SELECT count(*) "
+                            + "FROM financeiro f "
+                            + "WHERE f.obs ILIKE '%" + criterio + "%' AND f.tp_conta = '" + tp + "' AND "
+                            + "f.dt_inicio BETWEEN '" + dt1 + "' AND '" + dt2 + "'");
+                }
+
+            } else {
+
+                System.out.println("---------04");
+
+                if (tp.equals("")) {
+                    System.out.println("---------05");
+                    resultadoQ = ConexaoBD.getInstance().getConnection().createStatement().executeQuery(""
+                            + "SELECT count(*) "
+                            + "FROM financeiro f "
+                            + "WHERE f.obs ILIKE '%" + criterio + "%' AND "
+                            + "f.dt_inicio BETWEEN '" + data1 + "' AND '" + data2 + "'");
+
+                } else {
+                    System.out.println("---------06");
+                    resultadoQ = ConexaoBD.getInstance().getConnection().createStatement().executeQuery(""
+                            + "SELECT count(*) "
+                            + "FROM financeiro f "
+                            + "WHERE f.obs ILIKE '%" + criterio + "%' AND f.tp_conta = '" + tp + "' AND "
+                            + "f.dt_inicio BETWEEN '" + data1 + "' AND '" + data2 + "'");
+
+                }
+            }
             resultadoQ.next();
 
-            dadosTabela = new Object[resultadoQ.getInt(1)][8];
+            dadosTabela = new Object[resultadoQ.getInt(1)][9];
 
         } catch (Exception e) {
             System.out.println("Erro ao consultar de FINANCEIRO: " + e);
@@ -184,23 +276,72 @@ public class FinanceiroDAO implements IDAO_T<Financeiro> {
 
         // efetua consulta na tabela
         try {
-            resultadoQ = ConexaoBD.getInstance().getConnection().createStatement().executeQuery(""
-                    + "SELECT f.id_financeiro, f.tp_conta, f.dt_inicio, f.dt_final, f.dt_pag, f.obs, f.multa, fp.nome "
-                    + "FROM financeiro f, forma_pagamento fp "
-                    + "WHERE  "
-                    + "f.id_forma_pag = fp.id_forma_pag AND f.dt_inicio BETWEEN '"+data1+"' AND '"+data2+"' "
-                    + "ORDER BY f.id_financeiro ");
+            if (Formatting.removerFormatacao(data1).equals("") && Formatting.removerFormatacao(data2).equals("")) {
 
+                System.out.println("---------07");
+
+                if (tp.equals("")) {
+
+                    System.out.println("---------08");
+
+                    resultadoQ = ConexaoBD.getInstance().getConnection().createStatement().executeQuery(""
+                            + "SELECT f.id_financeiro, f.obs, f.tp_conta,f.valor, f.dt_pag, f.multa, fp.nome, f.dt_inicio, f.dt_final "
+                            + "FROM financeiro f, forma_pagamento fp "
+                            + "WHERE f.obs ILIKE '%" + criterio + "%' AND "
+                            + "f.id_forma_pag = fp.id_forma_pag AND f.dt_inicio BETWEEN '" + dt1 + "' AND '" + dt2 + "' "
+                            + "ORDER BY f.id_financeiro ");
+                } else {
+
+                    System.out.println("---------09");
+
+                    resultadoQ = ConexaoBD.getInstance().getConnection().createStatement().executeQuery(""
+                            + "SELECT f.id_financeiro, f.obs, f.tp_conta,f.valor, f.dt_pag, f.multa, fp.nome, f.dt_inicio, f.dt_final "
+                            + "FROM financeiro f, forma_pagamento fp "
+                            + "WHERE f.obs ILIKE '%" + criterio + "%' AND f.tp_conta = '" + tp + "' AND "
+                            + "f.id_forma_pag = fp.id_forma_pag AND f.dt_inicio BETWEEN '" + dt1 + "' AND '" + dt2 + "' "
+                            + "ORDER BY f.id_financeiro ");
+
+                }
+            } else {
+                System.out.println("---------10");
+                if (tp.equals("")) {
+                    System.out.println("---------11");
+                    resultadoQ = ConexaoBD.getInstance().getConnection().createStatement().executeQuery(""
+                            + "SELECT f.id_financeiro, f.obs, f.tp_conta,f.valor, f.dt_pag, f.multa, fp.nome, f.dt_inicio, f.dt_final "
+                            + "FROM financeiro f, forma_pagamento fp "
+                            + "WHERE f.obs ILIKE '%" + criterio + "%' AND "
+                            + "f.id_forma_pag = fp.id_forma_pag AND f.dt_inicio BETWEEN '" + data1 + "' AND '" + data2 + "' "
+                            + "ORDER BY f.id_financeiro ");
+                } else {
+                    System.out.println("---------12");
+                    resultadoQ = ConexaoBD.getInstance().getConnection().createStatement().executeQuery(""
+                            + "SELECT f.id_financeiro, f.obs, f.tp_conta,f.valor, f.dt_pag, f.multa, fp.nome, f.dt_inicio, f.dt_final "
+                            + "FROM financeiro f, forma_pagamento fp "
+                            + "WHERE f.obs ILIKE '%" + criterio + "%' AND f.tp_conta = '" + tp + "' AND "
+                            + "f.id_forma_pag = fp.id_forma_pag AND f.dt_inicio BETWEEN '" + data1 + "' AND '" + data2 + "' "
+                            + "ORDER BY f.id_financeiro ");
+                }
+                System.out.println("");
+                System.out.println("");
+                System.out.println("");
+            }
             while (resultadoQ.next()) {
-
                 dadosTabela[lin][0] = resultadoQ.getInt("id_financeiro");
-                dadosTabela[lin][1] = resultadoQ.getString("tp_conta");
-                dadosTabela[lin][2] = resultadoQ.getDate("dt_inicio");
-                dadosTabela[lin][3] = resultadoQ.getDate("td_final");
-                dadosTabela[lin][4] = resultadoQ.getDate("td_pag");
-                dadosTabela[lin][5] = resultadoQ.getString("obs");
-                dadosTabela[lin][6] = resultadoQ.getBigDecimal("multa");
-                dadosTabela[lin][7] = resultadoQ.getString("nome");
+                dadosTabela[lin][1] = resultadoQ.getString("obs");
+
+                if (resultadoQ.getString("tp_conta").equals("E")) {
+                    dadosTabela[lin][2] = "Entrada";
+                }
+                if (resultadoQ.getString("tp_conta").equals("S")) {
+                    dadosTabela[lin][2] = "Saída";
+                }
+                //dadosTabela[lin][2] = resultadoQ.getString("tp_conta");
+                dadosTabela[lin][3] = resultadoQ.getBigDecimal("valor");
+                dadosTabela[lin][4] = resultadoQ.getBigDecimal("multa");
+                dadosTabela[lin][5] = resultadoQ.getString("nome");
+                dadosTabela[lin][6] = Formatting.ajustaDataDMA(resultadoQ.getString("dt_inicio"));
+                dadosTabela[lin][7] = Formatting.ajustaDataDMA(resultadoQ.getString("dt_final"));
+                dadosTabela[lin][8] = Formatting.ajustaDataDMA(resultadoQ.getString("dt_pag"));
 
                 // caso a coluna precise exibir uma imagem
 //                if (resultadoQ.getBoolean("Situacao")) {
@@ -211,7 +352,7 @@ public class FinanceiroDAO implements IDAO_T<Financeiro> {
                 lin++;
             }
         } catch (Exception e) {
-            System.out.println("problemas para popular tabela de BANCO");
+            System.out.println("problemas para popular tabela de FINANCEIRO");
             System.out.println(e);
         }
 
@@ -293,6 +434,11 @@ public class FinanceiroDAO implements IDAO_T<Financeiro> {
             System.out.println("Erro ao achar próxima ID: " + e);
         }
         return resp;
+    }
+
+    @Override
+    public ArrayList<Financeiro> consultar(String criterio) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
 }
