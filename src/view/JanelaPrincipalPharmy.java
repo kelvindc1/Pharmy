@@ -28,7 +28,7 @@ public class JanelaPrincipalPharmy extends javax.swing.JFrame {
     public JanelaPrincipalPharmy() {
         initComponents();
         setExtendedState(MAXIMIZED_BOTH);
-        new Grafico().getGrafico();
+        //new Grafico().getGrafico();
         //setIcon();
     }
 

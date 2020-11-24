@@ -33,6 +33,7 @@ public class Grafico {
         //LANÇAMENTOS
         Data dt_inicio = new Data(inicio);
         Data dt_final = new Data(fim);
+        
         int cont = dt_final.compareTo(dt_inicio);
         System.out.println("cont ->"+cont);
         DefaultCategoryDataset dataset = new DefaultCategoryDataset();
@@ -52,6 +53,9 @@ public class Grafico {
         for (int i = 0; i < fin.size(); i++) {
             f = fin.get(i);
             dataset.addValue(f.getValor(),b,Formatting.ajustaDataDMA(f.getDt_inicio())) ;
+           
+            
+            
             System.out.println("VALOR -> "+f.getValor()+"\n"
                     + "DATA -> "+Formatting.ajustaDataDMA(f.getDt_inicio()));
         }

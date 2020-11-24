@@ -101,17 +101,6 @@ public class IfrFinanceiro extends javax.swing.JInternalFrame {
         tffValor = new javax.swing.JFormattedTextField();
         tffDtInicio = new javax.swing.JFormattedTextField();
         tffDtFinal = new javax.swing.JFormattedTextField();
-        jPanel3 = new javax.swing.JPanel();
-        DesenhoGrafico = new javax.swing.JLabel();
-        jLabel22 = new javax.swing.JLabel();
-        tffDt3 = new javax.swing.JFormattedTextField();
-        jLabel23 = new javax.swing.JLabel();
-        tffDt4 = new javax.swing.JFormattedTextField();
-        bntGerar = new javax.swing.JButton();
-        rbGraficoSaida = new javax.swing.JRadioButton();
-        rbGraficoEntrada = new javax.swing.JRadioButton();
-        jLabel24 = new javax.swing.JLabel();
-        Desenho = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tblContrato = new javax.swing.JTable();
@@ -129,9 +118,21 @@ public class IfrFinanceiro extends javax.swing.JInternalFrame {
         btnPesquisar1 = new javax.swing.JButton();
         tffDt1 = new javax.swing.JFormattedTextField();
         tffDt2 = new javax.swing.JFormattedTextField();
+        jPanel3 = new javax.swing.JPanel();
+        DesenhoGrafico = new javax.swing.JLabel();
+        jLabel22 = new javax.swing.JLabel();
+        tffDt3 = new javax.swing.JFormattedTextField();
+        jLabel23 = new javax.swing.JLabel();
+        tffDt4 = new javax.swing.JFormattedTextField();
+        bntGerar = new javax.swing.JButton();
+        rbGraficoSaida = new javax.swing.JRadioButton();
+        rbGraficoEntrada = new javax.swing.JRadioButton();
+        jLabel24 = new javax.swing.JLabel();
+        Desenho = new javax.swing.JLabel();
 
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
+        setClosable(true);
         setResizable(true);
         setTitle("Cadastro: Contrato");
         setName(""); // NOI18N
@@ -278,7 +279,7 @@ public class IfrFinanceiro extends javax.swing.JInternalFrame {
                                         .addComponent(jLabel15)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                         .addComponent(jLabel20)))
-                                .addGap(0, 89, Short.MAX_VALUE)))
+                                .addGap(0, 125, Short.MAX_VALUE)))
                         .addContainerGap())
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -380,91 +381,6 @@ public class IfrFinanceiro extends javax.swing.JInternalFrame {
         );
 
         jTabbedPane1.addTab("Cadastro", jPanel1);
-
-        jLabel22.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel22.setText("Data Inicio");
-
-        jLabel23.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel23.setText("até");
-
-        bntGerar.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        bntGerar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/system/icons/seo-social-web-network-internet_340_icon-iconscom_61497.png"))); // NOI18N
-        bntGerar.setText("Gerar");
-        bntGerar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                bntGerarActionPerformed(evt);
-            }
-        });
-
-        buttonGroup3.add(rbGraficoSaida);
-        rbGraficoSaida.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        rbGraficoSaida.setText("Saída");
-
-        buttonGroup3.add(rbGraficoEntrada);
-        rbGraficoEntrada.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        rbGraficoEntrada.setText("Entrada");
-
-        jLabel24.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel24.setText("Tipo");
-
-        Desenho.setIcon(new javax.swing.ImageIcon("C:\\Projeto\\Pharmy\\Grafico.png")); // NOI18N
-
-        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
-        jPanel3.setLayout(jPanel3Layout);
-        jPanel3Layout.setHorizontalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel3Layout.createSequentialGroup()
-                                .addGap(250, 250, 250)
-                                .addComponent(DesenhoGrafico, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanel3Layout.createSequentialGroup()
-                                .addContainerGap()
-                                .addComponent(jLabel22)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(tffDt3, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(30, 30, 30)
-                                .addComponent(jLabel23)
-                                .addGap(30, 30, 30)
-                                .addComponent(tffDt4, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(60, 60, 60)
-                                .addComponent(jLabel24)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(rbGraficoEntrada)
-                                .addGap(18, 18, 18)
-                                .addComponent(rbGraficoSaida)))
-                        .addGap(28, 28, 28))
-                    .addComponent(bntGerar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap())
-            .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGap(104, 104, 104)
-                .addComponent(Desenho, javax.swing.GroupLayout.PREFERRED_SIZE, 556, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
-        );
-        jPanel3Layout.setVerticalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel22)
-                    .addComponent(tffDt3, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel23)
-                    .addComponent(tffDt4, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel24)
-                    .addComponent(rbGraficoEntrada)
-                    .addComponent(rbGraficoSaida))
-                .addGap(18, 18, 18)
-                .addComponent(bntGerar, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(Desenho)
-                .addGap(18, 18, 18)
-                .addComponent(DesenhoGrafico, javax.swing.GroupLayout.PREFERRED_SIZE, 324, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-
-        jTabbedPane1.addTab("Gráfico", jPanel3);
 
         tblContrato.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -575,7 +491,7 @@ public class IfrFinanceiro extends javax.swing.JInternalFrame {
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(btnPesquisar1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(btnPesquisar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addContainerGap(28, Short.MAX_VALUE))))
+                        .addContainerGap(64, Short.MAX_VALUE))))
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(204, 204, 204)
                 .addComponent(btnEditar, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -616,6 +532,90 @@ public class IfrFinanceiro extends javax.swing.JInternalFrame {
         tffDt2.getAccessibleContext().setAccessibleName("");
 
         jTabbedPane1.addTab("Consulta", jPanel2);
+
+        jLabel22.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel22.setText("Data Inicio");
+
+        jLabel23.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel23.setText("até");
+
+        bntGerar.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        bntGerar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/system/icons/seo-social-web-network-internet_340_icon-iconscom_61497.png"))); // NOI18N
+        bntGerar.setText("Gerar");
+        bntGerar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bntGerarActionPerformed(evt);
+            }
+        });
+
+        buttonGroup3.add(rbGraficoSaida);
+        rbGraficoSaida.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        rbGraficoSaida.setText("Saída");
+
+        buttonGroup3.add(rbGraficoEntrada);
+        rbGraficoEntrada.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        rbGraficoEntrada.setText("Entrada");
+
+        jLabel24.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel24.setText("Tipo");
+
+        Desenho.setIcon(new javax.swing.ImageIcon("C:\\Projeto\\Pharmy\\Grafico.png")); // NOI18N
+
+        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
+        jPanel3.setLayout(jPanel3Layout);
+        jPanel3Layout.setHorizontalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(bntGerar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel3Layout.createSequentialGroup()
+                                .addGap(250, 250, 250)
+                                .addComponent(DesenhoGrafico, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel3Layout.createSequentialGroup()
+                                .addContainerGap()
+                                .addComponent(jLabel22)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(tffDt3, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(30, 30, 30)
+                                .addComponent(jLabel23)
+                                .addGap(30, 30, 30)
+                                .addComponent(tffDt4, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(60, 60, 60)
+                                .addComponent(jLabel24)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(rbGraficoEntrada)
+                                .addGap(18, 18, 18)
+                                .addComponent(rbGraficoSaida))
+                            .addGroup(jPanel3Layout.createSequentialGroup()
+                                .addGap(104, 104, 104)
+                                .addComponent(Desenho, javax.swing.GroupLayout.PREFERRED_SIZE, 556, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(28, 28, 28)))
+                .addContainerGap())
+        );
+        jPanel3Layout.setVerticalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel22)
+                    .addComponent(tffDt3, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel23)
+                    .addComponent(tffDt4, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel24)
+                    .addComponent(rbGraficoEntrada)
+                    .addComponent(rbGraficoSaida))
+                .addGap(18, 18, 18)
+                .addComponent(bntGerar, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(Desenho)
+                .addGap(18, 18, 18)
+                .addComponent(DesenhoGrafico, javax.swing.GroupLayout.PREFERRED_SIZE, 324, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        jTabbedPane1.addTab("Gráfico", jPanel3);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -692,7 +692,14 @@ public class IfrFinanceiro extends javax.swing.JInternalFrame {
 
                 tffDtInicio.setText(Formatting.removerFormatacao(Formatting.ajustaDataDMA(String.valueOf(ap.getDt_inicio()))));
                 tffDtFinal.setText(Formatting.removerFormatacao(Formatting.ajustaDataDMA(String.valueOf(ap.getDt_final()))));
-                tffDtPag.setText(Formatting.removerFormatacao(Formatting.ajustaDataDMA(String.valueOf(ap.getDt_pag()))));
+                System.out.println(ap.getDt_pag());
+                System.out.println(String.valueOf(ap.getDt_pag()));
+                System.out.println(Formatting.ajustaDataDMA(String.valueOf(ap.getDt_pag())));
+                if (ap.getDt_pag() == null) {
+                    tffDtPag.setText("");
+                } else {
+                    tffDtPag.setText(Formatting.removerFormatacao(Formatting.ajustaDataDMA(String.valueOf(ap.getDt_pag()))));
+                }
                 tfdTitulo.setText(ap.getObs());
                 tffMulta.setText(String.valueOf(ap.getMulta()));
                 tffValor.setText(String.valueOf(ap.getValor()));
@@ -725,13 +732,18 @@ public class IfrFinanceiro extends javax.swing.JInternalFrame {
             } else {
                 cont.setTp_conta("S");
             }
+
             cont.setId_forma_pag(cmbFormaPag.getSelectedIndex());
 
             //dados de data
             Date dt_inicio = new SimpleDateFormat("dd/MM/yyyy").parse(tffDtInicio.getText());
             Date dt_final = new SimpleDateFormat("dd/MM/yyyy").parse(tffDtFinal.getText());
-
-            if (dt_final.after(dt_inicio) || dt_final == dt_inicio) {
+            /*if (dt_final == dt_inicio) {
+                cont.setDt_inicio(dt_inicio);
+                cont.setDt_final(dt_final);
+System.out.println("sou igual");
+            } else {*/
+            if (dt_final.after(dt_inicio)) {
                 System.out.println("sou antes");
                 cont.setDt_inicio(dt_inicio);
                 cont.setDt_final(dt_final);
@@ -739,6 +751,7 @@ public class IfrFinanceiro extends javax.swing.JInternalFrame {
                 System.out.println("sou depois");
                 continua = false;
             }
+            /*}*/
             if (Formatting.removerFormatacao(tffDtPag.getText()).equals("")) {
                 cont.setDt_pag(null);
             } else {
@@ -842,35 +855,23 @@ public class IfrFinanceiro extends javax.swing.JInternalFrame {
         Financeiro y = null;
         ArrayList<Financeiro> x = null;
         if (rbGraficoEntrada.isSelected()) {
-            /*     System.out.println("Data inicio"+tffDt3.getText());
-            System.out.println("");
-            System.out.println("");*/
             x = new FinanceiroDAO().consultar("E", tffDt3.getText(), tffDt4.getText());
-            System.out.println("Tamanho " + x.size());
-            System.out.println("------CONSULTA--------");
             for (int i = 0; i < x.size(); i++) {
                 y = x.get(i);
                 System.out.println(y.getDt_inicio() + " - " + y.getValor());
             }
-            System.out.println("----------------------");
             new Grafico().getGrafico(x, tffDt3.getText(), tffDt4.getText(), "Entrada");
-            Desenho.setIcon(new javax.swing.ImageIcon("C:\\Projeto\\Pharmy\\Grafico.png"));
+            Desenho.setIcon(new javax.swing.ImageIcon("Grafico.png"));
         } else {
-            //new FinanceiroDAO().consultar("S", tffDt3.getText(), tffDt4.getText());
+            //if (rbGraficoSaida.isSelected()){
             x = new FinanceiroDAO().consultar("S", tffDt3.getText(), tffDt4.getText());
-            System.out.println("Tamanho " + x.size());
-            System.out.println("------CONSULTA--------");
             for (int i = 0; i < x.size(); i++) {
                 y = x.get(i);
                 System.out.println(y.getDt_inicio() + " - " + y.getValor());
             }
-            System.out.println("----------------------");
             new Grafico().getGrafico(x, tffDt3.getText(), tffDt4.getText(), "Saída");
-            Desenho.setIcon(new javax.swing.ImageIcon("C:\\Projeto\\Pharmy\\Grafico.png"));
+            Desenho.setIcon(new javax.swing.ImageIcon("Grafico.png"));
         }
-        //-----------TESTE-----------
-
-
     }//GEN-LAST:event_bntGerarActionPerformed
 
 

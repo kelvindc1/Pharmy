@@ -11,7 +11,6 @@ import java.awt.Component;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
-import java.util.Date;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
@@ -133,7 +132,7 @@ public class FinanceiroDAO implements IDAO_T<Financeiro> {
 
             String sql = "SELECT (f.valor+f.multa) AS valor ,f.dt_inicio "
                     + "FROM financeiro f "
-                    + "WHERE f.tp_conta = '"+tp+"' AND f.dt_inicio BETWEEN '"+dt1+"' AND '"+dt2+"'";
+                    + "WHERE f.tp_conta = '" + tp + "' AND f.dt_inicio BETWEEN '" + dt1 + "' AND '" + dt2 + "'";
 
             System.out.println("SQL: " + sql);
 
@@ -141,7 +140,7 @@ public class FinanceiroDAO implements IDAO_T<Financeiro> {
             resultadoQ = st.executeQuery(sql);
 
             // avanca ResultSet
-            if (resultadoQ.next()) {
+            while (resultadoQ.next()) {
                 finaceiro = new Financeiro();
 
                 // obtem dados do RS
@@ -338,10 +337,18 @@ public class FinanceiroDAO implements IDAO_T<Financeiro> {
                 //dadosTabela[lin][2] = resultadoQ.getString("tp_conta");
                 dadosTabela[lin][3] = resultadoQ.getBigDecimal("valor");
                 dadosTabela[lin][4] = resultadoQ.getBigDecimal("multa");
-                dadosTabela[lin][5] = resultadoQ.getString("nome");
+                if (resultadoQ.getString("nome").equals("Outros")) {
+                    dadosTabela[lin][5] = "";
+                } else {
+                    dadosTabela[lin][5] = resultadoQ.getString("nome");
+                }
                 dadosTabela[lin][6] = Formatting.ajustaDataDMA(resultadoQ.getString("dt_inicio"));
                 dadosTabela[lin][7] = Formatting.ajustaDataDMA(resultadoQ.getString("dt_final"));
-                dadosTabela[lin][8] = Formatting.ajustaDataDMA(resultadoQ.getString("dt_pag"));
+                if (resultadoQ.getDate("dt_pag") == null) {
+                    dadosTabela[lin][8] = "";
+                } else {
+                    dadosTabela[lin][8] = Formatting.ajustaDataDMA(resultadoQ.getString("dt_pag"));
+                }
 
                 // caso a coluna precise exibir uma imagem
 //                if (resultadoQ.getBoolean("Situacao")) {
