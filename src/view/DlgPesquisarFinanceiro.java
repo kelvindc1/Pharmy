@@ -5,7 +5,7 @@
  */
 package view;
 
-import dao.ClienteDAO;
+
 import dao.FinanceiroDAO;
 
 /**
@@ -14,7 +14,7 @@ import dao.FinanceiroDAO;
  */
 public class DlgPesquisarFinanceiro extends javax.swing.JDialog {
 
-    IfrPedido pedidoView = null;
+    IfrPedido FinanceiroView = null;
 
     /**
      * Creates new form DlgPesquisarItem
@@ -24,11 +24,11 @@ public class DlgPesquisarFinanceiro extends javax.swing.JDialog {
         initComponents();
     }
 
-    public DlgPesquisarFinanceiro(java.awt.Frame parent, boolean modal, IfrPedido ifrTratamento) {
+    public DlgPesquisarFinanceiro(java.awt.Frame parent, boolean modal, IfrPedido ifrPedido) {
         super(parent, modal);
         initComponents();
-        pedidoView = ifrTratamento;
-        new FinanceiroDAO().popularTabela(tblItem2, "", "");
+        FinanceiroView = ifrPedido;
+        new FinanceiroDAO().popularTabelaFiltro(tblItem2, "");
     }
 
     /**
@@ -50,7 +50,7 @@ public class DlgPesquisarFinanceiro extends javax.swing.JDialog {
         btnSelecionar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setTitle("Buscar: Financeiro");
+        setTitle("Buscar: Cargos");
 
         jLabel1.setText("Busca");
 
@@ -141,7 +141,7 @@ public class DlgPesquisarFinanceiro extends javax.swing.JDialog {
     private void btnSelecionarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSelecionarActionPerformed
         String id = String.valueOf(tblItem2.getValueAt(tblItem2.getSelectedRow(), 0));
 
-        pedidoView.definirValorFuncaoFinanceiro(id);
+        FinanceiroView.definirValorFuncaoFinanceiro(id);
 
         this.dispose();
     }//GEN-LAST:event_btnSelecionarActionPerformed
@@ -175,6 +175,38 @@ public class DlgPesquisarFinanceiro extends javax.swing.JDialog {
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(DlgPesquisarFinanceiro.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
         //</editor-fold>

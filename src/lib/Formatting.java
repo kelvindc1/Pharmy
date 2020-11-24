@@ -247,4 +247,15 @@ public class Formatting {
             System.err.println(e);
         }
     }
+      public static String ajustaDataDMA(Date data) {
+        String dataFormatada = null;
+        String aux = data.toString();
+        try {
+            Date dataAMD = new SimpleDateFormat("yyyy-MM-dd").parse(aux);
+            dataFormatada = new SimpleDateFormat("dd/MM/yyyy").format(dataAMD);
+        } catch (Exception e) {
+            System.err.println(e);
+        }
+        return (dataFormatada);
+    }
 }
