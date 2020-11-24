@@ -965,9 +965,12 @@ public class IfrPedido extends javax.swing.JInternalFrame {
             int qtd_total_itens = Integer.parseInt(qtd_total_itensstr);
             pedido.setQtd_total_itens(qtd_total_itens);
 
-            String valor_totalstr = Formatting.removerFormatacao(tfdValorTotal.getText());
-            BigDecimal valor_total = BigDecimal.valueOf((double) 0);
-            pedido.setValor_total(valor_total);
+            //String valor_totalstr = Formatting.removerFormatacao(tfdValorTotal.getText());
+            //BigDecimal valor_total = BigDecimal.valueOf((double) 0);
+            //pedido.setValor_total(valor_total);
+            
+            pedido.setValor_total(BigDecimal.valueOf(Double.parseDouble(tfdValorTotal.getText())));
+            
             
             String id_financeirot = Formatting.removerFormatacao(tfdIdFinanceiro.getText());
             int id_financeiro = Integer.parseInt(id_financeirot);
