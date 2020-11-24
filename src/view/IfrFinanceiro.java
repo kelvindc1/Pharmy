@@ -23,7 +23,7 @@ import lib.Grafico;
 
 /**
  *
- * @author Win10
+ * @author cristian
  */
 public class IfrFinanceiro extends javax.swing.JInternalFrame {
 
