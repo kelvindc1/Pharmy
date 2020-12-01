@@ -91,7 +91,6 @@ public class IfrFinanceiro extends javax.swing.JInternalFrame {
         rbEntrada = new javax.swing.JRadioButton();
         rbSaida = new javax.swing.JRadioButton();
         jLabel18 = new javax.swing.JLabel();
-        jLabel19 = new javax.swing.JLabel();
         tffMulta = new javax.swing.JFormattedTextField();
         jLabel9 = new javax.swing.JLabel();
         cmbFormaPag = new javax.swing.JComboBox<>();
@@ -141,7 +140,7 @@ public class IfrFinanceiro extends javax.swing.JInternalFrame {
         jLabel2.setText("Id");
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel3.setText("Data Final");
+        jLabel3.setText("Data de Vencimento");
 
         btnFechar.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         btnFechar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/system/icons/iconeFechar.png"))); // NOI18N
@@ -213,10 +212,6 @@ public class IfrFinanceiro extends javax.swing.JInternalFrame {
         jLabel18.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel18.setText("Multa");
 
-        jLabel19.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel19.setForeground(new java.awt.Color(255, 0, 51));
-        jLabel19.setText("*");
-
         tffMulta.setText(" ");
 
         jLabel9.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
@@ -262,10 +257,7 @@ public class IfrFinanceiro extends javax.swing.JInternalFrame {
                                         .addGap(100, 100, 100)
                                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                             .addComponent(tffMulta, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                                .addComponent(jLabel18)
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                .addComponent(jLabel19))
+                                            .addComponent(jLabel18)
                                             .addGroup(jPanel1Layout.createSequentialGroup()
                                                 .addComponent(jLabel3)
                                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -366,7 +358,6 @@ public class IfrFinanceiro extends javax.swing.JInternalFrame {
                     .addComponent(jLabel4)
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jLabel18)
-                        .addComponent(jLabel19)
                         .addComponent(jLabel9)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -899,7 +890,6 @@ System.out.println("sou igual");
     private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel18;
-    private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel20;
     private javax.swing.JLabel jLabel21;
