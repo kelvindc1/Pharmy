@@ -924,11 +924,6 @@
               </Properties>
             </Component>
             <Component class="javax.swing.JLabel" name="Desenho">
-              <Properties>
-                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="2" name="C:\Projeto\Pharmy\Grafico.png"/>
-                </Property>
-              </Properties>
             </Component>
           </SubComponents>
         </Container>

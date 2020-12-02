@@ -5,7 +5,6 @@ import lib.ConexaoBD;
 import java.util.HashMap;
 import java.util.Map;
 import javax.swing.JOptionPane;
-import lib.Grafico;
 import net.sf.jasperreports.engine.JasperCompileManager;
 import net.sf.jasperreports.engine.JasperFillManager;
 import net.sf.jasperreports.engine.JasperPrint;
@@ -29,7 +28,8 @@ public class JanelaPrincipalPharmy extends javax.swing.JFrame {
     public JanelaPrincipalPharmy() {
         initComponents();
         setExtendedState(MAXIMIZED_BOTH);
-        new Grafico().getGrafico();
+        //new Grafico().getGrafico();
+        
         setIcon();
     }
 
@@ -64,8 +64,7 @@ public class JanelaPrincipalPharmy extends javax.swing.JFrame {
         jMenuItem19 = new javax.swing.JMenuItem();
         jMenuItem29 = new javax.swing.JMenuItem();
         jMenuItem30 = new javax.swing.JMenuItem();
-        jMenuItem27 = new javax.swing.JMenuItem();
-        jMenuItem29 = new javax.swing.JMenuItem();
+        jMenu2 = new javax.swing.JMenu();
         jMenuItem4 = new javax.swing.JMenuItem();
         jMenu4 = new javax.swing.JMenu();
         jMenuItem8 = new javax.swing.JMenuItem();
@@ -146,14 +145,6 @@ public class JanelaPrincipalPharmy extends javax.swing.JFrame {
             }
         });
         jMenu1.add(jMenuItem3);
-
-        jMenuItem23.setText("Produto");
-        jMenuItem23.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem23ActionPerformed(evt);
-            }
-        });
-        jMenu1.add(jMenuItem23);
 
         jMenuItem23.setText("Produto");
         jMenuItem23.addActionListener(new java.awt.event.ActionListener() {
@@ -263,17 +254,12 @@ public class JanelaPrincipalPharmy extends javax.swing.JFrame {
         jMenu1.add(jMenuItem29);
 
         jMenuItem30.setText("Financeiro");
-        jMenu1.add(jMenuItem30);
-        jMenuItem27.setText("Banco");
-        jMenu1.add(jMenuItem27);
-
-        jMenuItem29.setText("Financeiro");
-        jMenuItem29.addActionListener(new java.awt.event.ActionListener() {
+        jMenuItem30.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem29ActionPerformed(evt);
+                jMenuItem30ActionPerformed(evt);
             }
         });
-        jMenu1.add(jMenuItem29);
+        jMenu1.add(jMenuItem30);
 
         jMenuBar1.add(jMenu1);
 
@@ -531,11 +517,11 @@ public class JanelaPrincipalPharmy extends javax.swing.JFrame {
 
     }//GEN-LAST:event_jMenuItem23ActionPerformed
 
-    private void jMenuItem29ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem29ActionPerformed
-      IfrFinanceiro ifrFinanceiro = new IfrFinanceiro();
+    private void jMenuItem30ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem30ActionPerformed
+        IfrFinanceiro ifrFinanceiro = new IfrFinanceiro();
         jDesktopPane1.add(ifrFinanceiro);
         ifrFinanceiro.setVisible(true);
-    }//GEN-LAST:event_jMenuItem29ActionPerformed
+    }//GEN-LAST:event_jMenuItem30ActionPerformed
 
     public static void main(String args[]) {
 
@@ -573,7 +559,6 @@ public class JanelaPrincipalPharmy extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem24;
     private javax.swing.JMenuItem jMenuItem25;
     private javax.swing.JMenuItem jMenuItem26;
-    private javax.swing.JMenuItem jMenuItem27;
     private javax.swing.JMenuItem jMenuItem28;
     private javax.swing.JMenuItem jMenuItem29;
     private javax.swing.JMenuItem jMenuItem3;
