@@ -5,7 +5,6 @@ import lib.ConexaoBD;
 import java.util.HashMap;
 import java.util.Map;
 import javax.swing.JOptionPane;
-import lib.Grafico;
 import net.sf.jasperreports.engine.JasperCompileManager;
 import net.sf.jasperreports.engine.JasperFillManager;
 import net.sf.jasperreports.engine.JasperPrint;
@@ -29,8 +28,13 @@ public class JanelaPrincipalPharmy extends javax.swing.JFrame {
     public JanelaPrincipalPharmy() {
         initComponents();
         setExtendedState(MAXIMIZED_BOTH);
-        new Grafico().getGrafico();
+        //new Grafico().getGrafico();
+<<<<<<< HEAD
+        
         setIcon();
+=======
+        //setIcon();
+>>>>>>> 1c08df5cee5e601d021fa1b7a8b2b1c73ce75729
     }
 
     @SuppressWarnings("unchecked")
@@ -45,6 +49,10 @@ public class JanelaPrincipalPharmy extends javax.swing.JFrame {
         jMenuItem22 = new javax.swing.JMenuItem();
         jMenuItem6 = new javax.swing.JMenuItem();
         jMenuItem3 = new javax.swing.JMenuItem();
+<<<<<<< HEAD
+=======
+        jMenuItem2 = new javax.swing.JMenuItem();
+>>>>>>> 1c08df5cee5e601d021fa1b7a8b2b1c73ce75729
         jMenuItem23 = new javax.swing.JMenuItem();
         jMenuItem7 = new javax.swing.JMenuItem();
         jSeparator1 = new javax.swing.JPopupMenu.Separator();
@@ -62,10 +70,14 @@ public class JanelaPrincipalPharmy extends javax.swing.JFrame {
         jMenuItem24 = new javax.swing.JMenuItem();
         jMenuItem26 = new javax.swing.JMenuItem();
         jMenuItem19 = new javax.swing.JMenuItem();
+<<<<<<< HEAD
         jMenuItem29 = new javax.swing.JMenuItem();
         jMenuItem30 = new javax.swing.JMenuItem();
+=======
         jMenuItem27 = new javax.swing.JMenuItem();
         jMenuItem29 = new javax.swing.JMenuItem();
+>>>>>>> 1c08df5cee5e601d021fa1b7a8b2b1c73ce75729
+        jMenu2 = new javax.swing.JMenu();
         jMenuItem4 = new javax.swing.JMenuItem();
         jMenu4 = new javax.swing.JMenu();
         jMenuItem8 = new javax.swing.JMenuItem();
@@ -147,6 +159,7 @@ public class JanelaPrincipalPharmy extends javax.swing.JFrame {
         });
         jMenu1.add(jMenuItem3);
 
+<<<<<<< HEAD
         jMenuItem23.setText("Produto");
         jMenuItem23.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -154,6 +167,20 @@ public class JanelaPrincipalPharmy extends javax.swing.JFrame {
             }
         });
         jMenu1.add(jMenuItem23);
+
+        jMenuItem7.setText("Funcionário");
+        jMenuItem7.addActionListener(new java.awt.event.ActionListener() {
+=======
+        jMenuItem2.setText("Produto");
+        jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
+>>>>>>> 1c08df5cee5e601d021fa1b7a8b2b1c73ce75729
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem2ActionPerformed(evt);
+            }
+        });
+<<<<<<< HEAD
+=======
+        jMenu1.add(jMenuItem2);
 
         jMenuItem23.setText("Produto");
         jMenuItem23.addActionListener(new java.awt.event.ActionListener() {
@@ -169,6 +196,7 @@ public class JanelaPrincipalPharmy extends javax.swing.JFrame {
                 jMenuItem7ActionPerformed(evt);
             }
         });
+>>>>>>> 1c08df5cee5e601d021fa1b7a8b2b1c73ce75729
         jMenu1.add(jMenuItem7);
         jMenu1.add(jSeparator1);
 
@@ -259,11 +287,13 @@ public class JanelaPrincipalPharmy extends javax.swing.JFrame {
         });
         jMenu1.add(jMenuItem19);
 
+<<<<<<< HEAD
         jMenuItem29.setText("Servicos");
         jMenu1.add(jMenuItem29);
 
         jMenuItem30.setText("Financeiro");
         jMenu1.add(jMenuItem30);
+=======
         jMenuItem27.setText("Banco");
         jMenu1.add(jMenuItem27);
 
@@ -274,6 +304,7 @@ public class JanelaPrincipalPharmy extends javax.swing.JFrame {
             }
         });
         jMenu1.add(jMenuItem29);
+>>>>>>> 1c08df5cee5e601d021fa1b7a8b2b1c73ce75729
 
         jMenuBar1.add(jMenu1);
 
@@ -573,7 +604,10 @@ public class JanelaPrincipalPharmy extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem24;
     private javax.swing.JMenuItem jMenuItem25;
     private javax.swing.JMenuItem jMenuItem26;
+<<<<<<< HEAD
+=======
     private javax.swing.JMenuItem jMenuItem27;
+>>>>>>> 1c08df5cee5e601d021fa1b7a8b2b1c73ce75729
     private javax.swing.JMenuItem jMenuItem28;
     private javax.swing.JMenuItem jMenuItem29;
     private javax.swing.JMenuItem jMenuItem3;

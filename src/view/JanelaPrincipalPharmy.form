@@ -179,6 +179,17 @@
               <Properties>
                 <Property name="text" type="java.lang.String" value="Financeiro"/>
               </Properties>
+<<<<<<< HEAD
+=======
+            </MenuItem>
+            <MenuItem class="javax.swing.JMenuItem" name="jMenuItem29">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Financeiro"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jMenuItem29ActionPerformed"/>
+              </Events>
+>>>>>>> 1c08df5cee5e601d021fa1b7a8b2b1c73ce75729
             </MenuItem>
           </SubComponents>
         </Menu>
