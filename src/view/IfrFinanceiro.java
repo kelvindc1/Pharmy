@@ -133,7 +133,7 @@ public class IfrFinanceiro extends javax.swing.JInternalFrame {
 
         setClosable(true);
         setResizable(true);
-        setTitle("Cadastro: Contrato");
+        setTitle("Cadastro: Financeiro");
         setName(""); // NOI18N
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
@@ -549,8 +549,6 @@ public class IfrFinanceiro extends javax.swing.JInternalFrame {
 
         jLabel24.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel24.setText("Tipo");
-
-        Desenho.setIcon(new javax.swing.ImageIcon("C:\\Projeto\\Pharmy\\Grafico.png")); // NOI18N
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
